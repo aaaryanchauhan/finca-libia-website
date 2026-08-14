@@ -1,0 +1,118 @@
+import { useState } from 'react';
+import { photoGalleryCategories } from '../data/villaData';
+import { Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
+
+export function GallerySection() {
+  const [activeTab, setActiveTab] = useState(0);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const currentCategory = photoGalleryCategories[activeTab];
+  const photos = currentCategory.photos;
+
+  const nextLightbox = () => {
+    if (lightboxIndex !== null) {
+      setLightboxIndex((lightboxIndex + 1) % photos.length);
+    }
+  };
+
+  const prevLightbox = () => {
+    if (lightboxIndex !== null) {
+      setLightboxIndex((lightboxIndex - 1 + photos.length) % photos.length);
+    }
+  };
+
+  return (
+    <section id="gallery" className="relative bg-ink-900 px-6 py-24 lg:px-12 border-b border-ink-700/60">
+      <div className="mx-auto max-w-7xl">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto">
+          <p className="text-xs uppercase tracking-widest-3 text-champagne-400 font-medium">
+            Visual Tour
+          </p>
+          <h2 className="mt-3 font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-ivory-50">
+            Estate Photo Gallery
+          </h2>
+          <p className="mt-4 font-serif text-lg font-light italic text-stone-300">
+            Explore every corner of Finca Libia prior to your arrival.
+          </p>
+        </div>
+
+        {/* Category Filter Tabs */}
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
+          {photoGalleryCategories.map((cat, idx) => (
+            <button
+              key={cat.name}
+              onClick={() => setActiveTab(idx)}
+              className={`no-tap-highlight rounded-full px-5 py-2 text-xs font-medium uppercase tracking-wider transition-all duration-300 ${
+                idx === activeTab
+                  ? 'bg-champagne-500 text-ink-900 shadow-md'
+                  : 'bg-ink-800/60 text-ivory-200 hover:bg-ink-700/60'
+              }`}
+            >
+              {cat.name}
+            </button>
+          ))}
+        </div>
+
+        {/* Gallery Grid */}
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {photos.map((photo, idx) => (
+            <div
+              key={idx}
+              onClick={() => setLightboxIndex(idx)}
+              className="group relative h-72 cursor-pointer overflow-hidden rounded-2xl border border-ink-700/50 bg-ink-800"
+            >
+              <img
+                src={photo}
+                alt="Finca Libia"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-ink-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="rounded-full bg-ink-900/80 p-3 text-champagne-300 border border-champagne-400/40 backdrop-blur-md">
+                  <Maximize2 className="h-5 w-5" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Fullscreen Lightbox Modal */}
+      {lightboxIndex !== null && (
+        <div className="fixed inset-0 z-50 bg-ink-900/98 backdrop-blur-2xl flex items-center justify-center p-4 animate-fade-in">
+          <button
+            onClick={() => setLightboxIndex(null)}
+            className="absolute top-6 right-6 z-50 p-3 rounded-full bg-ink-800/80 text-ivory-100 border border-ink-700 hover:bg-ink-700"
+            aria-label="Close"
+          >
+            <X className="h-6 w-6" />
+          </button>
+
+          <button
+            onClick={prevLightbox}
+            className="absolute left-6 p-3 rounded-full bg-ink-800/80 text-ivory-100 border border-ink-700 hover:bg-ink-700"
+            aria-label="Previous image"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+
+          <div className="max-w-5xl max-h-[85vh] overflow-hidden rounded-2xl">
+            <img
+              src={photos[lightboxIndex]}
+              alt="Finca Libia Fullscreen"
+              className="max-h-[85vh] max-w-full object-contain"
+            />
+          </div>
+
+          <button
+            onClick={nextLightbox}
+            className="absolute right-6 p-3 rounded-full bg-ink-800/80 text-ivory-100 border border-ink-700 hover:bg-ink-700"
+            aria-label="Next image"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+        </div>
+      )}
+    </section>
+  );
+}
