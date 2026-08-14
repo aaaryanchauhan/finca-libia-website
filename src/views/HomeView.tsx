@@ -79,7 +79,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
       </section>
 
       {/* Your Stay */}
-      <section className="relative bg-ink-900 px-6 py-20">
+      <section className="relative bg-ink-900 px-6 py-20 pb-28">
         <div className="mx-auto max-w-2xl">
           <Reveal>
             <p className="text-xs uppercase tracking-widest-3 text-stone-400">

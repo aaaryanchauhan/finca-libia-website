@@ -35,8 +35,8 @@ export default function App() {
   const navigate = (v: string) => setView(v as View);
   const goHome = () => setView('home');
 
-  const showBottomNav = view !== 'home';
-  const showConciergeButton = view !== 'concierge' && view !== 'home';
+  const showBottomNav = true;
+  const showConciergeButton = view !== 'concierge';
 
   return (
     <div className="min-h-screen bg-ink-900 text-ivory-100">
@@ -51,21 +51,21 @@ export default function App() {
               FINCA LIBIA
             </span>
           </div>
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2 sm:gap-2.5">
             <button
               onClick={() => setView('pre-arrival')}
-              className="no-tap-highlight group flex items-center gap-1.5 rounded-full border border-ivory-200/30 bg-ink-900/60 px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-wider text-ivory-100 backdrop-blur-md shadow-md transition-all duration-300 hover:border-champagne-400 hover:bg-champagne-500 hover:text-ink-900 active:scale-95"
+              className="no-tap-highlight group flex shrink-0 items-center gap-1.5 rounded-full border border-ivory-200/30 bg-ink-900/60 px-3 py-1.5 sm:px-3.5 text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-ivory-100 whitespace-nowrap backdrop-blur-md shadow-md transition-all duration-300 hover:border-champagne-400 hover:bg-champagne-500 hover:text-ink-900 active:scale-95"
               aria-label="Pre-arrival"
             >
-              <Calendar className="h-3.5 w-3.5 text-champagne-400 transition-colors group-hover:text-ink-900" strokeWidth={1.5} />
+              <Calendar className="h-3.5 w-3.5 shrink-0 text-champagne-400 transition-colors group-hover:text-ink-900" strokeWidth={1.5} />
               <span>Pre-Arrival</span>
             </button>
             <button
               onClick={() => setView('checkout')}
-              className="no-tap-highlight group flex items-center gap-1.5 rounded-full border border-ivory-200/30 bg-ink-900/60 px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-wider text-ivory-100 backdrop-blur-md shadow-md transition-all duration-300 hover:border-champagne-400 hover:bg-champagne-500 hover:text-ink-900 active:scale-95"
+              className="no-tap-highlight group flex shrink-0 items-center gap-1.5 rounded-full border border-ivory-200/30 bg-ink-900/60 px-3 py-1.5 sm:px-3.5 text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-ivory-100 whitespace-nowrap backdrop-blur-md shadow-md transition-all duration-300 hover:border-champagne-400 hover:bg-champagne-500 hover:text-ink-900 active:scale-95"
               aria-label="Checkout"
             >
-              <LogOut className="h-3.5 w-3.5 text-champagne-400 transition-colors group-hover:text-ink-900" strokeWidth={1.5} />
+              <LogOut className="h-3.5 w-3.5 shrink-0 text-champagne-400 transition-colors group-hover:text-ink-900" strokeWidth={1.5} />
               <span>Checkout</span>
             </button>
           </div>
@@ -94,7 +94,7 @@ export default function App() {
         </button>
       )}
 
-      {/* Bottom Navigation */}
+      {/* Bottom Navigation Bar */}
       {showBottomNav && (
         <nav className="fixed bottom-0 left-0 right-0 z-30 border-t border-ink-700 bg-ink-900/95 backdrop-blur-lg">
           <div className="mx-auto flex max-w-md items-center justify-around px-6 py-3 pb-5">
