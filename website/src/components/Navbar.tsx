@@ -37,8 +37,8 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12">
         {/* Brand Logo */}
-        <a href="#" className="group flex flex-col">
-          <span className="font-serif text-2xl lg:text-3xl font-light tracking-widest-3 text-ivory-50 transition-colors group-hover:text-champagne-300">
+        <a href="#" className="group flex flex-col shrink-0">
+          <span className="font-serif text-2xl xl:text-3xl font-light tracking-widest-3 text-ivory-50 transition-colors group-hover:text-champagne-300">
             FINCA LIBIA
           </span>
           <span className="text-[10px] uppercase tracking-widest-4 text-champagne-400 font-medium -mt-1">
@@ -47,12 +47,12 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-7">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-xs uppercase tracking-widest-2 text-ivory-200/80 transition-all duration-300 hover:text-champagne-300 hover:scale-105"
+              className="text-[11px] xl:text-xs uppercase tracking-wider xl:tracking-widest-2 text-ivory-200/80 whitespace-nowrap shrink-0 transition-all duration-300 hover:text-champagne-300 hover:scale-105"
             >
               {link.name}
             </a>
@@ -60,13 +60,13 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
         </nav>
 
         {/* Action Button */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-4 shrink-0">
           <button
             onClick={onOpenInquiry}
-            className="no-tap-highlight group flex items-center gap-2 rounded-full border border-champagne-400/50 bg-champagne-500/10 px-5 py-2.5 text-xs font-medium uppercase tracking-widest-2 text-ivory-50 backdrop-blur-md shadow-lg transition-all duration-300 hover:border-champagne-300 hover:bg-champagne-500 hover:text-ink-900 active:scale-95"
+            className="no-tap-highlight group flex shrink-0 items-center gap-2 rounded-full border border-champagne-400/50 bg-champagne-500/10 px-4 xl:px-5 py-2.5 text-[11px] xl:text-xs font-medium uppercase tracking-wider xl:tracking-widest-2 text-ivory-50 whitespace-nowrap backdrop-blur-md shadow-lg transition-all duration-300 hover:border-champagne-300 hover:bg-champagne-500 hover:text-ink-900 active:scale-95"
           >
-            <Calendar className="h-3.5 w-3.5 text-champagne-400 transition-colors group-hover:text-ink-900" strokeWidth={1.5} />
-            <span>Inquire Stay</span>
+            <Calendar className="h-3.5 w-3.5 text-champagne-400 transition-colors group-hover:text-ink-900 shrink-0" strokeWidth={1.5} />
+            <span className="whitespace-nowrap">Inquire Stay</span>
           </button>
         </div>
 
