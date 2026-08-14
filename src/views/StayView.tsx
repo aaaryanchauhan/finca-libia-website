@@ -31,20 +31,20 @@ export function StayView({ onBack }: StayViewProps) {
           scale={false}
         />
 
-        {/* Top Header Bar with prominent Exit button */}
-        <div className="relative z-20 flex items-center justify-between p-6 sm:p-8">
-          <div className="flex items-center gap-2">
-            <span className="text-xs uppercase tracking-widest-3 text-champagne-400 font-medium">Digital Estate Tour</span>
-          </div>
-
+        {/* Top Header Bar with Exit button on top-left corner */}
+        <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between p-6 sm:p-8">
           <button
             onClick={() => setTourIndex(null)}
-            className="no-tap-highlight flex items-center gap-2 rounded-full border border-ivory-200/30 bg-ink-900/80 px-4 py-2 text-xs uppercase tracking-widest-2 text-ivory-100 backdrop-blur-md shadow-lg transition-all hover:bg-ink-900 hover:border-ivory-100 hover:scale-105"
+            className="no-tap-highlight flex items-center gap-2 rounded-full border border-ivory-200/30 bg-ink-900/70 px-4 py-2 text-xs uppercase tracking-widest-2 text-ivory-100 backdrop-blur-md shadow-lg transition-all hover:bg-ink-900 hover:border-ivory-100 hover:scale-105"
             aria-label="Exit Digital Tour"
           >
             <X className="h-4 w-4" strokeWidth={1.5} />
             <span>Exit tour</span>
           </button>
+
+          <div className="flex items-center gap-2">
+            <span className="text-xs uppercase tracking-widest-3 text-champagne-400 font-medium drop-shadow-md">Digital Estate Tour</span>
+          </div>
         </div>
 
         {/* Center Content */}

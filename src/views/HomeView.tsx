@@ -51,24 +51,25 @@ export function HomeView({ onNavigate }: HomeViewProps) {
             </picture>
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-b from-ink-900/30 via-ink-900/20 to-ink-900/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink-900/85 via-ink-900/50 to-ink-900" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(26,24,22,0.65)_0%,_rgba(26,24,22,0)_75%)] pointer-events-none" />
 
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-          <p className="animate-fade-in text-xs uppercase tracking-widest-3 text-ivory-200/80">
+          <p className="animate-fade-in text-xs font-medium uppercase tracking-widest-3 text-champagne-300 drop-shadow-md">
             Welcome to
           </p>
-          <h1 className="animate-fade-up animate-delay-100 mt-4 font-serif text-5xl font-light text-ivory-50 hero-text-shadow sm:text-6xl md:text-7xl">
+          <h1 className="animate-fade-up animate-delay-100 mt-4 font-serif text-5xl font-light tracking-tight text-ivory-50 hero-text-shadow drop-shadow-xl sm:text-6xl md:text-7xl">
             {property.name}
           </h1>
-          <p className="animate-fade-up animate-delay-200 mt-5 max-w-md font-serif text-lg font-light italic text-ivory-200 hero-text-shadow">
+          <p className="animate-fade-up animate-delay-200 mt-5 max-w-md px-4 font-serif text-lg font-light italic leading-relaxed text-ivory-100 hero-text-shadow drop-shadow-md sm:text-xl">
             {property.tagline}
           </p>
           <button
             onClick={() => onNavigate('stay')}
-            className="animate-fade-up animate-delay-400 no-tap-highlight mt-10 group inline-flex items-center gap-2 text-ivory-200/90 transition-colors hover:text-ivory-50"
+            className="animate-fade-up animate-delay-400 no-tap-highlight mt-9 group inline-flex items-center gap-3 rounded-full border border-champagne-400/40 bg-ink-900/60 px-7 py-3.5 text-xs font-medium uppercase tracking-widest-2 text-ivory-100 backdrop-blur-md shadow-xl transition-all duration-300 hover:border-champagne-300 hover:bg-champagne-500 hover:text-ink-900 hover:shadow-champagne-500/20 active:scale-95"
           >
-            <span className="text-xs uppercase tracking-widest-2">Explore your stay</span>
-            <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-2" strokeWidth={1.5} />
+            <span>Explore your stay</span>
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
           </button>
         </div>
 
@@ -120,10 +121,12 @@ export function HomeView({ onNavigate }: HomeViewProps) {
           <Reveal delay={300}>
             <div className="mt-16 space-y-px">
               {[
-                { label: 'Explore the estate', view: 'stay', desc: 'Pool, sauna, tennis, bar & more' },
+                { label: 'Pre-arrival guide', view: 'pre-arrival', desc: 'Arrival details, airport transport & preferences' },
+                { label: 'Explore the estate', view: 'stay', desc: 'Pool, sauna, tennis, bar & self-guided digital tour' },
                 { label: 'Discover Medellín', view: 'explore', desc: 'Curated recommendations from the family' },
                 { label: 'Speak to the concierge', view: 'concierge', desc: 'Requests, assistance, anything you need' },
-                { label: 'Guest memories', view: 'memories', desc: 'Stories from those who stayed before' },
+                { label: 'Guest memories', view: 'memories', desc: 'Stories & guestbook from those who stayed before' },
+                { label: 'Checkout & guestbook', view: 'checkout', desc: 'Departure checklist and leave your memories' },
               ].map((item) => (
                 <button
                   key={item.view}

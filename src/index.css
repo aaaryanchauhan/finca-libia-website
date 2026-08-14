@@ -38,7 +38,7 @@
   }
 
   .hero-text-shadow {
-    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95), 0 4px 20px rgba(0, 0, 0, 0.85), 0 0 35px rgba(0, 0, 0, 0.75);
   }
 
   .animate-delay-100 {

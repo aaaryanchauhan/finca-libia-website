@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Sparkles, Home, Map, MessageSquare, BookOpen } from 'lucide-react';
+import { Sparkles, Home, Map, BookOpen, Calendar, LogOut } from 'lucide-react';
 import { HomeView } from '@/views/HomeView';
 import { StayView } from '@/views/StayView';
 import { ExploreView } from '@/views/ExploreView';
@@ -40,29 +40,36 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-ink-900 text-ivory-100">
-      {/* Top bar — pre-arrival / checkout access (hidden on home) */}
+      {/* Top bar — pre-arrival & checkout buttons */}
       {view === 'home' && (
-        <div className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 py-4"
+        <header
+          className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-5 py-4 transition-opacity duration-300"
           style={{ opacity: Math.max(0, 1 - scrollY / 200) }}
         >
-          <p className="font-serif text-sm font-light tracking-widest-2 text-ivory-200/80">
-            FINCA LIBIA
-          </p>
-          <div className="flex gap-4">
+          <div className="flex items-center gap-2">
+            <span className="font-serif text-sm sm:text-base font-medium tracking-widest-2 text-ivory-100 drop-shadow-md">
+              FINCA LIBIA
+            </span>
+          </div>
+          <div className="flex items-center gap-2.5">
             <button
               onClick={() => setView('pre-arrival')}
-              className="no-tap-highlight text-xs uppercase tracking-widest-2 text-ivory-200/60 transition-opacity hover:opacity-100"
+              className="no-tap-highlight group flex items-center gap-1.5 rounded-full border border-ivory-200/30 bg-ink-900/60 px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-wider text-ivory-100 backdrop-blur-md shadow-md transition-all duration-300 hover:border-champagne-400 hover:bg-champagne-500 hover:text-ink-900 active:scale-95"
+              aria-label="Pre-arrival"
             >
-              Pre-arrival
+              <Calendar className="h-3.5 w-3.5 text-champagne-400 transition-colors group-hover:text-ink-900" strokeWidth={1.5} />
+              <span>Pre-Arrival</span>
             </button>
             <button
               onClick={() => setView('checkout')}
-              className="no-tap-highlight text-xs uppercase tracking-widest-2 text-ivory-200/60 transition-opacity hover:opacity-100"
+              className="no-tap-highlight group flex items-center gap-1.5 rounded-full border border-ivory-200/30 bg-ink-900/60 px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-wider text-ivory-100 backdrop-blur-md shadow-md transition-all duration-300 hover:border-champagne-400 hover:bg-champagne-500 hover:text-ink-900 active:scale-95"
+              aria-label="Checkout"
             >
-              Checkout
+              <LogOut className="h-3.5 w-3.5 text-champagne-400 transition-colors group-hover:text-ink-900" strokeWidth={1.5} />
+              <span>Checkout</span>
             </button>
           </div>
-        </div>
+        </header>
       )}
 
       {/* Views */}
