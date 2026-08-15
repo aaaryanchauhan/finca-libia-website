@@ -10,12 +10,17 @@ import { ConciergeSection } from './components/ConciergeSection';
 import { ReviewsSection } from './components/ReviewsSection';
 import { Footer } from './components/Footer';
 import { InquiryModal } from './components/InquiryModal';
+import { DigitalTourModal } from './components/DigitalTourModal';
 
 export default function App() {
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
+  const [isDigitalTourOpen, setIsDigitalTourOpen] = useState(false);
 
   const handleOpenInquiry = () => setIsInquiryOpen(true);
   const handleCloseInquiry = () => setIsInquiryOpen(false);
+
+  const handleOpenDigitalTour = () => setIsDigitalTourOpen(true);
+  const handleCloseDigitalTour = () => setIsDigitalTourOpen(false);
 
   const handleOpenGallery = () => {
     const galleryEl = document.getElementById('gallery');
@@ -30,7 +35,11 @@ export default function App() {
       <Navbar onOpenInquiry={handleOpenInquiry} />
 
       {/* Cinematic Hero */}
-      <Hero onOpenInquiry={handleOpenInquiry} onOpenGallery={handleOpenGallery} />
+      <Hero
+        onOpenInquiry={handleOpenInquiry}
+        onOpenGallery={handleOpenGallery}
+        onOpenDigitalTour={handleOpenDigitalTour}
+      />
 
       {/* Estate Highlights Bar */}
       <StatsBar />
@@ -58,6 +67,9 @@ export default function App() {
 
       {/* Interactive Booking Inquiry Modal */}
       <InquiryModal isOpen={isInquiryOpen} onClose={handleCloseInquiry} />
+
+      {/* Interactive 15-Stop Digital Tour Modal */}
+      <DigitalTourModal isOpen={isDigitalTourOpen} onClose={handleCloseDigitalTour} />
     </div>
   );
 }

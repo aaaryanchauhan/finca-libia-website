@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Sparkles, Home, Map, BookOpen, Calendar, LogOut } from 'lucide-react';
+import { Sparkles, Home, Map, BookOpen, Calendar, LogOut, Info } from 'lucide-react';
 import { HomeView } from '@/views/HomeView';
 import { StayView } from '@/views/StayView';
 import { ExploreView } from '@/views/ExploreView';
@@ -8,14 +8,15 @@ import { MemoriesView } from '@/views/MemoriesView';
 import { ItineraryView } from '@/views/ItineraryView';
 import { PreArrivalView } from '@/views/PreArrivalView';
 import { CheckoutView } from '@/views/CheckoutView';
+import { HouseGuideView } from '@/views/HouseGuideView';
 
-type View = 'home' | 'stay' | 'explore' | 'concierge' | 'memories' | 'itinerary' | 'pre-arrival' | 'checkout';
+type View = 'home' | 'stay' | 'explore' | 'concierge' | 'memories' | 'itinerary' | 'pre-arrival' | 'checkout' | 'guide';
 
 const navItems: { id: View; label: string; icon: typeof Home }[] = [
   { id: 'home', label: 'Home', icon: Home },
   { id: 'stay', label: 'Stay', icon: Map },
+  { id: 'guide', label: 'Guide', icon: Info },
   { id: 'explore', label: 'Explore', icon: BookOpen },
-  { id: 'memories', label: 'Memories', icon: BookOpen },
 ];
 
 export default function App() {
@@ -81,6 +82,7 @@ export default function App() {
       {view === 'itinerary' && <ItineraryView onBack={goHome} />}
       {view === 'pre-arrival' && <PreArrivalView onBack={goHome} onNavigate={navigate} />}
       {view === 'checkout' && <CheckoutView onBack={goHome} onNavigate={navigate} />}
+      {view === 'guide' && <HouseGuideView onBack={goHome} onNavigate={navigate} />}
 
       {/* Persistent Concierge button */}
       {showConciergeButton && (

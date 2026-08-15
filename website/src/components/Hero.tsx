@@ -5,9 +5,10 @@ import { villaInfo } from '../data/villaData';
 interface HeroProps {
   onOpenInquiry: () => void;
   onOpenGallery: () => void;
+  onOpenDigitalTour: () => void;
 }
 
-export function Hero({ onOpenInquiry, onOpenGallery }: HeroProps) {
+export function Hero({ onOpenInquiry, onOpenGallery, onOpenDigitalTour }: HeroProps) {
   const [currentBg, setCurrentBg] = useState(0);
 
   useEffect(() => {
@@ -79,18 +80,25 @@ export function Hero({ onOpenInquiry, onOpenGallery }: HeroProps) {
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up animate-delay-200">
           <button
             onClick={onOpenInquiry}
-            className="no-tap-highlight group w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full border border-champagne-400/50 bg-champagne-500/90 px-8 py-4 text-xs font-medium uppercase tracking-widest-2 text-ink-900 shadow-2xl backdrop-blur-md transition-all duration-300 hover:bg-champagne-300 hover:shadow-champagne-500/30 hover:scale-105 active:scale-95"
+            className="no-tap-highlight group w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full border border-champagne-400/50 bg-champagne-500/90 px-7 py-3.5 text-xs font-medium uppercase tracking-widest-2 text-ink-900 shadow-2xl backdrop-blur-md transition-all duration-300 hover:bg-champagne-300 hover:shadow-champagne-500/30 hover:scale-105 active:scale-95"
           >
             <Calendar className="h-4 w-4" />
             <span>Check Availability & Rates</span>
           </button>
 
           <button
-            onClick={onOpenGallery}
-            className="no-tap-highlight group w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full border border-ivory-200/30 bg-ink-900/60 px-7 py-4 text-xs font-medium uppercase tracking-widest-2 text-ivory-100 backdrop-blur-md shadow-xl transition-all duration-300 hover:border-champagne-400 hover:bg-ink-900 hover:text-champagne-300 active:scale-95"
+            onClick={onOpenDigitalTour}
+            className="no-tap-highlight group w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full border border-ivory-200/30 bg-ink-900/60 px-6 py-3.5 text-xs font-medium uppercase tracking-widest-2 text-ivory-100 backdrop-blur-md shadow-xl transition-all duration-300 hover:border-champagne-400 hover:bg-ink-900 hover:text-champagne-300 active:scale-95"
           >
             <Play className="h-4 w-4 text-champagne-400 group-hover:scale-110 transition-transform" />
-            <span>View Photo Gallery</span>
+            <span>Digital Tour</span>
+          </button>
+
+          <button
+            onClick={onOpenGallery}
+            className="no-tap-highlight group w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full border border-ivory-200/20 bg-ink-900/40 px-6 py-3.5 text-xs font-medium uppercase tracking-widest-2 text-ivory-200 backdrop-blur-md shadow-lg transition-all duration-300 hover:border-champagne-400/60 hover:text-ivory-50 active:scale-95"
+          >
+            <span>Photo Gallery</span>
           </button>
         </div>
       </div>

@@ -10,6 +10,19 @@ export interface Amenity {
   image: string;
 }
 
+export interface Bedroom {
+  id: string;
+  name: string;
+  pdfName: string;
+  subtitle: string;
+  capacity: string;
+  bedType: string;
+  description: string;
+  photos: string[];
+  bathroomPhotos?: string[];
+  features: string[];
+}
+
 export interface ExploreCategory {
   id: string;
   label: string;
@@ -63,8 +76,10 @@ export interface TourStop {
   id: string;
   number: string;
   title: string;
+  category: string;
   description: string;
   image: string;
+  details?: string;
 }
 
 export interface MemoryEntry {
