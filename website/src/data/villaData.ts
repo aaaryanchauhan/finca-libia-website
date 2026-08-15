@@ -259,6 +259,32 @@ export const estateFeatures: EstateFeature[] = [
       { label: 'Games', value: 'Bowling, Billiards, Foosball & Ping Pong' },
     ],
   },
+  {
+    id: 'fitness-gym',
+    title: 'Fitness Gym & Movement Studio',
+    category: 'Fitness & Health',
+    subtitle: '24-hour gym with floor-to-ceiling garden views',
+    description: 'Equipped with free weights, cable strength machine, treadmill, stationary bike, and yoga mats. Glass walls look directly onto the tropical gardens.',
+    image: '/photos/gym/gym_01.jpeg',
+    specs: [
+      { label: 'Access', value: '24 Hours' },
+      { label: 'Equipment', value: 'Free Weights, Cardio & Cable Machine' },
+      { label: 'View', value: 'Garden Landscape' },
+    ],
+  },
+  {
+    id: 'farm-animals',
+    title: '12-Acre Farm & Resident Animals',
+    category: 'Farm & Nature',
+    subtitle: 'Friendly Swiss-German cows, llamas, Bruno & Luna',
+    description: 'Pastures surrounding the villa are home to friendly llamas and Swiss cows, alongside Bruno the golden retriever and Luna the tabby cat.',
+    image: '/photos/additional_photos/alpaca.jpeg',
+    specs: [
+      { label: 'Pastures', value: '12 Mountain Acres' },
+      { label: 'Animals', value: 'Llamas, Swiss Cows, Dogs & Cats' },
+      { label: 'Policy', value: 'Pet-Friendly & Gentle Off-Leash' },
+    ],
+  },
 ];
 
 export const reviews: Review[] = [

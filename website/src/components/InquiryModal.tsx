@@ -1,24 +1,55 @@
-import { useState } from 'react';
-import { X, CheckCircle2, Loader2, Sparkles } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { X, CheckCircle2, Loader2, Sparkles, ShieldCheck } from 'lucide-react';
+
+export interface InquiryPreFillData {
+  checkIn?: string;
+  checkOut?: string;
+  guests?: string;
+  total?: number;
+  selectedAddons?: string[];
+  suiteName?: string;
+  experienceTitle?: string;
+}
 
 interface InquiryModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialData?: InquiryPreFillData | null;
 }
 
-export function InquiryModal({ isOpen, onClose }: InquiryModalProps) {
+export function InquiryModal({ isOpen, onClose, initialData }: InquiryModalProps) {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  const today = new Date().toISOString().split('T')[0];
 
   const [form, setForm] = useState({
     name: '',
     email: '',
     phone: '',
-    checkIn: '',
-    checkOut: '',
-    guests: '8',
+    checkIn: initialData?.checkIn || '',
+    checkOut: initialData?.checkOut || '',
+    guests: initialData?.guests || '8',
     specialRequests: '',
   });
+
+  useEffect(() => {
+    if (initialData) {
+      setForm((prev) => ({
+        ...prev,
+        checkIn: initialData.checkIn || prev.checkIn,
+        checkOut: initialData.checkOut || prev.checkOut,
+        guests: initialData.guests || prev.guests,
+        specialRequests: initialData.suiteName
+          ? `Interested in reserving ${initialData.suiteName}.`
+          : initialData.experienceTitle
+          ? `Interested in experience: ${initialData.experienceTitle}.`
+          : initialData.selectedAddons && initialData.selectedAddons.length > 0
+          ? `Include add-ons: ${initialData.selectedAddons.join(', ')}.`
+          : prev.specialRequests,
+      }));
+    }
+  }, [initialData]);
 
   if (!isOpen) return null;
 
@@ -31,11 +62,16 @@ export function InquiryModal({ isOpen, onClose }: InquiryModalProps) {
     }, 1200);
   };
 
+  const handleClose = () => {
+    setSubmitted(false);
+    onClose();
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink-900/90 backdrop-blur-xl animate-fade-in overflow-y-auto">
-      <div className="relative w-full max-w-xl rounded-3xl border border-ink-700 bg-ink-800 p-6 sm:p-10 shadow-2xl my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink-950/90 backdrop-blur-xl animate-fade-in overflow-y-auto">
+      <div className="relative w-full max-w-xl rounded-3xl border border-ink-700 bg-ink-800 p-6 sm:p-10 shadow-2xl my-8 text-ivory-100">
         <button
-          onClick={onClose}
+          onClick={handleClose}
           className="absolute top-6 right-6 p-2 rounded-full bg-ink-700/60 text-stone-300 hover:text-ivory-50 hover:bg-ink-700 transition-colors"
           aria-label="Close"
         >
@@ -47,22 +83,26 @@ export function InquiryModal({ isOpen, onClose }: InquiryModalProps) {
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-champagne-500/20 text-champagne-400 border border-champagne-500/40">
               <CheckCircle2 className="h-8 w-8" />
             </div>
-            <h3 className="font-serif text-3xl font-light text-ivory-50">Inquiry Received</h3>
+            <h3 className="font-serif text-3xl font-light text-ivory-50">Inquiry Confirmed</h3>
             <p className="font-serif text-base italic text-champagne-300">
               Thank you, {form.name || 'distinguished guest'}.
             </p>
-            <p className="text-xs text-stone-300 max-w-md mx-auto leading-relaxed">
-              Our private concierge manager will review your requested dates ({form.checkIn || 'TBD'} to {form.checkOut || 'TBD'}) and reach out via WhatsApp / Email within 2 hours with customized rates and availability.
+            <p className="text-xs text-stone-300 max-w-md mx-auto leading-relaxed font-light">
+              Our private concierge manager will review your requested dates ({form.checkIn || 'TBD'} to {form.checkOut || 'TBD'}) for {form.guests} guests and reach out via WhatsApp / Email within 2 hours with customized rate details and reservation confirmation.
             </p>
-            <button
-              onClick={() => {
-                setSubmitted(false);
-                onClose();
-              }}
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-champagne-500 px-7 py-3 text-xs uppercase tracking-widest-2 font-medium text-ink-900 shadow-xl"
-            >
-              <span>Return to Showcase</span>
-            </button>
+            {initialData?.total && (
+              <div className="inline-block rounded-2xl bg-ink-900 px-6 py-2.5 border border-champagne-500/30 text-xs text-champagne-300">
+                Estimated Reservation Total: ${initialData.total.toLocaleString()} USD
+              </div>
+            )}
+            <div>
+              <button
+                onClick={handleClose}
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-champagne-500 px-7 py-3 text-xs uppercase tracking-widest-2 font-medium text-ink-900 shadow-xl hover:bg-champagne-300 transition-colors"
+              >
+                <span>Return to Showcase</span>
+              </button>
+            </div>
           </div>
         ) : (
           <div>
@@ -77,6 +117,13 @@ export function InquiryModal({ isOpen, onClose }: InquiryModalProps) {
               100% Exclusive Villa Rental · Up to 14 Guests · Medellín, Colombia
             </p>
 
+            {initialData?.total && (
+              <div className="mt-4 rounded-xl bg-champagne-500/10 border border-champagne-400/40 p-3.5 text-xs text-champagne-300 flex items-center justify-between">
+                <span>Estimated Reservation Total ({form.guests} guests):</span>
+                <span className="font-serif text-lg font-medium text-ivory-50">${initialData.total.toLocaleString()} USD</span>
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               <div>
                 <label className="block text-[11px] uppercase tracking-widest-2 text-stone-400 mb-1">
@@ -87,7 +134,7 @@ export function InquiryModal({ isOpen, onClose }: InquiryModalProps) {
                   required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  placeholder="e.g. Lord Alexander Sterling"
+                  placeholder="e.g. Alexander Sterling"
                   className="w-full rounded-xl border border-ink-600 bg-ink-900/80 px-4 py-3 text-sm text-ivory-100 placeholder-stone-600 focus:border-champagne-400 focus:outline-none transition-colors"
                 />
               </div>
@@ -130,6 +177,7 @@ export function InquiryModal({ isOpen, onClose }: InquiryModalProps) {
                   <input
                     type="date"
                     required
+                    min={today}
                     value={form.checkIn}
                     onChange={(e) => setForm({ ...form, checkIn: e.target.value })}
                     className="w-full rounded-xl border border-ink-600 bg-ink-900/80 px-3 py-3 text-xs text-ivory-100 focus:border-champagne-400 focus:outline-none transition-colors"
@@ -143,6 +191,7 @@ export function InquiryModal({ isOpen, onClose }: InquiryModalProps) {
                   <input
                     type="date"
                     required
+                    min={form.checkIn || today}
                     value={form.checkOut}
                     onChange={(e) => setForm({ ...form, checkOut: e.target.value })}
                     className="w-full rounded-xl border border-ink-600 bg-ink-900/80 px-3 py-3 text-xs text-ivory-100 focus:border-champagne-400 focus:outline-none transition-colors"
@@ -178,6 +227,11 @@ export function InquiryModal({ isOpen, onClose }: InquiryModalProps) {
                   placeholder="e.g. Private chef for dinner, airport helicopter transfer, wine list..."
                   className="w-full rounded-xl border border-ink-600 bg-ink-900/80 px-4 py-3 text-xs text-ivory-100 placeholder-stone-600 focus:border-champagne-400 focus:outline-none transition-colors"
                 />
+              </div>
+
+              <div className="flex items-center gap-2 text-[11px] text-stone-400 font-light">
+                <ShieldCheck className="h-4 w-4 text-champagne-400 shrink-0" />
+                <span>Discreet handling · Direct response from Estate Concierge</span>
               </div>
 
               <button

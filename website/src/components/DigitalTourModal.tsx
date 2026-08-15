@@ -121,11 +121,19 @@ export const websiteTourStops = [
   },
   {
     number: '15',
-    category: 'Wellness & Farm',
-    title: 'Gym & Farm Animal Grounds',
-    description: '24-hour gym overlooking grounds where friendly llamas and Swiss-German cows roam.',
+    category: 'Fitness & Health',
+    title: 'Fitness Gym & Wellness Studio',
+    description: '24-hour fitness gym with garden vistas, free weights, cable machine, treadmill, and stationary bike.',
     image: '/photos/gym/gym_01.jpeg',
-    details: 'Befriend Bruno the retriever, Luna the cat, and the farm animal crew.',
+    details: 'Floor-to-ceiling glass windows look out onto the lush gardens.',
+  },
+  {
+    number: '16',
+    category: 'Farm & Wildlife',
+    title: 'Farm Animals & Furry Crew',
+    description: 'Explore the 12-acre mountain pastures where friendly llamas, Swiss-German cows, Bruno the golden retriever, and Luna the cat reside.',
+    image: '/photos/additional_photos/alpaca.jpeg',
+    details: 'Pet-friendly farm animals that love peaceful morning visits.',
   },
 ];
 

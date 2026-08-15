@@ -261,6 +261,19 @@ export const amenities: Amenity[] = [
     location: 'Main house, lower level',
     image: '/photos/games_room/games_room_01.jpeg',
   },
+  {
+    id: 'farm-animals',
+    name: 'Farm Animals & Furry Crew',
+    tagline: 'Friendly llamas, Swiss cows, Bruno & Luna.',
+    description:
+      'Explore the 12-acre mountain pastures where friendly llamas, Swiss-German cows, Bruno the golden retriever, and Luna the cat reside.',
+    instructions:
+      'Feel free to feed and pet the animals under staff supervision. All resident animals are gentle and off-leash.',
+    insiderTip: 'Morning visits right after breakfast are the best time to see the cows and llamas grazing in the pastures.',
+    bestTime: 'Morning or late afternoon',
+    location: 'Estate pastures & surrounding grounds',
+    image: '/photos/additional_photos/alpaca.jpeg',
+  },
 ];
 
 export const tourStops: TourStop[] = [
@@ -391,13 +404,22 @@ export const tourStops: TourStop[] = [
     details: 'High-fidelity audio system for late night music.',
   },
   {
-    id: 'gym-animals',
+    id: 'gym',
     number: '15',
-    title: 'Gym & Farm Animal Grounds',
-    category: 'Wellness & Farm',
-    description: '24-hour gym overlooking the grounds where friendly llamas and Swiss-German cows roam.',
+    title: 'Fitness Gym & Wellness Studio',
+    category: 'Fitness & Health',
+    description: '24-hour fitness gym with garden vistas, free weights, cable machine, treadmill, and stationary bike.',
     image: '/photos/gym/gym_01.jpeg',
-    details: 'Befriend Bruno the retriever, Luna the cat, and the farm animal crew.',
+    details: 'Floor-to-ceiling glass windows look out onto the lush gardens.',
+  },
+  {
+    id: 'farm-animals',
+    number: '16',
+    title: 'Farm Animals & Furry Crew',
+    category: 'Farm & Wildlife',
+    description: 'Explore the 12-acre mountain pastures where friendly llamas, Swiss-German cows, Bruno the golden retriever, and Luna the cat reside.',
+    image: '/photos/additional_photos/alpaca.jpeg',
+    details: 'Pet-friendly farm animals that love peaceful morning visits.',
   },
 ];
 
