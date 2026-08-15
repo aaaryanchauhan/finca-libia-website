@@ -29,6 +29,7 @@ export interface Review {
   location: string;
   date: string;
   rating: number;
+  tripType?: string;
   comment: string;
   avatar: string;
 }
@@ -43,18 +44,18 @@ export interface RateAddon {
 export interface FaqItem {
   question: string;
   answer: string;
-  category: 'Staff & Service' | 'Location & Helipad' | 'Privacy & Security' | 'Booking & Amenities';
+  category: 'Staff & Service' | 'Location & Airport' | 'Privacy & Security' | 'Booking & Amenities';
 }
 
 export const villaInfo = {
   name: 'Finca Libia',
   tagline: 'Private Luxury Estate & Sanctuary',
   location: 'Medellín Valley, Antioquia, Colombia',
-  airport: 'José María Córdova (MDE) — 6 minutes private transfer',
+  airport: 'José María Córdova (MDE) — 45 minutes private SUV transfer',
   capacity: 'Up to 14 guests across 6 private master suites',
-  propertySize: '12 Acres of Private Mountain Grounds',
-  rating: 4.98,
-  reviewCount: 42,
+  propertySize: '3.5 Acres of Private Mountain Grounds',
+  rating: 5.0,
+  reviewCount: 12,
   heroImages: [
     '/photos/exterior/exterior_10.jpeg',
     '/photos/pool/pool_01.jpeg',
@@ -274,33 +275,148 @@ export const estateFeatures: EstateFeature[] = [
   },
 ];
 
+export const reviewSubcategories = [
+  { label: 'Cleanliness', score: 5.0 },
+  { label: 'Accuracy', score: 5.0 },
+  { label: 'Check-in', score: 5.0 },
+  { label: 'Communication', score: 5.0 },
+  { label: 'Location', score: 5.0 },
+  { label: 'Value', score: 4.9 },
+];
+
+export const guestMentionsTags = [
+  { tag: 'Hospitality', count: 11 },
+  { tag: 'Cleanliness', count: 4 },
+  { tag: 'View', count: 3 },
+  { tag: 'Indoor spaces', count: 3 },
+  { tag: 'Location', count: 3 },
+  { tag: 'Hot tub', count: 2 },
+  { tag: 'Pool', count: 2 },
+  { tag: 'Amenities', count: 2 },
+  { tag: 'Family', count: 2 },
+  { tag: 'Accuracy', count: 2 },
+];
+
 export const reviews: Review[] = [
   {
     id: 'r1',
-    author: 'Alexander & Sophia Sterling',
-    location: 'London, UK',
-    date: 'February 2026',
+    author: 'Patrick',
+    location: 'Nassau, The Bahamas',
+    date: '1 week ago',
     rating: 5,
-    comment: 'Finca Libia surpassed every expectation. The infinity pool at sunset, the privacy, and the private chef made our family celebration unforgettable.',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200',
-  },
-  {
-    id: 'r2',
-    author: 'Marcus Vance',
-    location: 'New York, USA',
-    date: 'January 2026',
-    rating: 5,
-    comment: 'Architectural masterpiece. Meyer and the staff treated us like royalty and organized private helicopter tours over Guatapé. We will return every year.',
+    tripType: 'Stayed a few nights',
+    comment: 'Amazing place, Amazing Host. Meyer, Nancy, Liliana and Rafa, thank you very much for making us feel at home. Your flexibility, availability and always ready to run the extra made our stay magical. We will come back.',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200',
   },
   {
+    id: 'r2',
+    author: 'Irene',
+    location: '13 years on Airbnb',
+    date: '2 weeks ago',
+    rating: 5,
+    tripType: 'Stayed a few nights',
+    comment: 'Very nice house, great furnishings and excellent options for families, with bowling and tennis. The children loved the animals, especially the dogs, but also the donkey. Nancy, Rafa and his wife were very supportive with everything. All in all highly recommended, we will be happy to come back!',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200',
+  },
+  {
     id: 'r3',
-    author: 'Elena & Mateo Rossi',
-    location: 'Milan, Italy',
+    author: 'Ellena',
+    location: 'Monterey, California',
+    date: 'June 2026',
+    rating: 5,
+    tripType: 'Stayed with kids',
+    comment: 'Thank you for having us at your home. We have traveled all over the world and this is one of the best homes we have stayed in. Your staff was A+++ and you were so responsive and caring during our stay that we will be back for sure.',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200',
+  },
+  {
+    id: 'r4',
+    author: 'Zach',
+    location: 'Chapel Hill, North Carolina',
     date: 'December 2025',
     rating: 5,
-    comment: 'The clay tennis court in the morning, followed by sauna and cold plunge in the pool. Absolute paradise 45 minutes from Medellín.',
-    avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200',
+    tripType: 'Group trip',
+    comment: 'Meyer’s house is absolutely perfect. He was an excellent host and extremely responsive. Anything we needed, he took care of. I recommend this place to anyone looking for the perfect vacation in Colombia. The animals on the property were so fun to play with and perfect for kids. 10/10 experience and I will be back again!',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200',
+  },
+  {
+    id: 'r5',
+    author: 'Mark',
+    location: '4 years on Airbnb',
+    date: 'December 2025',
+    rating: 5,
+    tripType: 'Stayed a few nights',
+    comment: 'What an amazing finca! So much fun and such a great location. The animals, amenities and the view are unmatched!',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200',
+  },
+  {
+    id: 'r6',
+    author: 'Ali',
+    location: '11 years on Airbnb',
+    date: 'April 2025',
+    rating: 5,
+    tripType: 'Stayed a few nights',
+    comment: 'Hands down the best Airbnb experience I’ve ever had — and I’ve traveled all over the world. This place in Colombia is absolutely magical. Set out on beautiful land surrounded by nature and animals, it’s a true escape from the world, yet filled with every possible luxury. From the Jacuzzi and pool to the bowling alley and games room, there was never a dull moment. The staff at the house were incredible — always helpful, warm, and ready to make sure everything was perfect. The host went above and beyond. Whatever we asked for, he made it happen with no hesitation. That level of service is rare, and it made a huge difference. The property itself is stunning — spacious, peaceful, and designed with so much care. I’ve never stayed anywhere like it before. Everyone in our group had an amazing time, and there’s no doubt we’ll be returning. If you’re looking for an unforgettable experience in Colombia, don’t think twice. This is the place.',
+    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200',
+  },
+  {
+    id: 'r7',
+    author: 'Jenny',
+    location: 'Miami, Florida',
+    date: 'February 2025',
+    rating: 5,
+    tripType: 'Group trip',
+    comment: 'Our stay at Meyer\'s place was absolutely perfect! Finca Libia was spotless, beautifully decorated, modern, and exactly as pictured in the listing. Meyer was incredibly responsive and helpful throughout our stay, providing great local recommendations. We especially loved the great outdoors, balconies views, friendly animals, and the well stocked kitchen that made cooking meals a breeze, perfect layout for spending time with friends and family. We felt right at home and would definitely book again for our next trip to Medellin.',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200',
+  },
+  {
+    id: 'r8',
+    author: 'Betty',
+    location: 'Miami, Florida',
+    date: 'December 2024',
+    rating: 5,
+    tripType: 'Stayed a few nights',
+    comment: 'Hello, Meyer was an exceptional host. He responded promptly within five minutes to any questions or requests we had. He also provided a detailed PDF packed with helpful information, including restaurant recommendations, taxi services, emergency contacts, and must see attractions. The property features a stunning fireplace that kept us warm on chilly nights and offers breathtaking views from the backyard. Additionally, the house is equipped with plenty of fun activities, such as arcade games, ping pong, tennis/pickleball, basketball, and bowling, ensuring entertainment for everyone. As well as the most friendly farm animals.',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200',
+  },
+  {
+    id: 'r9',
+    author: 'Brendan',
+    location: 'San Diego, California',
+    date: 'November 2024',
+    rating: 5,
+    tripType: 'Group trip',
+    comment: 'I can’t recommend Meyer’s Farmhouse Villa in Guarne, Antioquia, enough! This stunning farmhouse is ideally located just a 30-40 minute drive from Medellín and close to the airport, making it super convenient yet peaceful. The property is surrounded by beautiful farm animals—alpacas, cows, donkeys, chickens, ducks, and two incredibly friendly dogs that add to the welcoming atmosphere. The villa itself is immaculate, with high-end finishes that showcase incredible attention to detail. Nancy, and the on-site staff, kept the entire place spotless and was always available to assist, going above and beyond to make our stay comfortable. Meyer, the host, was outstandingly responsive and communicative, even accommodating some last-minute requests with ease. I hosted a retreat for my business partners and clients, and they were all blown away by the property. The pool, hot tub, sauna, steam room, and gym were exceptional amenities, while the fireplace and thoughtfully curated accent lighting created the perfect ambiance.',
+    avatar: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=200',
+  },
+  {
+    id: 'r10',
+    author: 'Simpson',
+    location: '8 years on Airbnb',
+    date: 'September 2024',
+    rating: 5,
+    tripType: 'Stayed a few nights',
+    comment: 'I recently had the pleasure of staying at a wonderful farm property and I must say, it exceeded all my expectations. The maid was extremely friendly and attentive, ensuring that the house was spotless and comfortable throughout my stay. The animals on the farm added such a charming and picturesque touch to the surroundings, making me feel right at home. Not only was the house clean and accessible, but it was also exactly as advertised - no surprises or disappointments. The host was incredibly friendly and responsive, always available to address any questions or concerns I had. Their hospitality truly made my experience even more enjoyable. I can confidently say that I would return to this property in a heartbeat. Everything from the maid to the host to the farm animals contributed to a memorable and relaxing stay. If you\'re looking for a peaceful getaway with top-notch service, I highly recommend this property. Thank you for making my stay so delightful! Thank you Meyer!',
+    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200',
+  },
+  {
+    id: 'r11',
+    author: 'Sandra',
+    location: '4 years on Airbnb',
+    date: 'January 2024',
+    rating: 5,
+    tripType: 'Group trip',
+    comment: 'great experience, 100% recommended. Good service, good communication, clean and very nice place',
+    avatar: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=200',
+  },
+  {
+    id: 'r12',
+    author: 'Mauricio',
+    location: 'United Kingdom',
+    date: 'January 2024',
+    rating: 5,
+    tripType: 'Stayed a few nights',
+    comment: 'It was an honer to be the first person to stay at the Airbnb for the first time eveything was amazing Nancy and the dogs where super friendly the experience was spectacular, wifi & everything was great. Host went above and beyond, this could be the best service & Airbnb I have ever had. I would 100% recommend this specific Airbnb to anyone & will definitely be coming back!',
+    avatar: 'https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&q=80&w=200',
   },
 ];
 
@@ -373,10 +489,10 @@ export const websiteTourStops = [
   {
     number: '01',
     category: 'Architecture',
-    title: 'Grand Entrance & Historic Facade',
-    description: '100-year coffee estate architecture framed by geometric stone lattices and mountain views.',
+    title: 'Grand Entrance & Facade',
+    description: 'Newly built luxury farmhouse architecture framed by geometric stone lattices and mountain views.',
     image: '/photos/exterior/exterior_10.jpeg',
-    details: 'Hand-cut local stone walls dating back to 1928, restored into a modern luxury villa.',
+    details: 'Architectural farmhouse crafted with exquisite attention to detail.',
   },
   {
     number: '02',
@@ -392,7 +508,7 @@ export const websiteTourStops = [
     title: 'Gourmet Chef Kitchen',
     description: 'Full chef kitchen equipped for private dining, breakfast prep, and espresso service.',
     image: '/photos/full_kitchen/full_kitchen_01.jpeg',
-    details: 'Equipped with commercial range and single-origin coffee bar.',
+    details: 'Equipped with commercial range and artisanal coffee bar.',
   },
   {
     number: '04',
@@ -422,7 +538,7 @@ export const websiteTourStops = [
     number: '07',
     category: 'Master Suite 3',
     title: 'Valley View Suite',
-    description: 'Elevated suite with sunset orientation over Rionegro coffee valley.',
+    description: 'Elevated suite with sunset orientation over the Rionegro mountain valley.',
     image: '/photos/bedroom_3/bedroom_3_01.jpeg',
     details: 'Custom cedar vanity and smart ambient lighting.',
   },
@@ -500,10 +616,10 @@ export const luxuryAddonsList: RateAddon[] = [
     description: '3 meals prepared daily by top Medellín executive chef with custom dietary menus.',
   },
   {
-    id: 'helipad-charter',
-    name: 'Guatapé Helicopter Excursion',
-    pricePerStay: 1800,
-    description: 'Direct VIP helipad charter flight over El Peñol rock & Guatapé reservoir.',
+    id: 'airport-transfer',
+    name: 'Private Airport SUV Transfer',
+    pricePerStay: 350,
+    description: 'Chauffeur airport transfer to/from MDE International Airport in executive SUVs.',
   },
   {
     id: 'sommelier-tasting',
@@ -526,14 +642,14 @@ export const websiteFaqs: FaqItem[] = [
     answer: 'Yes. Finca Libia includes daily housekeeping, private butler service, groundskeeping, and dedicated concierge management with every booking. In-villa private chef service can be added for seamless dining.',
   },
   {
-    category: 'Location & Helipad',
+    category: 'Location & Airport',
     question: 'How far is Finca Libia from Medellín International Airport (MDE)?',
-    answer: 'Finca Libia is located just 45 minutes by private SUV from José María Córdova International Airport (MDE) in Rionegro. Alternatively, guests can land directly on our private on-site helipad in just 6 minutes.',
+    answer: 'Finca Libia is located just 45 minutes by private SUV from José María Córdova International Airport (MDE) in Rionegro. Private SUV transportation can be arranged upon request.',
   },
   {
     category: 'Privacy & Security',
     question: 'Is the property 100% private and gated?',
-    answer: 'Absolutely. The entire 12-acre estate is strictly 100% exclusive to your group. There are no shared amenities, other guests, or public access. Gated security and discreet estate staff ensure absolute privacy.',
+    answer: 'Absolutely. The entire 3.5-acre estate is strictly 100% exclusive to your group. There are no shared amenities, other guests, or public access. Gated security and discreet estate staff ensure absolute privacy.',
   },
   {
     category: 'Booking & Amenities',
@@ -544,11 +660,6 @@ export const websiteFaqs: FaqItem[] = [
     category: 'Booking & Amenities',
     question: 'Is the 25m infinity pool heated?',
     answer: 'Yes, our 25-meter saltwater infinity pool is heated year-round to a precise 28°C (82°F) and treated with a gentle natural salt system (no harsh chlorine).',
-  },
-  {
-    category: 'Location & Helipad',
-    question: 'Can you arrange custom helicopter tours over Guatapé?',
-    answer: 'Yes! Our private concierge team arranges direct helipad pickups from Finca Libia for scenic flights over El Peñol Rock, the lakes of Guatapé, or the coffee mountains of Antioquia.',
   },
   {
     category: 'Staff & Service',

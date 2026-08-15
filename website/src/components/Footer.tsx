@@ -25,12 +25,12 @@ export function Footer({ onOpenInquiry }: FooterProps) {
               </p>
             </a>
             <p className="text-xs leading-relaxed text-stone-400 font-light max-w-md">
-              A 100% exclusive 12-acre mountain estate featuring 6 master suites, 25m heated infinity pool, red clay tennis court, Finnish cedar sauna, speakeasy bar, soundproof games room, and full private staff.
+              A 100% exclusive 3.5-acre mountain estate featuring 6 master suites, 25m heated infinity pool, red clay tennis court, Finnish cedar sauna, speakeasy bar, soundproof games room, and full private staff.
             </p>
             <div className="pt-2 flex items-center gap-3">
               <button
                 onClick={onOpenInquiry}
-                className="rounded-full bg-champagne-500/90 px-6 py-2.5 text-xs font-medium uppercase tracking-widest-2 text-ink-900 transition-colors hover:bg-champagne-300"
+                className="bg-champagne-500/90 px-6 py-2.5 text-xs font-medium uppercase tracking-widest-2 text-ink-900 transition-colors hover:bg-champagne-300"
               >
                 Inquire Stay
               </button>
@@ -47,7 +47,7 @@ export function Footer({ onOpenInquiry }: FooterProps) {
               <li><a href="#amenities" className="hover:text-champagne-300 transition-colors">Resort Amenities</a></li>
               <li><a href="#story" className="hover:text-champagne-300 transition-colors">History & Design</a></li>
               <li><a href="#gallery" className="hover:text-champagne-300 transition-colors">Photo Gallery</a></li>
-              <li><a href="#faq" className="hover:text-champagne-300 transition-colors">FAQ</a></li>
+              <li><a href="#location" className="hover:text-champagne-300 transition-colors">Location & Map</a></li>
             </ul>
           </div>
 
@@ -78,10 +78,10 @@ export function Footer({ onOpenInquiry }: FooterProps) {
           <div>
             <h4 className="font-serif text-lg font-light text-ivory-100 mb-4">Airport Access</h4>
             <p className="text-xs text-stone-400 font-light leading-relaxed mb-3">
-              45 minutes from José María Córdova International Airport (MDE) in Rionegro. Private SUV & Helicopter transfers arranged upon request.
+              45 minutes from José María Córdova International Airport (MDE) in Rionegro. Private SUV transfers arranged upon request.
             </p>
-            <span className="inline-block text-[11px] uppercase tracking-wider text-champagne-400 font-medium border border-champagne-500/30 rounded-full px-3 py-1 bg-champagne-500/10">
-              Private Helipad On-Site
+            <span className="inline-block text-[11px] uppercase tracking-wider text-champagne-400 font-medium border border-champagne-500/30 px-3 py-1 bg-champagne-500/10">
+              45 Min to MDE Airport
             </span>
           </div>
         </div>
@@ -89,7 +89,7 @@ export function Footer({ onOpenInquiry }: FooterProps) {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500 font-light">
           <p>© {new Date().getFullYear()} Finca Libia Estate. All rights reserved.</p>
-          
+
           <button
             onClick={scrollToTop}
             className="flex items-center gap-2 text-stone-400 hover:text-champagne-300 transition-colors"

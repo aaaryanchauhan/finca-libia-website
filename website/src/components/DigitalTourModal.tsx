@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ArrowLeft, ArrowRight, X } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import { ArrowLeft, ArrowRight, Play, Pause, Compass } from 'lucide-react';
 import { websiteTourStops } from '../data/villaData';
 
 interface DigitalTourModalProps {
@@ -9,92 +9,167 @@ interface DigitalTourModalProps {
 
 export function DigitalTourModal({ isOpen, onClose }: DigitalTourModalProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const currentStop = websiteTourStops[currentIndex];
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % websiteTourStops.length);
+  }, []);
+
+  const handlePrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + websiteTourStops.length) % websiteTourStops.length);
+  }, []);
+
+  // Autoplay timer effect
+  useEffect(() => {
+    let timer: ReturnType<typeof setInterval>;
+    if (isPlaying && isOpen) {
+      timer = setInterval(() => {
+        handleNext();
+      }, 6000);
+    }
+    return () => clearInterval(timer);
+  }, [isPlaying, isOpen, handleNext]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isOpen) return;
+      if (e.key === 'ArrowRight') {
+        handleNext();
+      } else if (e.key === 'ArrowLeft') {
+        handlePrev();
+      } else if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, handleNext, handlePrev, onClose]);
 
   if (!isOpen) return null;
 
-  const currentStop = websiteTourStops[currentIndex];
-  const isFirst = currentIndex === 0;
-  const isLast = currentIndex === websiteTourStops.length - 1;
-
   return (
-    <div className="fixed inset-0 z-50 bg-ink-950 flex flex-col justify-between overflow-hidden animate-fade-in text-ivory-100">
-      {/* Full screen background image */}
-      <div className="absolute inset-0 h-full w-full">
-        <img
-          src={currentStop.image}
-          alt={currentStop.title}
-          className="h-full w-full object-cover transition-opacity duration-700"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink-900/80 via-ink-900/40 to-ink-950/95" />
-      </div>
+    <div className="fixed inset-0 z-50 flex flex-col justify-between bg-ink-950/98 backdrop-blur-2xl animate-fade-in text-ivory-100 overflow-hidden select-none">
+      {/* Background Image Showcase */}
+      {websiteTourStops.map((stop, idx) => (
+        <div
+          key={stop.number}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out pointer-events-none ${
+            idx === currentIndex ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <img
+            src={stop.image}
+            alt={stop.title}
+            className="h-full w-full object-cover animate-slow-zoom brightness-90"
+          />
+          {/* Multi-layered dark vignettes */}
+          <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-900/60 to-ink-950/90" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(26,24,22,0.5)_0%,_rgba(26,24,22,0.85)_100%)]" />
+        </div>
+      ))}
 
-      {/* Top Left Exit Button */}
-      <div className="absolute top-6 left-6 z-30">
+      {/* Top Controls Bar */}
+      <header className="relative z-30 flex items-center justify-between p-6 lg:px-12 border-b border-ink-700/60 bg-ink-950/60 backdrop-blur-md">
         <button
           onClick={onClose}
-          className="no-tap-highlight flex items-center gap-2 rounded-full border border-ivory-200/30 bg-ink-900/70 px-4 py-2 text-xs font-medium uppercase tracking-widest-2 text-ivory-100 backdrop-blur-md transition-all duration-300 hover:border-champagne-400 hover:bg-champagne-500 hover:text-ink-900 shadow-xl"
+          className="no-tap-highlight group flex items-center gap-2 border border-ivory-200/20 bg-ink-900/70 px-4 py-2 text-xs font-medium uppercase tracking-widest text-ivory-100 backdrop-blur-md transition-all duration-300 hover:border-champagne-400 hover:bg-champagne-500 hover:text-ink-900 shadow-xl"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
           <span>Exit Tour</span>
         </button>
-      </div>
 
-      {/* Center Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center px-6 text-center max-w-2xl mx-auto my-auto pt-16">
-        <span className="text-xs uppercase tracking-widest-3 text-champagne-400 font-medium">
-          {currentStop.category}
-        </span>
-        <p className="font-serif text-5xl sm:text-6xl font-light text-champagne-300/90 mt-1">
-          Stop {currentStop.number}
-        </p>
-        <h2 className="mt-3 font-serif text-3xl sm:text-5xl font-light text-ivory-50 hero-text-shadow">
+        <div className="flex items-center gap-3 bg-ink-900/80 border border-ink-700/80 px-5 py-2 backdrop-blur-md">
+          <Compass className="h-4 w-4 text-champagne-400 animate-spin-slow" />
+          <span className="font-serif text-sm font-light text-ivory-50 tracking-wider">
+            FINCA LIBIA DIGITAL TOUR
+          </span>
+        </div>
+
+        <button
+          onClick={() => setIsPlaying(!isPlaying)}
+          className={`no-tap-highlight flex items-center gap-2 border px-4 py-2 text-xs font-medium uppercase tracking-widest backdrop-blur-md transition-all shadow-xl ${
+            isPlaying
+              ? 'border-champagne-400 bg-champagne-500 text-ink-900'
+              : 'border-ivory-200/20 bg-ink-900/70 text-ivory-100 hover:border-champagne-400 hover:text-champagne-300'
+          }`}
+        >
+          {isPlaying ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5 fill-current" />}
+          <span>{isPlaying ? 'Pause' : 'Autoplay'}</span>
+        </button>
+      </header>
+
+      {/* Center Showcase Card */}
+      <div className="relative z-20 mx-auto max-w-3xl px-6 text-center my-auto pt-6 pb-12 space-y-4">
+        <h2 className="font-serif text-4xl sm:text-6xl font-light text-ivory-50 hero-text-shadow leading-tight">
           {currentStop.title}
         </h2>
-        <p className="mt-4 font-serif text-base sm:text-lg font-light italic text-ivory-200/90 hero-text-shadow leading-relaxed">
+
+        <p className="font-serif text-lg sm:text-xl font-light italic text-ivory-100/90 hero-text-shadow max-w-2xl mx-auto leading-relaxed">
           {currentStop.description}
         </p>
+
         {currentStop.details && (
-          <div className="mt-4 rounded-full border border-champagne-400/30 bg-ink-900/70 px-5 py-2 backdrop-blur-md">
+          <div className="inline-block mt-2 border border-champagne-400/30 bg-ink-900/80 px-6 py-2.5 backdrop-blur-md shadow-xl">
             <p className="text-xs text-champagne-300 font-light">{currentStop.details}</p>
           </div>
         )}
       </div>
 
-      {/* Bottom Bar Controls */}
-      <div className="relative z-20 flex items-center justify-between p-6 sm:p-8 border-t border-ivory-200/10 bg-ink-950/80 backdrop-blur-md">
-        <button
-          onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
-          disabled={isFirst}
-          className="no-tap-highlight inline-flex items-center gap-2 text-xs uppercase tracking-widest-2 text-ivory-200/80 transition-opacity hover:text-champagne-300 disabled:opacity-30 disabled:pointer-events-none"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          <span>Previous</span>
-        </button>
-
-        <div className="text-center">
-          <p className="text-xs uppercase tracking-widest-2 text-stone-400 font-mono">
-            {currentIndex + 1} / {websiteTourStops.length}
-          </p>
-        </div>
-
-        {isLast ? (
+      {/* Bottom Interactive Thumbnail & Control Strip */}
+      <footer className="relative z-30 border-t border-ink-700/80 bg-ink-950/90 backdrop-blur-xl p-6 lg:px-12 space-y-4">
+        {/* Navigation Bar Controls */}
+        <div className="flex items-center justify-between max-w-7xl mx-auto">
           <button
-            onClick={onClose}
-            className="no-tap-highlight inline-flex items-center gap-2 text-xs uppercase tracking-widest-2 text-champagne-300 transition-colors hover:text-champagne-200"
+            onClick={handlePrev}
+            className="no-tap-highlight inline-flex items-center gap-2 text-xs uppercase tracking-widest text-ivory-200 transition-colors hover:text-champagne-300"
           >
-            <span>Finish Tour</span>
-            <X className="h-4 w-4" />
+            <ArrowLeft className="h-4 w-4" />
+            <span>Previous Stop</span>
           </button>
-        ) : (
+
+          <span className="font-mono text-xs text-stone-400 tracking-widest">
+            {currentIndex + 1} / {websiteTourStops.length}
+          </span>
+
           <button
-            onClick={() => setCurrentIndex((prev) => Math.min(websiteTourStops.length - 1, prev + 1))}
-            className="no-tap-highlight inline-flex items-center gap-2 text-xs uppercase tracking-widest-2 text-ivory-100 transition-colors hover:text-champagne-300"
+            onClick={handleNext}
+            className="no-tap-highlight inline-flex items-center gap-2 text-xs uppercase tracking-widest text-champagne-300 transition-colors hover:text-champagne-200"
           >
             <span>Next Stop</span>
             <ArrowRight className="h-4 w-4" />
           </button>
-        )}
-      </div>
+        </div>
+
+        {/* Thumbnail Selector Strip */}
+        <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none max-w-7xl mx-auto pt-2 border-t border-ink-800/60">
+          {websiteTourStops.map((stop, idx) => (
+            <button
+              key={stop.number}
+              onClick={() => setCurrentIndex(idx)}
+              className={`group flex items-center gap-2 shrink-0 p-1.5 border transition-all duration-300 text-left ${
+                idx === currentIndex
+                  ? 'border-champagne-400 bg-ink-800/90 shadow-lg scale-105'
+                  : 'border-ink-700/50 bg-ink-900/50 opacity-60 hover:opacity-100 hover:border-ink-600'
+              }`}
+            >
+              <div className="h-10 w-14 overflow-hidden bg-ink-800 shrink-0">
+                <img src={stop.image} alt={stop.title} className="h-full w-full object-cover" />
+              </div>
+              <div className="pr-2">
+                <span className="block text-[10px] text-champagne-400 font-mono">
+                  #{stop.number}
+                </span>
+                <span className="block text-xs font-serif text-ivory-100 max-w-[120px] truncate">
+                  {stop.title}
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
+      </footer>
     </div>
   );
 }

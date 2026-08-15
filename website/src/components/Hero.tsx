@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Calendar, Play, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import { villaInfo } from '../data/villaData';
 
 interface HeroProps {
-  onOpenInquiry: () => void;
-  onOpenGallery: () => void;
   onOpenDigitalTour: () => void;
 }
 
-export function Hero({ onOpenInquiry, onOpenGallery, onOpenDigitalTour }: HeroProps) {
+export function Hero({ onOpenDigitalTour }: HeroProps) {
   const [currentBg, setCurrentBg] = useState(0);
 
   useEffect(() => {
@@ -54,44 +52,18 @@ export function Hero({ onOpenInquiry, onOpenGallery, onOpenDigitalTour }: HeroPr
           Finca Libia
         </h1>
 
-        <p className="mt-6 max-w-2xl mx-auto font-serif text-xl sm:text-2xl font-light italic leading-relaxed text-ivory-100 hero-text-shadow drop-shadow-md animate-fade-up animate-delay-100">
-          A historic coffee plantation reimagined as a private architectural sanctuary. 12 private mountain acres, heated 25m infinity pool, clay tennis court & full staff.
+        <p className="mt-6 max-w-3xl mx-auto font-serif text-xl sm:text-2xl font-light italic leading-relaxed text-ivory-100 hero-text-shadow drop-shadow-md animate-fade-up animate-delay-100">
+          Escape to Finca Libia, a luxury estate unlike any other. Designed with exquisite attention to detail, this newly built farmhouse redefines countryside elegance.
         </p>
 
-        {/* Quick Highlights Pills */}
-        <div className="mt-8 flex flex-wrap justify-center items-center gap-3 sm:gap-4 text-xs font-light tracking-wider text-ivory-200/90">
-          <span className="rounded-full bg-ink-900/60 border border-ink-700/60 px-3.5 py-1.5 backdrop-blur-sm">6 Master Suites</span>
-          <span className="text-champagne-500">•</span>
-          <span className="rounded-full bg-ink-900/60 border border-ink-700/60 px-3.5 py-1.5 backdrop-blur-sm">Up to 14 Guests</span>
-          <span className="text-champagne-500">•</span>
-          <span className="rounded-full bg-ink-900/60 border border-ink-700/60 px-3.5 py-1.5 backdrop-blur-sm">25m Saltwater Infinity Pool</span>
-          <span className="text-champagne-500">•</span>
-          <span className="rounded-full bg-ink-900/60 border border-ink-700/60 px-3.5 py-1.5 backdrop-blur-sm">Full Private Staff</span>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up animate-delay-200">
-          <button
-            onClick={onOpenInquiry}
-            className="no-tap-highlight group w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full border border-champagne-400/50 bg-champagne-500/90 px-7 py-3.5 text-xs font-medium uppercase tracking-widest-2 text-ink-900 shadow-2xl backdrop-blur-md transition-all duration-300 hover:bg-champagne-300 hover:shadow-champagne-500/30 hover:scale-105 active:scale-95"
-          >
-            <Calendar className="h-4 w-4" />
-            <span>Check Availability & Rates</span>
-          </button>
-
+        {/* Action Button: Featured Digital Tour */}
+        <div className="mt-10 flex justify-center animate-fade-up animate-delay-200">
           <button
             onClick={onOpenDigitalTour}
-            className="no-tap-highlight group w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full border border-ivory-200/30 bg-ink-900/60 px-6 py-3.5 text-xs font-medium uppercase tracking-widest-2 text-ivory-100 backdrop-blur-md shadow-xl transition-all duration-300 hover:border-champagne-400 hover:bg-ink-900 hover:text-champagne-300 active:scale-95"
+            className="no-tap-highlight group inline-flex items-center justify-center gap-3 border border-champagne-400/60 bg-champagne-500/90 px-8 py-4 text-xs font-semibold uppercase tracking-widest-2 text-ink-900 shadow-2xl backdrop-blur-md transition-all duration-300 hover:bg-champagne-300 hover:shadow-champagne-500/40 hover:scale-105 active:scale-95"
           >
-            <Play className="h-4 w-4 text-champagne-400 group-hover:scale-110 transition-transform" />
+            <Play className="h-4 w-4 fill-ink-900 text-ink-900 transition-transform group-hover:scale-110" />
             <span>Digital Tour</span>
-          </button>
-
-          <button
-            onClick={onOpenGallery}
-            className="no-tap-highlight group w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full border border-ivory-200/20 bg-ink-900/40 px-6 py-3.5 text-xs font-medium uppercase tracking-widest-2 text-ivory-200 backdrop-blur-md shadow-lg transition-all duration-300 hover:border-champagne-400/60 hover:text-ivory-50 active:scale-95"
-          >
-            <span>Photo Gallery</span>
           </button>
         </div>
       </div>
@@ -103,7 +75,7 @@ export function Hero({ onOpenInquiry, onOpenGallery, onOpenDigitalTour }: HeroPr
             <button
               key={idx}
               onClick={() => setCurrentBg(idx)}
-              className={`h-1.5 transition-all duration-500 rounded-full ${
+              className={`h-1.5 transition-all duration-500 ${
                 idx === currentBg ? 'w-8 bg-champagne-400' : 'w-2 bg-ivory-200/40 hover:bg-ivory-200/70'
               }`}
               aria-label={`Go to slide ${idx + 1}`}
@@ -114,14 +86,14 @@ export function Hero({ onOpenInquiry, onOpenGallery, onOpenDigitalTour }: HeroPr
         <div className="flex items-center gap-2">
           <button
             onClick={prevBg}
-            className="p-2 rounded-full border border-ivory-200/20 bg-ink-900/50 text-ivory-100 backdrop-blur-md transition-all hover:bg-ink-900 hover:border-champagne-400"
+            className="p-2 border border-ivory-200/20 bg-ink-900/50 text-ivory-100 backdrop-blur-md transition-all hover:bg-ink-900 hover:border-champagne-400"
             aria-label="Previous slide"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
           <button
             onClick={nextBg}
-            className="p-2 rounded-full border border-ivory-200/20 bg-ink-900/50 text-ivory-100 backdrop-blur-md transition-all hover:bg-ink-900 hover:border-champagne-400"
+            className="p-2 border border-ivory-200/20 bg-ink-900/50 text-ivory-100 backdrop-blur-md transition-all hover:bg-ink-900 hover:border-champagne-400"
             aria-label="Next slide"
           >
             <ChevronRight className="h-4 w-4" />

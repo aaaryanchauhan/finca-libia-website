@@ -1,26 +1,55 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { StatsBar } from './components/StatsBar';
+import { PropertyHighlightsSection } from './components/PropertyHighlightsSection';
 import { SuitesShowcase } from './components/SuitesShowcase';
 import { SuiteDetailModal } from './components/SuiteDetailModal';
-import { EstateAmenities } from './components/EstateAmenities';
+import { WhatThisPlaceOffersSection } from './components/WhatThisPlaceOffersSection';
+import { LocationSection } from './components/LocationSection';
 import { StorySection } from './components/StorySection';
 import { GallerySection } from './components/GallerySection';
+import { HostSection } from './components/HostSection';
 import { ReviewsSection } from './components/ReviewsSection';
-import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
 import { InquiryModal } from './components/InquiryModal';
 import type { InquiryPreFillData } from './components/InquiryModal';
 import { DigitalTourModal } from './components/DigitalTourModal';
+import { PhotosPage } from './components/PhotosPage';
 import type { Suite } from './data/villaData';
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState<'home' | 'photos'>(() => {
+    return window.location.hash === '#photos' || window.location.pathname === '/photos' ? 'photos' : 'home';
+  });
+
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
   const [inquiryData, setInquiryData] = useState<InquiryPreFillData | null>(null);
   
   const [isDigitalTourOpen, setIsDigitalTourOpen] = useState(false);
   const [inspectedSuite, setInspectedSuite] = useState<Suite | null>(null);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#photos' || window.location.pathname === '/photos') {
+        setCurrentPage('photos');
+      } else if (window.location.hash === '' || window.location.hash === '#estate') {
+        setCurrentPage('home');
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handleOpenPhotos = () => {
+    setCurrentPage('photos');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToHome = () => {
+    setCurrentPage('home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleOpenInquiry = () => {
     setInquiryData(null);
@@ -37,48 +66,55 @@ export default function App() {
   const handleOpenDigitalTour = () => setIsDigitalTourOpen(true);
   const handleCloseDigitalTour = () => setIsDigitalTourOpen(false);
 
-  const handleOpenGallery = () => {
-    const galleryEl = document.getElementById('gallery');
-    if (galleryEl) {
-      galleryEl.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  if (currentPage === 'photos') {
+    return (
+      <div className="min-h-screen bg-ink-900 text-ivory-100 selection:bg-champagne-500/30 selection:text-white">
+        <PhotosPage onBackToHome={handleBackToHome} onOpenInquiry={handleOpenInquiry} />
+
+        {/* Interactive Booking Inquiry Modal */}
+        <InquiryModal
+          isOpen={isInquiryOpen}
+          onClose={handleCloseInquiry}
+          initialData={inquiryData}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-ink-900 text-ivory-100 selection:bg-champagne-500/30 selection:text-white">
       {/* Glassmorphism Header */}
-      <Navbar onOpenInquiry={handleOpenInquiry} />
+      <Navbar onOpenInquiry={handleOpenInquiry} onOpenPhotos={handleOpenPhotos} />
 
       {/* Cinematic Hero */}
-      <Hero
-        onOpenInquiry={handleOpenInquiry}
-        onOpenGallery={handleOpenGallery}
-        onOpenDigitalTour={handleOpenDigitalTour}
-      />
+      <Hero onOpenDigitalTour={handleOpenDigitalTour} />
 
       {/* Estate Highlights Bar */}
       <StatsBar />
 
-      {/* Master Suites Section */}
-      <SuitesShowcase
-        onOpenInquiry={handleOpenInquiry}
-        onInspectSuite={(suite) => setInspectedSuite(suite)}
-      />
+      {/* Property Highlights Section (Pool/Hot Tub, Home Gym, 5-Star Check-in) */}
+      <PropertyHighlightsSection />
 
-      {/* Resort Amenities Showcase */}
-      <EstateAmenities onOpenInquiry={handleOpenInquiry} />
+      {/* Master Suites Section */}
+      <SuitesShowcase onInspectSuite={(suite) => setInspectedSuite(suite)} />
+
+      {/* What This Place Offers Amenities Section */}
+      <WhatThisPlaceOffersSection />
 
       {/* Heritage & Design Story */}
       <StorySection />
 
       {/* Interactive Photo Gallery */}
-      <GallerySection />
+      <GallerySection onOpenPhotos={handleOpenPhotos} />
+
+      {/* Meet Your Host Section (Meyer Profile & Host Bio) */}
+      <HostSection />
+
+      {/* Where You'll Be Google Maps Location Section */}
+      <LocationSection />
 
       {/* Authentic Guest Testimonials */}
       <ReviewsSection />
-
-      {/* Guest Pre-Arrival FAQ Section */}
-      <FaqSection />
 
       {/* Luxury Footer */}
       <Footer onOpenInquiry={handleOpenInquiry} />

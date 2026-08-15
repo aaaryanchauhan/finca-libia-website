@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, Bed, Users, Maximize2, Check, ArrowRight, Shield } from 'lucide-react';
+import { X, Bed, Users, Check, ArrowRight, Shield } from 'lucide-react';
 import type { Suite } from '../data/villaData';
 
 interface SuiteDetailModalProps {
@@ -19,11 +19,11 @@ export function SuiteDetailModal({ suite, onClose, onReserveSuite }: SuiteDetail
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink-950/90 backdrop-blur-xl animate-fade-in overflow-y-auto">
-      <div className="relative w-full max-w-4xl rounded-3xl border border-ink-700 bg-ink-800 p-6 sm:p-10 shadow-2xl my-8 text-ivory-100 max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-4xl border border-ink-700 bg-ink-800 p-6 sm:p-10 shadow-2xl my-8 text-ivory-100 max-h-[90vh] overflow-y-auto">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 z-20 p-2.5 rounded-full bg-ink-700/80 text-stone-300 hover:text-ivory-50 hover:bg-ink-600 transition-colors"
+          className="absolute top-6 right-6 z-20 p-2.5 bg-ink-700/80 text-stone-300 hover:text-ivory-50 hover:bg-ink-600 transition-colors"
           aria-label="Close suite detail"
         >
           <X className="h-5 w-5" />
@@ -32,13 +32,13 @@ export function SuiteDetailModal({ suite, onClose, onReserveSuite }: SuiteDetail
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Gallery Viewer */}
           <div className="lg:col-span-7 space-y-4">
-            <div className="relative h-72 sm:h-96 w-full overflow-hidden rounded-2xl border border-ink-700/60 shadow-xl">
+            <div className="relative h-72 sm:h-96 w-full overflow-hidden border border-ink-700/60 shadow-xl">
               <img
                 src={mainPhoto}
                 alt={suite.name}
                 className="h-full w-full object-cover transition-all duration-500"
               />
-              <div className="absolute top-4 left-4 rounded-full bg-ink-900/80 px-3.5 py-1 text-xs font-medium text-champagne-300 border border-ink-700 backdrop-blur-md">
+              <div className="absolute top-4 left-4 bg-ink-900/80 px-3.5 py-1 text-xs font-medium text-champagne-300 border border-ink-700 backdrop-blur-md">
                 {suite.pdfName}
               </div>
             </div>
@@ -51,7 +51,7 @@ export function SuiteDetailModal({ suite, onClose, onReserveSuite }: SuiteDetail
                     setActiveTab('bedroom');
                     setSelectedPhoto(suite.gallery[0]);
                   }}
-                  className={`no-tap-highlight rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-wider transition-all ${
+                  className={`no-tap-highlight px-4 py-1.5 text-xs font-medium uppercase tracking-wider transition-all ${
                     activeTab === 'bedroom'
                       ? 'bg-champagne-500 text-ink-900 shadow-md'
                       : 'bg-ink-700/60 text-ivory-200 hover:bg-ink-700'
@@ -64,7 +64,7 @@ export function SuiteDetailModal({ suite, onClose, onReserveSuite }: SuiteDetail
                     setActiveTab('bathroom');
                     setSelectedPhoto(suite.bathroomGallery![0]);
                   }}
-                  className={`no-tap-highlight rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-wider transition-all ${
+                  className={`no-tap-highlight px-4 py-1.5 text-xs font-medium uppercase tracking-wider transition-all ${
                     activeTab === 'bathroom'
                       ? 'bg-champagne-500 text-ink-900 shadow-md'
                       : 'bg-ink-700/60 text-ivory-200 hover:bg-ink-700'
@@ -81,7 +81,7 @@ export function SuiteDetailModal({ suite, onClose, onReserveSuite }: SuiteDetail
                 <button
                   key={idx}
                   onClick={() => setSelectedPhoto(img)}
-                  className={`h-20 w-24 shrink-0 overflow-hidden rounded-xl border transition-all ${
+                  className={`h-20 w-24 shrink-0 overflow-hidden border transition-all ${
                     mainPhoto === img ? 'border-champagne-400 scale-105 shadow-md' : 'border-ink-700/60 opacity-70 hover:opacity-100'
                   }`}
                 >
@@ -109,12 +109,7 @@ export function SuiteDetailModal({ suite, onClose, onReserveSuite }: SuiteDetail
               </p>
 
               {/* Spec Pill Grid */}
-              <div className="mt-6 grid grid-cols-3 gap-3 rounded-2xl bg-ink-900/60 p-4 border border-ink-700/60">
-                <div className="flex flex-col items-center text-center">
-                  <Maximize2 className="h-4 w-4 text-champagne-400 mb-1" />
-                  <span className="text-[10px] uppercase text-stone-400">Size</span>
-                  <span className="text-xs font-medium text-ivory-100">{suite.size}</span>
-                </div>
+              <div className="mt-6 grid grid-cols-2 gap-3 bg-ink-900/60 p-4 border border-ink-700/60">
                 <div className="flex flex-col items-center text-center">
                   <Bed className="h-4 w-4 text-champagne-400 mb-1" />
                   <span className="text-[10px] uppercase text-stone-400">Bed</span>
@@ -159,7 +154,7 @@ export function SuiteDetailModal({ suite, onClose, onReserveSuite }: SuiteDetail
                   onClose();
                   onReserveSuite(suite.name);
                 }}
-                className="no-tap-highlight inline-flex items-center gap-2.5 rounded-full bg-champagne-500 px-6 py-3 text-xs font-medium uppercase tracking-widest-2 text-ink-900 shadow-xl transition-all hover:bg-champagne-300 hover:scale-105"
+                className="no-tap-highlight inline-flex items-center gap-2.5 bg-champagne-500 px-6 py-3 text-xs font-medium uppercase tracking-widest-2 text-ink-900 shadow-xl transition-all hover:bg-champagne-300 hover:scale-105"
               >
                 <span>Inquire Suite</span>
                 <ArrowRight className="h-4 w-4" />

@@ -181,7 +181,7 @@ export function VirtualConciergeWidget({ onOpenInquiry }: { onOpenInquiry: () =>
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-              placeholder="Ask about suites, helipad, rates..."
+              placeholder="Ask about suites, amenities, rates..."
               className="flex-1 rounded-xl bg-ink-900 border border-ink-600 px-3.5 py-2.5 text-xs text-ivory-100 placeholder-stone-500 focus:border-champagne-400 focus:outline-none"
             />
             <button

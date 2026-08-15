@@ -224,7 +224,7 @@ export function InquiryModal({ isOpen, onClose, initialData }: InquiryModalProps
                   rows={3}
                   value={form.specialRequests}
                   onChange={(e) => setForm({ ...form, specialRequests: e.target.value })}
-                  placeholder="e.g. Private chef for dinner, airport helicopter transfer, wine list..."
+                  placeholder="e.g. Private chef for dinner, airport SUV transfer, wine list..."
                   className="w-full rounded-xl border border-ink-600 bg-ink-900/80 px-4 py-3 text-xs text-ivory-100 placeholder-stone-600 focus:border-champagne-400 focus:outline-none transition-colors"
                 />
               </div>

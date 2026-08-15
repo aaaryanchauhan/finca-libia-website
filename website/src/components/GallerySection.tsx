@@ -1,8 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
 import { photoGalleryCategories } from '../data/villaData';
-import { Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Maximize2, X, ChevronLeft, ChevronRight, Images } from 'lucide-react';
 
-export function GallerySection() {
+interface GallerySectionProps {
+  onOpenPhotos?: () => void;
+}
+
+export function GallerySection({ onOpenPhotos }: GallerySectionProps) {
   const [activeTab, setActiveTab] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
@@ -59,7 +63,7 @@ export function GallerySection() {
             <button
               key={cat.name}
               onClick={() => setActiveTab(idx)}
-              className={`no-tap-highlight rounded-full px-5 py-2 text-xs font-medium uppercase tracking-wider transition-all duration-300 ${
+              className={`no-tap-highlight px-5 py-2 text-xs font-medium uppercase tracking-wider transition-all duration-300 ${
                 idx === activeTab
                   ? 'bg-champagne-500 text-ink-900 shadow-md scale-105'
                   : 'bg-ink-800/60 text-ivory-200 hover:bg-ink-700/60'
@@ -76,7 +80,7 @@ export function GallerySection() {
             <div
               key={idx}
               onClick={() => setLightboxIndex(idx)}
-              className="group relative h-72 cursor-pointer overflow-hidden rounded-2xl border border-ink-700/50 bg-ink-800 shadow-lg"
+              className="group relative h-72 cursor-pointer overflow-hidden border border-ink-700/50 bg-ink-800 shadow-lg"
             >
               <img
                 src={photo}
@@ -84,13 +88,26 @@ export function GallerySection() {
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-ink-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="rounded-full bg-ink-900/80 p-3 text-champagne-300 border border-champagne-400/40 backdrop-blur-md">
+                <div className="bg-ink-900/80 p-3 text-champagne-300 border border-champagne-400/40 backdrop-blur-md">
                   <Maximize2 className="h-5 w-5" />
                 </div>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Call to Action for Full Photos Page */}
+        {onOpenPhotos && (
+          <div className="mt-12 flex justify-center">
+            <button
+              onClick={onOpenPhotos}
+              className="no-tap-highlight inline-flex items-center gap-3 border border-champagne-400/60 bg-champagne-500/10 px-8 py-3.5 text-xs font-medium uppercase tracking-widest-2 text-ivory-50 shadow-xl backdrop-blur-md transition-all hover:bg-champagne-500 hover:text-ink-900"
+            >
+              <Images className="h-4 w-4 text-champagne-400 group-hover:text-ink-900" />
+              <span>View Full Photo Tour</span>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Fullscreen Lightbox Modal */}
@@ -98,7 +115,7 @@ export function GallerySection() {
         <div className="fixed inset-0 z-50 bg-ink-950/98 backdrop-blur-2xl flex items-center justify-center p-4 animate-fade-in">
           <button
             onClick={() => setLightboxIndex(null)}
-            className="absolute top-6 right-6 z-50 p-3 rounded-full bg-ink-800/80 text-ivory-100 border border-ink-700 hover:bg-ink-700 transition-colors"
+            className="absolute top-6 right-6 z-50 p-3 bg-ink-800/80 text-ivory-100 border border-ink-700 hover:bg-ink-700 transition-colors"
             aria-label="Close"
           >
             <X className="h-6 w-6" />
@@ -106,17 +123,17 @@ export function GallerySection() {
 
           <button
             onClick={prevLightbox}
-            className="absolute left-6 p-3 rounded-full bg-ink-800/80 text-ivory-100 border border-ink-700 hover:bg-ink-700 transition-colors"
+            className="absolute left-6 p-3 bg-ink-800/80 text-ivory-100 border border-ink-700 hover:bg-ink-700 transition-colors"
             aria-label="Previous image"
           >
             <ChevronLeft className="h-6 w-6" />
           </button>
 
-          <div className="max-w-5xl max-h-[85vh] overflow-hidden rounded-2xl shadow-2xl flex flex-col items-center">
+          <div className="max-w-5xl max-h-[85vh] overflow-hidden shadow-2xl flex flex-col items-center border border-ink-700/80">
             <img
               src={photos[lightboxIndex]}
               alt="Finca Libia Fullscreen"
-              className="max-h-[80vh] max-w-full object-contain rounded-t-2xl"
+              className="max-h-[80vh] max-w-full object-contain"
             />
             <div className="w-full bg-ink-900 border-t border-ink-700/80 px-6 py-3 text-center flex justify-between items-center text-xs text-stone-400">
               <span>{currentCategory.name}</span>
@@ -126,7 +143,7 @@ export function GallerySection() {
 
           <button
             onClick={nextLightbox}
-            className="absolute right-6 p-3 rounded-full bg-ink-800/80 text-ivory-100 border border-ink-700 hover:bg-ink-700 transition-colors"
+            className="absolute right-6 p-3 bg-ink-800/80 text-ivory-100 border border-ink-700 hover:bg-ink-700 transition-colors"
             aria-label="Next image"
           >
             <ChevronRight className="h-6 w-6" />
