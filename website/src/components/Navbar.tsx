@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Calendar, Sparkles, SunMedium } from 'lucide-react';
+import { Menu, X, Calendar, Sparkles } from 'lucide-react';
 
 interface NavbarProps {
   onOpenInquiry: () => void;
@@ -20,23 +20,19 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
   const navLinks = [
     { name: 'Overview', href: '#overview' },
     { name: 'The Estate', href: '#estate' },
-    { name: 'Estate Map', href: '#map' },
     { name: 'Suites', href: '#suites' },
     { name: 'Amenities', href: '#amenities' },
-    { name: 'Rates', href: '#calculator' },
     { name: 'Story', href: '#story' },
     { name: 'Gallery', href: '#gallery' },
-    { name: 'Concierge', href: '#concierge' },
     { name: 'FAQ', href: '#faq' },
   ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
           ? 'bg-ink-900/90 backdrop-blur-md py-4 border-b border-ink-700/60 shadow-2xl'
           : 'bg-gradient-to-b from-ink-900/90 via-ink-900/50 to-transparent py-5'
-      }`}
+        }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12">
         {/* Brand Logo */}
@@ -50,7 +46,7 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-3 xl:gap-6">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-7">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -62,14 +58,8 @@ export function Navbar({ onOpenInquiry }: NavbarProps) {
           ))}
         </nav>
 
-        {/* Action Button & Climate Badge */}
+        {/* Action Button */}
         <div className="hidden lg:flex items-center gap-4 shrink-0">
-          {/* Weather status indicator */}
-          <div className="hidden xl:flex items-center gap-1.5 rounded-full border border-champagne-500/20 bg-ink-800/50 px-3 py-1 text-[11px] text-stone-300 font-light backdrop-blur-sm">
-            <SunMedium className="h-3.5 w-3.5 text-amber-400 animate-spin-slow" />
-            <span>Rionegro 22°C</span>
-          </div>
-
           <button
             onClick={onOpenInquiry}
             className="no-tap-highlight group flex shrink-0 items-center gap-2 rounded-full border border-champagne-400/50 bg-champagne-500/10 px-4 xl:px-5 py-2.5 text-[11px] xl:text-xs font-medium uppercase tracking-wider xl:tracking-widest-2 text-ivory-50 whitespace-nowrap backdrop-blur-md shadow-lg transition-all duration-300 hover:border-champagne-300 hover:bg-champagne-500 hover:text-ink-900 active:scale-95"

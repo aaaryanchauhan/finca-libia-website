@@ -2,21 +2,17 @@ import { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { StatsBar } from './components/StatsBar';
-import { EstateMapSection } from './components/EstateMapSection';
 import { SuitesShowcase } from './components/SuitesShowcase';
 import { SuiteDetailModal } from './components/SuiteDetailModal';
 import { EstateAmenities } from './components/EstateAmenities';
-import { RatesCalculatorSection } from './components/RatesCalculatorSection';
 import { StorySection } from './components/StorySection';
 import { GallerySection } from './components/GallerySection';
-import { ConciergeSection } from './components/ConciergeSection';
 import { ReviewsSection } from './components/ReviewsSection';
 import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
 import { InquiryModal } from './components/InquiryModal';
 import type { InquiryPreFillData } from './components/InquiryModal';
 import { DigitalTourModal } from './components/DigitalTourModal';
-import { VirtualConciergeWidget } from './components/VirtualConciergeWidget';
 import type { Suite } from './data/villaData';
 
 export default function App() {
@@ -28,16 +24,6 @@ export default function App() {
 
   const handleOpenInquiry = () => {
     setInquiryData(null);
-    setIsInquiryOpen(true);
-  };
-
-  const handleOpenInquiryWithData = (data: InquiryPreFillData) => {
-    setInquiryData(data);
-    setIsInquiryOpen(true);
-  };
-
-  const handleOpenInquiryWithExperience = (expTitle: string) => {
-    setInquiryData({ experienceTitle: expTitle });
     setIsInquiryOpen(true);
   };
 
@@ -70,11 +56,8 @@ export default function App() {
         onOpenDigitalTour={handleOpenDigitalTour}
       />
 
-      {/* Estate Highlights Bar with Live Climate */}
+      {/* Estate Highlights Bar */}
       <StatsBar />
-
-      {/* Interactive 12-Acre Estate Map Explorer */}
-      <EstateMapSection onOpenInquiry={handleOpenInquiry} />
 
       {/* Master Suites Section */}
       <SuitesShowcase
@@ -85,20 +68,11 @@ export default function App() {
       {/* Resort Amenities Showcase */}
       <EstateAmenities onOpenInquiry={handleOpenInquiry} />
 
-      {/* Interactive Stay & Rates Calculator */}
-      <RatesCalculatorSection onOpenInquiryWithData={handleOpenInquiryWithData} />
-
       {/* Heritage & Design Story */}
       <StorySection />
 
       {/* Interactive Photo Gallery */}
       <GallerySection />
-
-      {/* Bespoke Private Concierge Services */}
-      <ConciergeSection
-        onOpenInquiry={handleOpenInquiry}
-        onOpenInquiryWithExperience={handleOpenInquiryWithExperience}
-      />
 
       {/* Authentic Guest Testimonials */}
       <ReviewsSection />
@@ -128,9 +102,6 @@ export default function App() {
         isOpen={isDigitalTourOpen}
         onClose={handleCloseDigitalTour}
       />
-
-      {/* Floating Virtual Concierge AI Chat Assistant */}
-      <VirtualConciergeWidget onOpenInquiry={handleOpenInquiry} />
     </div>
   );
 }

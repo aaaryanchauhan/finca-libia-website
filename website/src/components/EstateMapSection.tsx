@@ -1,19 +1,20 @@
 import { useState } from 'react';
-import { MapPin, ArrowRight, Waves, Flame, Trophy, Compass, Sparkles, Wine, Gamepad2, HeartHandshake } from 'lucide-react';
+import { Compass, Waves, Flame, Trophy, Sparkles, Wine, Gamepad2, HeartHandshake } from 'lucide-react';
+import { ArrowRight, MapPin } from 'lucide-react';
 
 interface Hotspot {
   id: string;
   name: string;
   category: string;
   icon: typeof MapPin;
-  coords: { x: number; y: number }; // percentage position on map graphic
+  coords: { x: number; y: number };
   image: string;
   shortDesc: string;
   highlights: string[];
   specs: string;
 }
 
-export const mapHotspots: Hotspot[] = [
+const mapHotspots: Hotspot[] = [
   {
     id: 'suites-wing',
     name: 'Master Suites Wing',

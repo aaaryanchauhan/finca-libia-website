@@ -1,49 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
-
-interface FaqItem {
-  question: string;
-  answer: string;
-  category: 'Staff & Service' | 'Location & Helipad' | 'Privacy & Security' | 'Booking & Amenities';
-}
-
-export const websiteFaqs: FaqItem[] = [
-  {
-    category: 'Staff & Service',
-    question: 'Is full private staff included with every reservation?',
-    answer: 'Yes. Finca Libia includes daily housekeeping, private butler service, groundskeeping, and dedicated concierge management with every booking. In-villa private chef service can be added for seamless dining.',
-  },
-  {
-    category: 'Location & Helipad',
-    question: 'How far is Finca Libia from Medellín International Airport (MDE)?',
-    answer: 'Finca Libia is located just 45 minutes by private SUV from José María Córdova International Airport (MDE) in Rionegro. Alternatively, guests can land directly on our private on-site helipad in just 6 minutes.',
-  },
-  {
-    category: 'Privacy & Security',
-    question: 'Is the property 100% private and gated?',
-    answer: 'Absolutely. The entire 12-acre estate is strictly 100% exclusive to your group. There are no shared amenities, other guests, or public access. Gated security and discreet estate staff ensure absolute privacy.',
-  },
-  {
-    category: 'Booking & Amenities',
-    question: 'What is the maximum guest capacity across the 6 suites?',
-    answer: 'Finca Libia features 6 master suites that accommodate up to 14 guests comfortably with plush organic linens, individual ensuite full bathrooms, and climate control.',
-  },
-  {
-    category: 'Booking & Amenities',
-    question: 'Is the 25m infinity pool heated?',
-    answer: 'Yes, our 25-meter saltwater infinity pool is heated year-round to a precise 28°C (82°F) and treated with a gentle natural salt system (no harsh chlorine).',
-  },
-  {
-    category: 'Location & Helipad',
-    question: 'Can you arrange custom helicopter tours over Guatapé?',
-    answer: 'Yes! Our private concierge team arranges direct helipad pickups from Finca Libia for scenic flights over El Peñol Rock, the lakes of Guatapé, or the coffee mountains of Antioquia.',
-  },
-  {
-    category: 'Staff & Service',
-    question: 'What are the check-in and check-out times?',
-    answer: 'Standard check-in is at 3:00 PM and check-out is at 11:00 AM. Flexible early arrival or late departure can be arranged based on availability.',
-  },
-];
+import { websiteFaqs } from '../data/villaData';
 
 export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);

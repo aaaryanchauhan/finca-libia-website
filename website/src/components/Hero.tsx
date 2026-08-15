@@ -50,13 +50,6 @@ export function Hero({ onOpenInquiry, onOpenGallery, onOpenDigitalTour }: HeroPr
 
       {/* Hero Central Content */}
       <div className="relative z-20 mx-auto max-w-4xl px-6 text-center mt-12">
-        <div className="inline-flex items-center gap-2 rounded-full border border-champagne-400/40 bg-ink-900/70 px-4 py-1.5 backdrop-blur-md mb-6 animate-fade-in shadow-xl">
-          <span className="h-1.5 w-1.5 rounded-full bg-champagne-400 animate-pulse" />
-          <span className="text-[11px] font-medium uppercase tracking-widest-3 text-champagne-300">
-            Exclusive Luxury Estate · Medellín, Colombia
-          </span>
-        </div>
-
         <h1 className="font-serif text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-tight text-ivory-50 hero-text-shadow drop-shadow-2xl animate-fade-up">
           Finca Libia
         </h1>

@@ -1,39 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Calculator, Calendar, Sparkles, Check, ArrowRight, ShieldCheck } from 'lucide-react';
-
-export interface RateAddon {
-  id: string;
-  name: string;
-  pricePerStay: number;
-  description: string;
-}
-
-export const luxuryAddonsList: RateAddon[] = [
-  {
-    id: 'private-chef',
-    name: 'In-Villa Master Chef Service',
-    pricePerStay: 1200,
-    description: '3 meals prepared daily by top Medellín executive chef with custom dietary menus.',
-  },
-  {
-    id: 'helipad-charter',
-    name: 'Guatapé Helicopter Excursion',
-    pricePerStay: 1800,
-    description: 'Direct VIP helipad charter flight over El Peñol rock & Guatapé reservoir.',
-  },
-  {
-    id: 'sommelier-tasting',
-    name: 'Private Sommelier Rum & Wine Tasting',
-    pricePerStay: 600,
-    description: 'Guided evening tasting of rare vintage Colombian rums & reserve South American wines.',
-  },
-  {
-    id: 'wellness-spa',
-    name: 'In-Villa Poolside Massage Spa Day',
-    pricePerStay: 800,
-    description: 'Full day of deep tissue massages & aromatic body scrubs by the infinity pool.',
-  },
-];
+import { luxuryAddonsList } from '../data/villaData';
 
 interface RatesCalculatorSectionProps {
   onOpenInquiryWithData?: (data: { checkIn: string; checkOut: string; guests: string; total: number; selectedAddons: string[] }) => void;

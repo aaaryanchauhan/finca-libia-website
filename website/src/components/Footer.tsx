@@ -25,7 +25,7 @@ export function Footer({ onOpenInquiry }: FooterProps) {
               </p>
             </a>
             <p className="text-xs leading-relaxed text-stone-400 font-light max-w-md">
-              A 100% exclusive 12-acre mountain estate featuring 6 master suites, 25m heated infinity pool, red clay tennis court, Finnish cedar sauna, speakeasy bar, soundproof games room, and full private concierge staff.
+              A 100% exclusive 12-acre mountain estate featuring 6 master suites, 25m heated infinity pool, red clay tennis court, Finnish cedar sauna, speakeasy bar, soundproof games room, and full private staff.
             </p>
             <div className="pt-2 flex items-center gap-3">
               <button
@@ -47,7 +47,7 @@ export function Footer({ onOpenInquiry }: FooterProps) {
               <li><a href="#amenities" className="hover:text-champagne-300 transition-colors">Resort Amenities</a></li>
               <li><a href="#story" className="hover:text-champagne-300 transition-colors">History & Design</a></li>
               <li><a href="#gallery" className="hover:text-champagne-300 transition-colors">Photo Gallery</a></li>
-              <li><a href="#concierge" className="hover:text-champagne-300 transition-colors">Private Concierge</a></li>
+              <li><a href="#faq" className="hover:text-champagne-300 transition-colors">FAQ</a></li>
             </ul>
           </div>
 

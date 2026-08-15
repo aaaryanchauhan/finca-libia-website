@@ -33,6 +33,19 @@ export interface Review {
   avatar: string;
 }
 
+export interface RateAddon {
+  id: string;
+  name: string;
+  pricePerStay: number;
+  description: string;
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+  category: 'Staff & Service' | 'Location & Helipad' | 'Privacy & Security' | 'Booking & Amenities';
+}
+
 export const villaInfo = {
   name: 'Finca Libia',
   tagline: 'Private Luxury Estate & Sanctuary',
@@ -162,7 +175,7 @@ export const suites: Suite[] = [
     capacity: '2 Guests',
     size: '70 m²',
     bed: 'King Bed',
-    description: 'A striking master suite featuring matte black wall accents, warm ambient backlighting, premium audio system, and immediate pool deck access.',
+    description: 'A striking master suite featuring matte black wall accents, warm ambient backlighting, premium audio system, and immediate pool terrace access.',
     highlights: ['Obsidian Aesthetic', 'Pool Terrace Access', 'Smart Ambient Lighting', 'Ensuite Full Bath'],
     image: '/photos/bedroom_5/bedroom_5_01.jpeg',
     gallery: [
@@ -257,32 +270,6 @@ export const estateFeatures: EstateFeature[] = [
       { label: 'Sound System', value: 'Sonos High-Fidelity' },
       { label: 'Acoustics', value: '100% Soundproofed' },
       { label: 'Games', value: 'Bowling, Billiards, Foosball & Ping Pong' },
-    ],
-  },
-  {
-    id: 'fitness-gym',
-    title: 'Fitness Gym & Movement Studio',
-    category: 'Fitness & Health',
-    subtitle: '24-hour gym with floor-to-ceiling garden views',
-    description: 'Equipped with free weights, cable strength machine, treadmill, stationary bike, and yoga mats. Glass walls look directly onto the tropical gardens.',
-    image: '/photos/gym/gym_01.jpeg',
-    specs: [
-      { label: 'Access', value: '24 Hours' },
-      { label: 'Equipment', value: 'Free Weights, Cardio & Cable Machine' },
-      { label: 'View', value: 'Garden Landscape' },
-    ],
-  },
-  {
-    id: 'farm-animals',
-    title: '12-Acre Farm & Resident Animals',
-    category: 'Farm & Nature',
-    subtitle: 'Friendly Swiss-German cows, llamas, Bruno & Luna',
-    description: 'Pastures surrounding the villa are home to friendly llamas and Swiss cows, alongside Bruno the golden retriever and Luna the tabby cat.',
-    image: '/photos/additional_photos/alpaca.jpeg',
-    specs: [
-      { label: 'Pastures', value: '12 Mountain Acres' },
-      { label: 'Animals', value: 'Llamas, Swiss Cows, Dogs & Cats' },
-      { label: 'Policy', value: 'Pet-Friendly & Gentle Off-Leash' },
     ],
   },
 ];
@@ -380,14 +367,192 @@ export const photoGalleryCategories = [
       '/photos/patio/patio_03.jpeg',
     ],
   },
+];
+
+export const websiteTourStops = [
   {
-    name: 'Farm Animals & Pets',
-    photos: [
-      '/photos/additional_photos/dog.jpeg',
-      '/photos/additional_photos/alpaca.jpeg',
-      '/photos/additional_photos/cow.jpeg',
-      '/photos/additional_photos/dogs.jpeg',
-      '/photos/additional_photos/pets.jpeg',
-    ],
+    number: '01',
+    category: 'Architecture',
+    title: 'Grand Entrance & Historic Facade',
+    description: '100-year coffee estate architecture framed by geometric stone lattices and mountain views.',
+    image: '/photos/exterior/exterior_10.jpeg',
+    details: 'Hand-cut local stone walls dating back to 1928, restored into a modern luxury villa.',
+  },
+  {
+    number: '02',
+    category: 'Living Space',
+    title: 'Main Living Salon & Fireplace',
+    description: 'Cathedral wood ceilings, plush sofas, and a grand fireplace for cool mountain evenings.',
+    image: '/photos/living_room/living_room_02.jpeg',
+    details: 'Firewood is stocked underneath. Light the fire at dusk for cozy warmth.',
+  },
+  {
+    number: '03',
+    category: 'Dining & Kitchen',
+    title: 'Gourmet Chef Kitchen',
+    description: 'Full chef kitchen equipped for private dining, breakfast prep, and espresso service.',
+    image: '/photos/full_kitchen/full_kitchen_01.jpeg',
+    details: 'Equipped with commercial range and single-origin coffee bar.',
+  },
+  {
+    number: '04',
+    category: 'Dining & Social',
+    title: 'Dining Salon & Speakeasy Bar',
+    description: 'Grand teak dining table seating 16 guests, flanked by an 80-bottle backlit bar.',
+    image: '/photos/dining_area/dining_area_01.jpeg',
+    details: 'Stocked with rare Colombian rums, fine wines, and artisanal spirits.',
+  },
+  {
+    number: '05',
+    category: 'Master Suite 1',
+    title: 'The Gold Room (Grand Master)',
+    description: 'The master bedroom featuring gold tones, cathedral ceiling, wrap-around terrace & open-air Jacuzzi.',
+    image: '/photos/bedroom_1/bedroom_1_01.jpeg',
+    details: 'Includes an open-air jacuzzi tub overlooking the mountain valley.',
+  },
+  {
+    number: '06',
+    category: 'Master Suite 2',
+    title: 'The Grey Room (Garden Suite)',
+    description: 'Sleek stone bedroom with direct floor-to-ceiling access to the tropical courtyard garden.',
+    image: '/photos/bedroom_2/bedroom_2_01.jpeg',
+    details: 'Features a double stone vanity ensuite and private garden seating.',
+  },
+  {
+    number: '07',
+    category: 'Master Suite 3',
+    title: 'Valley View Suite',
+    description: 'Elevated suite with sunset orientation over Rionegro coffee valley.',
+    image: '/photos/bedroom_3/bedroom_3_01.jpeg',
+    details: 'Custom cedar vanity and smart ambient lighting.',
+  },
+  {
+    number: '08',
+    category: 'Master Suite 4',
+    title: 'Courtyard Sanctuary Suite',
+    description: 'Serene guest bedroom adjacent to the central fountain and native tropical plants.',
+    image: '/photos/bedroom_4/bedroom_4_01.jpeg',
+    details: 'Gentle water fountain sounds for peaceful sleep.',
+  },
+  {
+    number: '09',
+    category: 'Master Suite 5',
+    title: 'The Black Room (Deluxe Suite)',
+    description: 'Obsidian interior design suite with king bed and immediate pool terrace access.',
+    image: '/photos/bedroom_5/bedroom_5_01.jpeg',
+    details: 'Matte black architectural finishes & premium sound system.',
+  },
+  {
+    number: '10',
+    category: 'Master Suite 6',
+    title: 'Guest Wing Suite',
+    description: 'Flexible double suite with writing workspace and garden vistas.',
+    image: '/photos/bedroom_6/bedroom_6_01.jpeg',
+    details: 'Organic linens and dedicated guest storage.',
+  },
+  {
+    number: '11',
+    category: 'Wellness & Water',
+    title: '25m Saltwater Infinity Pool',
+    description: '25-meter infinity pool heated to 28°C with saltwater treatment and valley view.',
+    image: '/photos/pool/pool_01.jpeg',
+    details: 'West orientation catches golden hour sunset perfectly.',
+  },
+  {
+    number: '12',
+    category: 'Wellness Spa',
+    title: 'Cedar Sauna & Eucalyptus Steam Bath',
+    description: 'Finnish cedar sauna and eucalyptus steam bath adjacent to the pool deck.',
+    image: '/photos/patio/patio_02.jpeg',
+    details: 'Pair a 15-minute sauna session with a cold pool plunge.',
+  },
+  {
+    number: '13',
+    category: 'Recreation',
+    title: 'Red Clay Tennis Court',
+    description: 'Professional red clay tennis & pickleball court with LED floodlights.',
+    image: '/photos/courtyard/courtyard_01.jpeg',
+    details: 'Rackets and balls provided in the court cabinet.',
+  },
+  {
+    number: '14',
+    category: 'Entertainment',
+    title: 'Soundproof Games Room & Bowling',
+    description: 'Soundproof lounge featuring billiards, foosball, ping pong, and a vintage bowling lane.',
+    image: '/photos/games_room/games_room_01.jpeg',
+    details: 'High-fidelity audio system for late night music.',
+  },
+  {
+    number: '15',
+    category: 'Wellness & Fitness',
+    title: 'Private Fitness Gym',
+    description: 'Fully equipped 24-hour fitness gym with mountain valley vistas.',
+    image: '/photos/gym/gym_01.jpeg',
+    details: 'Equipped with cardio machines, free weights, and stretching mats.',
+  },
+];
+
+export const luxuryAddonsList: RateAddon[] = [
+  {
+    id: 'private-chef',
+    name: 'In-Villa Master Chef Service',
+    pricePerStay: 1200,
+    description: '3 meals prepared daily by top Medellín executive chef with custom dietary menus.',
+  },
+  {
+    id: 'helipad-charter',
+    name: 'Guatapé Helicopter Excursion',
+    pricePerStay: 1800,
+    description: 'Direct VIP helipad charter flight over El Peñol rock & Guatapé reservoir.',
+  },
+  {
+    id: 'sommelier-tasting',
+    name: 'Private Sommelier Rum & Wine Tasting',
+    pricePerStay: 600,
+    description: 'Guided evening tasting of rare vintage Colombian rums & reserve South American wines.',
+  },
+  {
+    id: 'wellness-spa',
+    name: 'In-Villa Poolside Massage Spa Day',
+    pricePerStay: 800,
+    description: 'Full day of deep tissue massages & aromatic body scrubs by the infinity pool.',
+  },
+];
+
+export const websiteFaqs: FaqItem[] = [
+  {
+    category: 'Staff & Service',
+    question: 'Is full private staff included with every reservation?',
+    answer: 'Yes. Finca Libia includes daily housekeeping, private butler service, groundskeeping, and dedicated concierge management with every booking. In-villa private chef service can be added for seamless dining.',
+  },
+  {
+    category: 'Location & Helipad',
+    question: 'How far is Finca Libia from Medellín International Airport (MDE)?',
+    answer: 'Finca Libia is located just 45 minutes by private SUV from José María Córdova International Airport (MDE) in Rionegro. Alternatively, guests can land directly on our private on-site helipad in just 6 minutes.',
+  },
+  {
+    category: 'Privacy & Security',
+    question: 'Is the property 100% private and gated?',
+    answer: 'Absolutely. The entire 12-acre estate is strictly 100% exclusive to your group. There are no shared amenities, other guests, or public access. Gated security and discreet estate staff ensure absolute privacy.',
+  },
+  {
+    category: 'Booking & Amenities',
+    question: 'What is the maximum guest capacity across the 6 suites?',
+    answer: 'Finca Libia features 6 master suites that accommodate up to 14 guests comfortably with plush organic linens, individual ensuite full bathrooms, and climate control.',
+  },
+  {
+    category: 'Booking & Amenities',
+    question: 'Is the 25m infinity pool heated?',
+    answer: 'Yes, our 25-meter saltwater infinity pool is heated year-round to a precise 28°C (82°F) and treated with a gentle natural salt system (no harsh chlorine).',
+  },
+  {
+    category: 'Location & Helipad',
+    question: 'Can you arrange custom helicopter tours over Guatapé?',
+    answer: 'Yes! Our private concierge team arranges direct helipad pickups from Finca Libia for scenic flights over El Peñol Rock, the lakes of Guatapé, or the coffee mountains of Antioquia.',
+  },
+  {
+    category: 'Staff & Service',
+    question: 'What are the check-in and check-out times?',
+    answer: 'Standard check-in is at 3:00 PM and check-out is at 11:00 AM. Flexible early arrival or late departure can be arranged based on availability.',
   },
 ];

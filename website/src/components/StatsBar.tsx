@@ -1,4 +1,4 @@
-import { ShieldCheck, Bed, Waves, Flame, Award, Plane, SunMedium } from 'lucide-react';
+import { ShieldCheck, Bed, Waves, Flame, Award, Plane } from 'lucide-react';
 
 export function StatsBar() {
   const stats = [
@@ -13,14 +13,6 @@ export function StatsBar() {
   return (
     <section id="estate" className="relative z-30 border-y border-ink-700/80 bg-ink-800/80 py-10 backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        {/* Climate Notice Ribbon */}
-        <div className="mb-8 flex justify-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-champagne-400/30 bg-ink-900/60 px-4 py-1.5 backdrop-blur-md text-xs text-champagne-300 font-light shadow-md">
-            <SunMedium className="h-4 w-4 text-amber-400 animate-pulse" />
-            <span>Medellín Climate · 22°C / 72°F Ideal Year-Round Eternal Spring</span>
-          </div>
-        </div>
-
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {stats.map((stat, idx) => {
             const Icon = stat.icon;
