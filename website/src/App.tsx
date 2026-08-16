@@ -133,7 +133,7 @@ export default function App() {
         onReserveSuite={handleReserveSuiteFromModal}
       />
 
-      {/* Interactive 15-Stop Digital Tour Modal */}
+      {/* Interactive 18-Stop Digital Tour Modal */}
       <DigitalTourModal
         isOpen={isDigitalTourOpen}
         onClose={handleCloseDigitalTour}

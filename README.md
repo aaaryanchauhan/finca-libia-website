@@ -53,7 +53,7 @@ The application strictly adheres to a luxury-first design ethos:
 - **Explore the Estate**: Interactive guide to estate amenities (The Pool, The Sauna, Tennis Court, The Bar, The Gym, The Games Room) featuring operational instructions, insider tips, best visiting times, and full-screen detail views.
 - **The Story**: Editorial history of the 1928 coffee estate, its architecture, design philosophy, and family heritage.
 - **Meet the Residents**: Intimate portraits and stories of estate pets (Bruno the Golden Retriever and Luna the Tabby Cat).
-- **Take a Digital Tour**: Sequential 5-stop guided digital tour through the estate's highlight spaces.
+- **Take a Digital Tour**: Sequential 18-stop guided digital tour through the estate's highlight spaces.
 
 ### 3. 🌿 Destination & Curated Insights (`ExploreView.tsx`)
 - Host-curated guide to Medellín split across 6 categories: *Eat, Drink, Adventure, Culture, Family, and Our Secrets*.

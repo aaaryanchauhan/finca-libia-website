@@ -9,7 +9,7 @@ interface DigitalTourModalProps {
 
 export function DigitalTourModal({ isOpen, onClose }: DigitalTourModalProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const currentStop = websiteTourStops[currentIndex];
 
@@ -27,12 +27,12 @@ export function DigitalTourModal({ isOpen, onClose }: DigitalTourModalProps) {
     if (isPlaying && isOpen) {
       timer = setInterval(() => {
         handleNext();
-      }, 6000);
+      }, 5500);
     }
     return () => clearInterval(timer);
   }, [isPlaying, isOpen, handleNext]);
 
-  // Keyboard navigation
+  // Keyboard navigation & spacebar play/pause toggle
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isOpen) return;
@@ -42,6 +42,9 @@ export function DigitalTourModal({ isOpen, onClose }: DigitalTourModalProps) {
         handlePrev();
       } else if (e.key === 'Escape') {
         onClose();
+      } else if (e.key === ' ') {
+        e.preventDefault();
+        setIsPlaying((prev) => !prev);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -52,6 +55,28 @@ export function DigitalTourModal({ isOpen, onClose }: DigitalTourModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col justify-between bg-ink-950/98 backdrop-blur-2xl animate-fade-in text-ivory-100 overflow-hidden select-none">
+      {/* Top Segmented Progress Bar */}
+      <div className="absolute top-0 left-0 right-0 z-40 flex gap-1 p-1.5 bg-ink-950/60 backdrop-blur-xs">
+        {websiteTourStops.map((stop, idx) => (
+          <button
+            key={stop.number}
+            onClick={() => setCurrentIndex(idx)}
+            className="h-1 flex-1 rounded-full overflow-hidden bg-ivory-200/20 transition-all duration-300 relative group"
+            title={`Stop ${stop.number}: ${stop.title}`}
+          >
+            <div
+              className={`h-full transition-all ${
+                idx === currentIndex
+                  ? 'bg-champagne-400 w-full'
+                  : idx < currentIndex
+                  ? 'bg-ivory-200/80 w-full'
+                  : 'w-0'
+              }`}
+            />
+          </button>
+        ))}
+      </div>
+
       {/* Background Image Showcase */}
       {websiteTourStops.map((stop, idx) => (
         <div
@@ -72,7 +97,7 @@ export function DigitalTourModal({ isOpen, onClose }: DigitalTourModalProps) {
       ))}
 
       {/* Top Controls Bar */}
-      <header className="relative z-30 flex items-center justify-between p-6 lg:px-12 border-b border-ink-700/60 bg-ink-950/60 backdrop-blur-md">
+      <header className="relative z-30 flex items-center justify-between p-6 pt-8 lg:px-12 border-b border-ink-700/60 bg-ink-950/60 backdrop-blur-md">
         <button
           onClick={onClose}
           className="no-tap-highlight group flex items-center gap-2 border border-ivory-200/20 bg-ink-900/70 px-4 py-2 text-xs font-medium uppercase tracking-widest text-ivory-100 backdrop-blur-md transition-all duration-300 hover:border-champagne-400 hover:bg-champagne-500 hover:text-ink-900 shadow-xl"
@@ -92,12 +117,12 @@ export function DigitalTourModal({ isOpen, onClose }: DigitalTourModalProps) {
           onClick={() => setIsPlaying(!isPlaying)}
           className={`no-tap-highlight flex items-center gap-2 border px-4 py-2 text-xs font-medium uppercase tracking-widest backdrop-blur-md transition-all shadow-xl ${
             isPlaying
-              ? 'border-champagne-400 bg-champagne-500 text-ink-900'
+              ? 'border-champagne-400 bg-champagne-500 text-ink-900 font-semibold'
               : 'border-ivory-200/20 bg-ink-900/70 text-ivory-100 hover:border-champagne-400 hover:text-champagne-300'
           }`}
         >
           {isPlaying ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5 fill-current" />}
-          <span>{isPlaying ? 'Pause' : 'Autoplay'}</span>
+          <span>{isPlaying ? 'Autoplay ON' : 'Autoplay OFF'}</span>
         </button>
       </header>
 

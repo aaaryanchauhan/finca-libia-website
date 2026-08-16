@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { ChevronRight, ArrowRight, ArrowLeft, MapPin, Clock, Lightbulb, X, Bed, Users, Sparkles } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import { ChevronRight, ArrowRight, ArrowLeft, MapPin, Clock, Lightbulb, X, Bed, Users, Sparkles, Play, Pause } from 'lucide-react';
 import { amenities, bedrooms, propertyStory, residents, tourStops } from '@/data/content';
 import { Reveal } from '@/components/Reveal';
 import { FullScreenImage } from '@/components/FullScreenImage';
@@ -15,12 +15,46 @@ export function StayView({ onBack }: StayViewProps) {
   const [selectedBedroom, setSelectedBedroom] = useState<Bedroom | null>(null);
   const [activePhotoIdx, setActivePhotoIdx] = useState<number>(0);
   const [tourIndex, setTourIndex] = useState<number | null>(null);
+  const [isAutoplay, setIsAutoplay] = useState<boolean>(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
   }, [selectedAmenity, selectedBedroom, tourIndex]);
+
+  // Autoplay timer effect for Digital Tour
+  useEffect(() => {
+    let timer: ReturnType<typeof setInterval>;
+    if (tourIndex !== null && isAutoplay) {
+      timer = setInterval(() => {
+        setTourIndex((prev) => {
+          if (prev === null) return null;
+          return (prev + 1) % tourStops.length;
+        });
+      }, 5500);
+    }
+    return () => clearInterval(timer);
+  }, [tourIndex, isAutoplay]);
+
+  // Keyboard navigation & spacebar autoplay toggle
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (tourIndex === null) return;
+      if (e.key === 'ArrowRight') {
+        setTourIndex((prev) => (prev !== null ? (prev + 1) % tourStops.length : null));
+      } else if (e.key === 'ArrowLeft') {
+        setTourIndex((prev) => (prev !== null ? (prev - 1 + tourStops.length) % tourStops.length : null));
+      } else if (e.key === 'Escape') {
+        setTourIndex(null);
+      } else if (e.key === ' ') {
+        e.preventDefault();
+        setIsAutoplay((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [tourIndex]);
 
   // Digital Tour Overlay Mode
   if (tourIndex !== null) {
@@ -29,7 +63,7 @@ export function StayView({ onBack }: StayViewProps) {
     const isLast = tourIndex === tourStops.length - 1;
 
     return (
-      <div className="fixed inset-0 z-50 bg-ink-900 flex flex-col justify-between overflow-hidden animate-fade-in">
+      <div className="fixed inset-0 z-50 bg-ink-900 flex flex-col justify-between overflow-hidden animate-fade-in select-none">
         {/* Full screen background image */}
         <FullScreenImage
           src={stop.image}
@@ -39,13 +73,47 @@ export function StayView({ onBack }: StayViewProps) {
           scale={false}
         />
 
-        {/* Top left Exit button with back arrow matching all other pages */}
-        <div className="absolute top-6 left-6 z-30">
-          <BackButton onClick={() => setTourIndex(null)} label="Exit" />
+        {/* Top Progress Bar Segments */}
+        <div className="absolute top-0 left-0 right-0 z-40 flex gap-1 p-2 bg-ink-900/40 backdrop-blur-xs">
+          {tourStops.map((s, idx) => (
+            <button
+              key={s.id}
+              onClick={() => setTourIndex(idx)}
+              className="h-1 flex-1 rounded-full overflow-hidden bg-ivory-200/20 transition-all duration-300 relative group"
+              title={`Stop ${s.number}: ${s.title}`}
+            >
+              <div
+                className={`h-full transition-all ${
+                  idx === tourIndex
+                    ? 'bg-champagne-400 w-full'
+                    : idx < tourIndex
+                    ? 'bg-ivory-200/80 w-full'
+                    : 'w-0'
+                }`}
+              />
+            </button>
+          ))}
+        </div>
+
+        {/* Top Controls Bar */}
+        <div className="absolute top-6 left-6 right-6 z-30 flex items-center justify-between">
+          <BackButton onClick={() => setTourIndex(null)} label="Exit Tour" />
+
+          <button
+            onClick={() => setIsAutoplay(!isAutoplay)}
+            className={`no-tap-highlight flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs uppercase tracking-widest-2 backdrop-blur-md transition-all shadow-lg ${
+              isAutoplay
+                ? 'border-champagne-400/80 bg-champagne-500/90 text-ink-900 font-semibold'
+                : 'border-ivory-200/20 bg-ink-900/70 text-ivory-200 hover:border-champagne-400 hover:text-champagne-300'
+            }`}
+          >
+            {isAutoplay ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5 fill-current" />}
+            <span>{isAutoplay ? 'Autoplay ON' : 'Autoplay OFF'}</span>
+          </button>
         </div>
 
         {/* Center Content */}
-        <div className="relative z-20 flex flex-col items-center justify-center px-6 text-center max-w-2xl mx-auto my-auto">
+        <div className="relative z-20 flex flex-col items-center justify-center px-6 text-center max-w-2xl mx-auto my-auto pt-16">
           <span className="text-xs uppercase tracking-widest-3 text-champagne-400 font-medium">{stop.category}</span>
           <p className="font-serif text-5xl sm:text-6xl font-light text-champagne-300/90 mt-1">
             Stop {stop.number}
@@ -67,9 +135,8 @@ export function StayView({ onBack }: StayViewProps) {
         <div className="relative z-20 flex items-center justify-between p-6 sm:p-8 border-t border-ivory-200/10 bg-ink-900/80 backdrop-blur-md">
           {/* Previous Stop */}
           <button
-            onClick={() => setTourIndex(tourIndex - 1)}
-            disabled={isFirst}
-            className="no-tap-highlight inline-flex items-center gap-2 text-xs uppercase tracking-widest-2 text-ivory-200/80 transition-opacity hover:opacity-100 disabled:opacity-30 disabled:pointer-events-none"
+            onClick={() => setTourIndex((tourIndex - 1 + tourStops.length) % tourStops.length)}
+            className="no-tap-highlight inline-flex items-center gap-2 text-xs uppercase tracking-widest-2 text-ivory-200/80 transition-opacity hover:opacity-100"
           >
             <ArrowLeft className="h-4 w-4" strokeWidth={1.5} />
             <span>Previous</span>
@@ -82,24 +149,14 @@ export function StayView({ onBack }: StayViewProps) {
             </p>
           </div>
 
-          {/* Next / Finish Stop */}
-          {isLast ? (
-            <button
-              onClick={() => setTourIndex(null)}
-              className="no-tap-highlight inline-flex items-center gap-2 text-xs uppercase tracking-widest-2 text-champagne-300 transition-colors hover:text-champagne-200"
-            >
-              <span>Finish Tour</span>
-              <X className="h-4 w-4" strokeWidth={1.5} />
-            </button>
-          ) : (
-            <button
-              onClick={() => setTourIndex(tourIndex + 1)}
-              className="no-tap-highlight inline-flex items-center gap-2 text-xs uppercase tracking-widest-2 text-ivory-100 transition-colors hover:text-champagne-300"
-            >
-              <span>Next Stop</span>
-              <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
-            </button>
-          )}
+          {/* Next Stop */}
+          <button
+            onClick={() => setTourIndex((tourIndex + 1) % tourStops.length)}
+            className="no-tap-highlight inline-flex items-center gap-2 text-xs uppercase tracking-widest-2 text-champagne-300 transition-colors hover:text-champagne-200"
+          >
+            <span>Next Stop</span>
+            <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
+          </button>
         </div>
       </div>
     );
@@ -343,17 +400,17 @@ export function StayView({ onBack }: StayViewProps) {
             <p className="mt-2 text-sm text-stone-400">Click any suite to view all photos, specs, and ensuite bath details.</p>
           </Reveal>
 
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
             {bedrooms.map((bedroom, idx) => (
-              <Reveal key={bedroom.id} delay={idx * 60}>
+              <Reveal key={bedroom.id} delay={idx * 60} className="h-full flex flex-col w-full">
                 <button
                   onClick={() => {
                     setSelectedBedroom(bedroom);
                     setActivePhotoIdx(0);
                   }}
-                  className="no-tap-highlight group flex flex-col text-left overflow-hidden rounded-xl border border-ink-700 bg-ink-800/50 transition-all duration-300 hover:border-champagne-400/50 hover:bg-ink-800"
+                  className="no-tap-highlight group flex flex-col justify-between text-left h-full w-full overflow-hidden rounded-xl border border-ink-700 bg-ink-800/50 transition-all duration-300 hover:border-champagne-400/50 hover:bg-ink-800 flex-1"
                 >
-                  <div className="relative h-48 w-full overflow-hidden">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden shrink-0">
                     <img
                       src={bedroom.photos[0]}
                       alt={bedroom.name}
@@ -363,12 +420,16 @@ export function StayView({ onBack }: StayViewProps) {
                       {bedroom.photos.length + (bedroom.bathroomPhotos?.length || 0)} Photos
                     </div>
                   </div>
-                  <div className="p-5">
-                    <span className="text-[10px] uppercase tracking-widest-2 text-champagne-400 font-medium">{bedroom.pdfName}</span>
-                    <h3 className="mt-1 font-serif text-2xl font-light text-ivory-100 transition-colors group-hover:text-champagne-300">
-                      {bedroom.name}
-                    </h3>
-                    <p className="mt-1 text-xs text-stone-400 line-clamp-2">{bedroom.subtitle}</p>
+                  <div className="p-5 flex-1 flex flex-col justify-between w-full">
+                    <div>
+                      <span className="text-[10px] uppercase tracking-widest-2 text-champagne-400 font-medium block">{bedroom.pdfName}</span>
+                      <h3 className="mt-1 font-serif text-2xl font-light text-ivory-100 transition-colors group-hover:text-champagne-300 line-clamp-1 h-8 flex items-center">
+                        {bedroom.name}
+                      </h3>
+                      <p className="mt-1 text-xs text-stone-400 line-clamp-2 h-10 leading-relaxed overflow-hidden">
+                        {bedroom.subtitle}
+                      </p>
+                    </div>
                     <div className="mt-4 flex items-center justify-between text-xs text-stone-400 border-t border-ink-700/60 pt-3">
                       <span>{bedroom.bedType}</span>
                       <span className="text-champagne-400 group-hover:translate-x-1 transition-transform">Explore →</span>
