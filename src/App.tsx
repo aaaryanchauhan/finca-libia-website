@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Sparkles, Home, Map, BookOpen, Calendar, LogOut, Info } from 'lucide-react';
+import { Home, Map, BookOpen, Calendar, LogOut, Info } from 'lucide-react';
 import { HomeView } from '@/views/HomeView';
 import { StayView } from '@/views/StayView';
 import { ExploreView } from '@/views/ExploreView';
@@ -15,8 +15,8 @@ type View = 'home' | 'stay' | 'explore' | 'concierge' | 'memories' | 'itinerary'
 const navItems: { id: View; label: string; icon: typeof Home }[] = [
   { id: 'home', label: 'Home', icon: Home },
   { id: 'stay', label: 'Stay', icon: Map },
-  { id: 'guide', label: 'Guide', icon: Info },
   { id: 'explore', label: 'Explore', icon: BookOpen },
+  { id: 'guide', label: 'Guide', icon: Info },
 ];
 
 export default function App() {
@@ -30,14 +30,20 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, [view]);
 
-  const navigate = (v: string) => setView(v as View);
-  const goHome = () => setView('home');
+  const navigate = (v: string) => {
+    setView(v as View);
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  };
+  const goHome = () => navigate('home');
 
   const showBottomNav = true;
-  const showConciergeButton = view !== 'concierge';
 
   return (
     <div className="min-h-screen bg-ink-900 text-ivory-100">
@@ -52,10 +58,10 @@ export default function App() {
               FINCA LIBIA
             </span>
           </div>
-          <div className="flex items-center gap-2 sm:gap-2.5">
+          <div className="flex flex-col items-end gap-1.5">
             <button
               onClick={() => setView('pre-arrival')}
-              className="no-tap-highlight group flex shrink-0 items-center gap-1.5 rounded-full border border-ivory-200/30 bg-ink-900/60 px-3 py-1.5 sm:px-3.5 text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-ivory-100 whitespace-nowrap backdrop-blur-md shadow-md transition-all duration-300 hover:border-champagne-400 hover:bg-champagne-500 hover:text-ink-900 active:scale-95"
+              className="no-tap-highlight group flex shrink-0 items-center gap-1.5 rounded-full border border-ivory-200/30 bg-ink-900/60 px-3 py-1 sm:px-3.5 text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-ivory-100 whitespace-nowrap backdrop-blur-md shadow-md transition-all duration-300 hover:border-champagne-400 hover:bg-champagne-500 hover:text-ink-900 active:scale-95"
               aria-label="Pre-arrival"
             >
               <Calendar className="h-3.5 w-3.5 shrink-0 text-champagne-400 transition-colors group-hover:text-ink-900" strokeWidth={1.5} />
@@ -63,7 +69,7 @@ export default function App() {
             </button>
             <button
               onClick={() => setView('checkout')}
-              className="no-tap-highlight group flex shrink-0 items-center gap-1.5 rounded-full border border-ivory-200/30 bg-ink-900/60 px-3 py-1.5 sm:px-3.5 text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-ivory-100 whitespace-nowrap backdrop-blur-md shadow-md transition-all duration-300 hover:border-champagne-400 hover:bg-champagne-500 hover:text-ink-900 active:scale-95"
+              className="no-tap-highlight group flex shrink-0 items-center gap-1.5 rounded-full border border-ivory-200/30 bg-ink-900/60 px-3 py-1 sm:px-3.5 text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-ivory-100 whitespace-nowrap backdrop-blur-md shadow-md transition-all duration-300 hover:border-champagne-400 hover:bg-champagne-500 hover:text-ink-900 active:scale-95"
               aria-label="Checkout"
             >
               <LogOut className="h-3.5 w-3.5 shrink-0 text-champagne-400 transition-colors group-hover:text-ink-900" strokeWidth={1.5} />
@@ -84,17 +90,7 @@ export default function App() {
       {view === 'checkout' && <CheckoutView onBack={goHome} onNavigate={navigate} />}
       {view === 'guide' && <HouseGuideView onBack={goHome} onNavigate={navigate} />}
 
-      {/* Persistent Concierge button */}
-      {showConciergeButton && (
-        <button
-          onClick={() => setView('concierge')}
-          className="no-tap-highlight group fixed bottom-24 right-6 z-40 flex items-center gap-2 rounded-full bg-champagne-500/90 px-5 py-3 text-ink-900 shadow-lg backdrop-blur-sm transition-all duration-300 hover:bg-champagne-400 hover:shadow-xl"
-          aria-label="Concierge"
-        >
-          <Sparkles className="h-4 w-4" strokeWidth={1.5} />
-          <span className="text-xs font-medium uppercase tracking-widest-2">Concierge</span>
-        </button>
-      )}
+
 
       {/* Bottom Navigation Bar */}
       {showBottomNav && (

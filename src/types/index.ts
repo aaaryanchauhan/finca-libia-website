@@ -34,6 +34,7 @@ export interface Recommendation {
   name: string;
   note: string;
   distance: string;
+  address?: string;
   quote: string;
   image: string;
 }

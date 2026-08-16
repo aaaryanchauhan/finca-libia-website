@@ -1,4 +1,4 @@
-import { Wifi, Phone, ShieldAlert, Car, ShoppingBag, Flame, Home, Info, Heart, ArrowRight } from 'lucide-react';
+import { Wifi, Phone, ShieldAlert, Car, ShoppingBag, Flame, Home, Info, Heart, ArrowRight, Video } from 'lucide-react';
 import { property } from '@/data/content';
 import { Reveal } from '@/components/Reveal';
 import { BackButton } from '@/components/BackButton';
@@ -10,7 +10,7 @@ interface HouseGuideViewProps {
 
 export function HouseGuideView({ onBack, onNavigate }: HouseGuideViewProps) {
   return (
-    <div className="min-h-screen bg-ink-900 pb-28 text-ivory-100">
+    <div className="min-h-screen bg-ink-900 pb-44 text-ivory-100">
       {/* Hero Header */}
       <section className="relative h-[45vh] w-full overflow-hidden">
         <img
@@ -37,8 +37,68 @@ export function HouseGuideView({ onBack, onNavigate }: HouseGuideViewProps) {
 
       {/* Guide Content */}
       <div className="mx-auto max-w-2xl px-6 py-12 space-y-12">
-        {/* WiFi Networks */}
+        {/* YouTube Video Instruction Guides */}
         <Reveal>
+          <div className="rounded-2xl border border-champagne-400/30 bg-gradient-to-br from-ink-800/90 via-ink-800/60 to-red-950/20 p-6 backdrop-blur-md space-y-5">
+            <div className="flex items-center gap-3 text-red-500">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-600/20 text-red-400 border border-red-500/30">
+                <Video className="h-5 w-5" strokeWidth={1.5} />
+              </div>
+              <div>
+                <span className="text-[10px] font-medium uppercase tracking-widest-2 text-red-400">Official Channel</span>
+                <h2 className="font-serif text-2xl font-light text-ivory-50">YouTube Video Guides</h2>
+              </div>
+            </div>
+
+            <p className="text-xs leading-relaxed text-stone-300">
+              Watch step-by-step short video guides on operating all villa amenities—including fireplaces, sauna, tennis lights, steam room, barbecue, and balcony retractable roof.
+            </p>
+
+            <div className="relative overflow-hidden rounded-xl border border-ink-700 aspect-video group cursor-pointer">
+              <img
+                src="/photos/youtube_guides.jpg"
+                alt="Finca Libia YouTube Instruction Videos"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-900/40 to-transparent" />
+              <a
+                href={property.youtubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-red-600 text-white shadow-xl transition-transform group-hover:scale-110">
+                  <ArrowRight className="h-6 w-6 ml-0.5" strokeWidth={2} />
+                </div>
+                <p className="mt-3 font-serif text-lg font-light text-ivory-50">Watch All Instruction Videos</p>
+                <p className="text-xs text-stone-300 font-mono">youtube.com/@fincalibia</p>
+              </a>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-[11px] font-medium uppercase tracking-widest-2 text-stone-400">
+                Detailed instruction videos:
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-stone-300 max-h-80 overflow-y-auto pr-1 scrollbar-thin">
+                {property.youtubeVideos.map((video) => (
+                  <a
+                    key={video.id}
+                    href={property.youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="no-tap-highlight flex items-center justify-between rounded-lg border border-ink-700/60 bg-ink-900/60 p-2.5 transition-colors hover:border-red-500/40 hover:text-ivory-100"
+                  >
+                    <span className="truncate pr-2">{video.title}</span>
+                    <ArrowRight className="h-3.5 w-3.5 text-red-400 shrink-0" strokeWidth={1.5} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* WiFi Networks */}
+        <Reveal delay={50}>
           <div className="rounded-2xl border border-ink-700 bg-ink-800/60 p-6 backdrop-blur-md">
             <div className="flex items-center gap-3 text-champagne-400">
               <Wifi className="h-6 w-6" strokeWidth={1.5} />
@@ -174,25 +234,60 @@ export function HouseGuideView({ onBack, onNavigate }: HouseGuideViewProps) {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-stone-300">
-              <div className="rounded-xl border border-ink-700 bg-ink-900/80 p-3">
-                <p className="text-stone-400">Host Direct</p>
-                <p className="font-mono text-sm text-ivory-100 mt-0.5">{property.emergencyContacts.hostDirect}</p>
-              </div>
+              <a
+                href={`tel:${property.emergencyContacts.hostDirect.replace(/[^0-9+]/g, '')}`}
+                className="flex items-center justify-between rounded-xl border border-ink-700 bg-ink-900/80 p-3 transition-colors hover:border-rose-400/40"
+              >
+                <div>
+                  <p className="text-stone-400">Host Direct</p>
+                  <p className="font-mono text-sm text-ivory-100 mt-0.5">{property.emergencyContacts.hostDirect}</p>
+                </div>
+                <Phone className="h-4 w-4 text-rose-400 shrink-0" strokeWidth={1.5} />
+              </a>
 
-              <div className="rounded-xl border border-ink-700 bg-ink-900/80 p-3">
-                <p className="text-stone-400">Firehouse / Ambulance</p>
-                <p className="font-mono text-sm text-ivory-100 mt-0.5">{property.emergencyContacts.ambulanceFire}</p>
-              </div>
+              <a
+                href={`tel:${property.emergencyContacts.firehouse.replace(/[^0-9+]/g, '')}`}
+                className="flex items-center justify-between rounded-xl border border-ink-700 bg-ink-900/80 p-3 transition-colors hover:border-rose-400/40"
+              >
+                <div>
+                  <p className="text-stone-400 font-medium text-rose-300">Firehouse</p>
+                  <p className="font-mono text-sm text-ivory-100 mt-0.5">{property.emergencyContacts.firehouse}</p>
+                </div>
+                <Phone className="h-4 w-4 text-rose-400 shrink-0" strokeWidth={1.5} />
+              </a>
 
-              <div className="rounded-xl border border-ink-700 bg-ink-900/80 p-3">
-                <p className="text-stone-400">Police Guarne</p>
-                <p className="font-mono text-sm text-ivory-100 mt-0.5">{property.emergencyContacts.guarnePolice}</p>
-              </div>
+              <a
+                href={`tel:${property.emergencyContacts.ambulance.replace(/[^0-9+]/g, '')}`}
+                className="flex items-center justify-between rounded-xl border border-ink-700 bg-ink-900/80 p-3 transition-colors hover:border-rose-400/40"
+              >
+                <div>
+                  <p className="text-stone-400 font-medium text-rose-300">Ambulance</p>
+                  <p className="font-mono text-sm text-ivory-100 mt-0.5">{property.emergencyContacts.ambulance}</p>
+                </div>
+                <Phone className="h-4 w-4 text-rose-400 shrink-0" strokeWidth={1.5} />
+              </a>
 
-              <div className="rounded-xl border border-ink-700 bg-ink-900/80 p-3">
-                <p className="text-stone-400">Police Rionegro</p>
-                <p className="font-mono text-sm text-ivory-100 mt-0.5">{property.emergencyContacts.rionegroPolice}</p>
-              </div>
+              <a
+                href={`tel:${property.emergencyContacts.guarnePolice.replace(/[^0-9+]/g, '')}`}
+                className="flex items-center justify-between rounded-xl border border-ink-700 bg-ink-900/80 p-3 transition-colors hover:border-rose-400/40"
+              >
+                <div>
+                  <p className="text-stone-400">Police Guarne</p>
+                  <p className="font-mono text-sm text-ivory-100 mt-0.5">{property.emergencyContacts.guarnePolice}</p>
+                </div>
+                <Phone className="h-4 w-4 text-rose-400 shrink-0" strokeWidth={1.5} />
+              </a>
+
+              <a
+                href={`tel:${property.emergencyContacts.rionegroPolice.replace(/[^0-9+]/g, '')}`}
+                className="flex items-center justify-between rounded-xl border border-ink-700 bg-ink-900/80 p-3 transition-colors hover:border-rose-400/40"
+              >
+                <div>
+                  <p className="text-stone-400">Police Rionegro</p>
+                  <p className="font-mono text-sm text-ivory-100 mt-0.5">{property.emergencyContacts.rionegroPolice}</p>
+                </div>
+                <Phone className="h-4 w-4 text-rose-400 shrink-0" strokeWidth={1.5} />
+              </a>
             </div>
           </div>
         </Reveal>

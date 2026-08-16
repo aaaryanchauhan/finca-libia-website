@@ -18,7 +18,7 @@ export function ItineraryView({ onBack }: ItineraryViewProps) {
         <div className="px-6 pt-8 pb-4">
           <BackButton onClick={() => setShowTimeline(false)} />
         </div>
-        <div className="mx-auto max-w-2xl px-6 pb-32">
+        <div className="mx-auto max-w-2xl px-6 pb-44">
           <Reveal>
             <p className="text-xs uppercase tracking-widest-3 text-stone-500">Your 3-day stay</p>
             <h1 className="mt-4 font-serif text-5xl font-light text-ivory-50">
@@ -59,7 +59,7 @@ export function ItineraryView({ onBack }: ItineraryViewProps) {
       <div className="px-6 pt-8 pb-4">
         <BackButton onClick={onBack} />
       </div>
-      <div className="mx-auto max-w-2xl px-6 pb-32">
+      <div className="mx-auto max-w-2xl px-6 pb-44">
         <Reveal>
           <p className="text-xs uppercase tracking-widest-3 text-stone-500">Your itinerary</p>
           <h1 className="mt-4 font-serif text-5xl font-light text-ivory-50 leading-tight">

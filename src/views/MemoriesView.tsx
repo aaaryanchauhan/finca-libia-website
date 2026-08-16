@@ -85,7 +85,7 @@ export function MemoriesView({ onBack }: MemoriesViewProps) {
         <BackButton onClick={onBack} />
       </div>
 
-      <div className="mx-auto max-w-3xl px-6 pb-32">
+      <div className="mx-auto max-w-3xl px-6 pb-44">
         {/* Hero */}
         <Reveal>
           <p className="text-xs uppercase tracking-widest-3 text-stone-500">Memories</p>

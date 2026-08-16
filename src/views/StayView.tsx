@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronRight, ArrowRight, ArrowLeft, MapPin, Clock, Lightbulb, X, Bed, Users, Sparkles } from 'lucide-react';
 import { amenities, bedrooms, propertyStory, residents, tourStops } from '@/data/content';
 import { Reveal } from '@/components/Reveal';
@@ -15,6 +15,12 @@ export function StayView({ onBack }: StayViewProps) {
   const [selectedBedroom, setSelectedBedroom] = useState<Bedroom | null>(null);
   const [activePhotoIdx, setActivePhotoIdx] = useState<number>(0);
   const [tourIndex, setTourIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [selectedAmenity, selectedBedroom, tourIndex]);
 
   // Digital Tour Overlay Mode
   if (tourIndex !== null) {
@@ -157,7 +163,7 @@ export function StayView({ onBack }: StayViewProps) {
         </div>
 
         {/* Bedroom Details */}
-        <div className="mx-auto max-w-2xl px-6 py-10 space-y-8">
+        <div className="mx-auto max-w-2xl px-6 pt-10 pb-44 space-y-8">
           <Reveal>
             <div className="flex items-center gap-3">
               <span className="text-xs uppercase tracking-widest-2 text-champagne-400 font-medium">{selectedBedroom.pdfName}</span>
@@ -223,7 +229,7 @@ export function StayView({ onBack }: StayViewProps) {
           </div>
         </div>
 
-        <div className="mx-auto max-w-2xl px-6 pb-20 -mt-20 relative z-10">
+        <div className="mx-auto max-w-2xl px-6 pb-44 -mt-20 relative z-10">
           <Reveal>
             <h1 className="font-serif text-5xl font-light text-ivory-50">{selectedAmenity.name}</h1>
             <p className="mt-3 font-serif text-xl font-light italic text-stone-300">
@@ -291,7 +297,7 @@ export function StayView({ onBack }: StayViewProps) {
 
   // Main Stay Page
   return (
-    <div className="min-h-screen bg-ink-900 pb-28">
+    <div className="min-h-screen bg-ink-900 pb-44">
       {/* Hero */}
       <section className="relative h-[55vh] w-full overflow-hidden">
         <img
@@ -316,13 +322,13 @@ export function StayView({ onBack }: StayViewProps) {
         <div className="mx-auto max-w-3xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <p className="text-xs uppercase tracking-widest-2 text-champagne-400 font-medium">Digital Estate Tour</p>
-            <p className="font-serif text-xl font-light italic text-ivory-100 mt-1">Take a 15-stop guided virtual tour of the grounds & suites.</p>
+            <p className="font-serif text-xl font-light italic text-ivory-100 mt-1">Take an interactive tour of the property.</p>
           </div>
           <button
             onClick={() => setTourIndex(0)}
             className="no-tap-highlight flex items-center gap-2 rounded bg-champagne-500/90 px-6 py-3 text-xs uppercase tracking-widest-2 font-medium text-ink-900 transition-colors hover:bg-champagne-400 shadow-md shrink-0"
           >
-            <span>Start 15-Stop Tour</span>
+            <span>Start the tour</span>
             <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
           </button>
         </div>

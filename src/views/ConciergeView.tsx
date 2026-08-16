@@ -76,7 +76,7 @@ export function ConciergeView({ onBack }: ConciergeViewProps) {
         <BackButton onClick={onBack} />
       </div>
 
-      <div className="mx-auto max-w-2xl px-6 pb-32">
+      <div className="mx-auto max-w-2xl px-6 pb-44">
         {/* Statement */}
         <Reveal>
           <p className="text-xs uppercase tracking-widest-3 text-stone-500">Concierge</p>
