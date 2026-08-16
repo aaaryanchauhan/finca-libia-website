@@ -233,24 +233,29 @@ export function ExploreView({ onBack, onNavigate }: ExploreViewProps) {
       </section>
 
       {/* Categories */}
-      <section className="px-6 py-16 pb-44">
+      <section className="px-6 py-12 pb-44">
         <div className="mx-auto max-w-3xl">
           <div className="space-y-px">
             {exploreCategories.map((cat, i) => (
               <Reveal key={cat.id} delay={i * 60}>
                 <button
                   onClick={() => setActiveCategory(cat.id)}
-                  className="no-tap-highlight group flex w-full items-center justify-between border-b border-ink-700 py-8 text-left transition-colors hover:border-champagne-500/30"
+                  className="no-tap-highlight group flex w-full items-center justify-between border-b border-ink-700/80 py-8 text-left transition-all duration-300 hover:border-champagne-500/40"
                 >
-                  <div>
-                    <h3 className="font-serif text-4xl font-light text-ivory-100 transition-colors group-hover:text-champagne-300">
-                      {cat.label}
-                    </h3>
-                    <p className="mt-1 text-xs text-stone-500">
-                      {cat.recommendations.length} {cat.recommendations.length === 1 ? 'recommendation' : 'recommendations'}
-                    </p>
+                  <div className="flex items-start gap-4">
+                    <span className="font-mono text-xs font-light text-champagne-400/60 pt-2">
+                      0{i + 1}
+                    </span>
+                    <div>
+                      <h3 className="font-serif text-3xl sm:text-4xl font-light text-ivory-100 transition-colors group-hover:text-champagne-300">
+                        {cat.label}
+                      </h3>
+                      <p className="mt-1.5 text-xs text-stone-400 font-serif italic">
+                        {cat.recommendations.length} {cat.recommendations.length === 1 ? 'curated selection' : 'curated selections'}
+                      </p>
+                    </div>
                   </div>
-                  <ChevronRight className="h-6 w-6 text-stone-600 transition-all duration-300 group-hover:translate-x-1 group-hover:text-champagne-400" strokeWidth={1.5} />
+                  <ChevronRight className="h-6 w-6 text-stone-600 transition-all duration-300 group-hover:translate-x-1 group-hover:text-champagne-400 shrink-0" strokeWidth={1.5} />
                 </button>
               </Reveal>
             ))}

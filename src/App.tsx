@@ -53,7 +53,10 @@ export default function App() {
           className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-5 py-4 transition-opacity duration-300"
           style={{ opacity: Math.max(0, 1 - scrollY / 200) }}
         >
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-champagne-400/40 bg-ink-900/80 font-serif text-xs font-light tracking-widest text-champagne-300 backdrop-blur-md shadow-md">
+              FL
+            </span>
             <span className="font-serif text-sm sm:text-base font-medium tracking-widest-2 text-ivory-100 drop-shadow-md">
               FINCA LIBIA
             </span>
@@ -103,21 +106,24 @@ export default function App() {
                 <button
                   key={item.id}
                   onClick={() => setView(item.id)}
-                  className="no-tap-highlight group flex flex-col items-center gap-1.5 transition-colors"
+                  className="no-tap-highlight group flex flex-col items-center gap-1 transition-all duration-300 relative py-1"
                 >
                   <Icon
                     className={`h-5 w-5 transition-colors duration-300 ${
-                      isActive ? 'text-champagne-400' : 'text-stone-600 group-hover:text-stone-400'
+                      isActive ? 'text-champagne-300' : 'text-stone-600 group-hover:text-stone-400'
                     }`}
                     strokeWidth={1.5}
                   />
                   <span
                     className={`text-[10px] uppercase tracking-widest-2 transition-colors duration-300 ${
-                      isActive ? 'text-champagne-400' : 'text-stone-600 group-hover:text-stone-400'
+                      isActive ? 'text-champagne-300 font-medium' : 'text-stone-600 group-hover:text-stone-400'
                     }`}
                   >
                     {item.label}
                   </span>
+                  {isActive && (
+                    <span className="absolute -bottom-1 h-1 w-1 rounded-full bg-champagne-400 shadow-[0_0_8px_#c4b088]" />
+                  )}
                 </button>
               );
             })}

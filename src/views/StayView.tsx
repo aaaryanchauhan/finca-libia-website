@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import { ChevronRight, ArrowRight, ArrowLeft, MapPin, Clock, Lightbulb, X, Bed, Users, Sparkles, Play, Pause } from 'lucide-react';
+import { ChevronRight, ArrowRight, ArrowLeft, MapPin, Clock, Lightbulb, X, Bed, Users, Sparkles, Play, Pause, Compass } from 'lucide-react';
 import { amenities, bedrooms, propertyStory, residents, tourStops } from '@/data/content';
 import { Reveal } from '@/components/Reveal';
-import { FullScreenImage } from '@/components/FullScreenImage';
 import { BackButton } from '@/components/BackButton';
 import type { Amenity, Bedroom } from '@/types';
 
@@ -58,29 +57,18 @@ export function StayView({ onBack }: StayViewProps) {
 
   // Digital Tour Overlay Mode
   if (tourIndex !== null) {
-    const stop = tourStops[tourIndex];
-    const isFirst = tourIndex === 0;
-    const isLast = tourIndex === tourStops.length - 1;
+    const currentStop = tourStops[tourIndex];
 
     return (
-      <div className="fixed inset-0 z-50 bg-ink-900 flex flex-col justify-between overflow-hidden animate-fade-in select-none">
-        {/* Full screen background image */}
-        <FullScreenImage
-          src={stop.image}
-          className="absolute inset-0 h-full w-full"
-          overlay
-          overlayOpacity="bg-gradient-to-b from-ink-900/80 via-ink-900/40 to-ink-900/90"
-          scale={false}
-        />
-
-        {/* Top Progress Bar Segments */}
-        <div className="absolute top-0 left-0 right-0 z-40 flex gap-1 p-2 bg-ink-900/40 backdrop-blur-xs">
-          {tourStops.map((s, idx) => (
+      <div className="fixed inset-0 z-50 flex flex-col justify-between bg-ink-950/98 backdrop-blur-2xl animate-fade-in text-ivory-100 overflow-hidden select-none">
+        {/* Top Segmented Progress Bar */}
+        <div className="absolute top-0 left-0 right-0 z-40 flex gap-1 p-1.5 bg-ink-950/60 backdrop-blur-xs">
+          {tourStops.map((stop, idx) => (
             <button
-              key={s.id}
+              key={stop.id}
               onClick={() => setTourIndex(idx)}
               className="h-1 flex-1 rounded-full overflow-hidden bg-ivory-200/20 transition-all duration-300 relative group"
-              title={`Stop ${s.number}: ${s.title}`}
+              title={`Stop ${stop.number}: ${stop.title}`}
             >
               <div
                 className={`h-full transition-all ${
@@ -95,69 +83,114 @@ export function StayView({ onBack }: StayViewProps) {
           ))}
         </div>
 
-        {/* Top Controls Bar */}
-        <div className="absolute top-6 left-6 right-6 z-30 flex items-center justify-between">
+        {/* Smooth Background Image Cross-fade */}
+        {tourStops.map((stop, idx) => (
+          <div
+            key={stop.id}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out pointer-events-none ${
+              idx === tourIndex ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <img
+              src={stop.image}
+              alt={stop.title}
+              className="h-full w-full object-cover animate-slow-zoom brightness-90"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-900/60 to-ink-950/90" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(26,24,22,0.4)_0%,_rgba(26,24,22,0.85)_100%)]" />
+          </div>
+        ))}
+
+        {/* Header Bar */}
+        <header className="relative z-30 flex items-center justify-between p-6 pt-8 lg:px-12 border-b border-ink-700/60 bg-ink-950/60 backdrop-blur-md">
           <BackButton onClick={() => setTourIndex(null)} label="Exit Tour" />
+
+          <div className="hidden sm:flex items-center gap-3 bg-ink-900/80 border border-ink-700/80 px-5 py-2 backdrop-blur-md rounded-full shadow-lg">
+            <Compass className="h-4 w-4 text-champagne-400 animate-spin-slow" />
+            <span className="font-serif text-sm font-light text-ivory-50 tracking-wider">
+              FINCA LIBIA DIGITAL TOUR
+            </span>
+          </div>
 
           <button
             onClick={() => setIsAutoplay(!isAutoplay)}
-            className={`no-tap-highlight flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs uppercase tracking-widest-2 backdrop-blur-md transition-all shadow-lg ${
+            className={`no-tap-highlight flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-medium uppercase tracking-widest backdrop-blur-md transition-all shadow-xl ${
               isAutoplay
-                ? 'border-champagne-400/80 bg-champagne-500/90 text-ink-900 font-semibold'
-                : 'border-ivory-200/20 bg-ink-900/70 text-ivory-200 hover:border-champagne-400 hover:text-champagne-300'
+                ? 'border-champagne-400 bg-champagne-500 text-ink-900 font-semibold'
+                : 'border-ivory-200/20 bg-ink-900/70 text-ivory-100 hover:border-champagne-400 hover:text-champagne-300'
             }`}
           >
             {isAutoplay ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5 fill-current" />}
             <span>{isAutoplay ? 'Autoplay ON' : 'Autoplay OFF'}</span>
           </button>
-        </div>
+        </header>
 
-        {/* Center Content */}
-        <div className="relative z-20 flex flex-col items-center justify-center px-6 text-center max-w-2xl mx-auto my-auto pt-16">
-          <span className="text-xs uppercase tracking-widest-3 text-champagne-400 font-medium">{stop.category}</span>
-          <p className="font-serif text-5xl sm:text-6xl font-light text-champagne-300/90 mt-1">
-            Stop {stop.number}
-          </p>
-          <h2 className="mt-3 font-serif text-3xl sm:text-5xl font-light text-ivory-50 hero-text-shadow">
-            {stop.title}
+        {/* Bottom Typography Showcase */}
+        <div className="relative z-20 mx-auto max-w-3xl px-6 text-center mt-auto mb-4 space-y-2">
+          <span className="text-[11px] uppercase tracking-widest-3 text-champagne-400 font-medium block">
+            {currentStop.category}
+          </span>
+
+          <h2 className="font-serif text-3xl sm:text-5xl font-light text-ivory-50 hero-text-shadow leading-tight">
+            {currentStop.title}
           </h2>
-          <p className="mt-4 font-serif text-base sm:text-lg font-light italic text-ivory-200/90 hero-text-shadow leading-relaxed">
-            {stop.description}
+
+          <p className="font-serif text-base sm:text-lg font-light italic text-ivory-100/90 hero-text-shadow max-w-2xl mx-auto leading-relaxed">
+            {currentStop.description}
           </p>
-          {stop.details && (
-            <div className="mt-4 rounded-full border border-champagne-400/30 bg-ink-900/60 px-4 py-1.5 backdrop-blur-md">
-              <p className="text-xs text-champagne-300">{stop.details}</p>
-            </div>
-          )}
         </div>
 
-        {/* Bottom Navigation Bar */}
-        <div className="relative z-20 flex items-center justify-between p-6 sm:p-8 border-t border-ivory-200/10 bg-ink-900/80 backdrop-blur-md">
-          {/* Previous Stop */}
-          <button
-            onClick={() => setTourIndex((tourIndex - 1 + tourStops.length) % tourStops.length)}
-            className="no-tap-highlight inline-flex items-center gap-2 text-xs uppercase tracking-widest-2 text-ivory-200/80 transition-opacity hover:opacity-100"
-          >
-            <ArrowLeft className="h-4 w-4" strokeWidth={1.5} />
-            <span>Previous</span>
-          </button>
+        {/* Interactive Bottom Control Strip & Thumbnail Carousel */}
+        <footer className="relative z-30 border-t border-ink-700/80 bg-ink-950/90 backdrop-blur-xl p-6 lg:px-12 space-y-4">
+          <div className="flex items-center justify-between max-w-7xl mx-auto">
+            <button
+              onClick={() => setTourIndex((prev) => (prev !== null ? (prev - 1 + tourStops.length) % tourStops.length : 0))}
+              className="no-tap-highlight inline-flex items-center gap-2 text-xs uppercase tracking-widest text-ivory-200 transition-colors hover:text-champagne-300"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              <span>Previous Stop</span>
+            </button>
 
-          {/* Stop indicator */}
-          <div className="text-center">
-            <p className="text-xs uppercase tracking-widest-2 text-stone-400">
-              {tourIndex + 1} of {tourStops.length}
-            </p>
+            <span className="font-mono text-xs text-stone-400 tracking-widest">
+              {tourIndex + 1} / {tourStops.length}
+            </span>
+
+            <button
+              onClick={() => setTourIndex((prev) => (prev !== null ? (prev + 1) % tourStops.length : 0))}
+              className="no-tap-highlight inline-flex items-center gap-2 text-xs uppercase tracking-widest text-champagne-300 transition-colors hover:text-champagne-200"
+            >
+              <span>Next Stop</span>
+              <ArrowRight className="h-4 w-4" />
+            </button>
           </div>
 
-          {/* Next Stop */}
-          <button
-            onClick={() => setTourIndex((tourIndex + 1) % tourStops.length)}
-            className="no-tap-highlight inline-flex items-center gap-2 text-xs uppercase tracking-widest-2 text-champagne-300 transition-colors hover:text-champagne-200"
-          >
-            <span>Next Stop</span>
-            <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
-          </button>
-        </div>
+          {/* Thumbnail Selector Strip */}
+          <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none max-w-7xl mx-auto pt-2 border-t border-ink-800/60">
+            {tourStops.map((stop, idx) => (
+              <button
+                key={stop.id}
+                onClick={() => setTourIndex(idx)}
+                className={`group flex items-center gap-2 shrink-0 p-1.5 rounded-lg border transition-all duration-300 text-left ${
+                  idx === tourIndex
+                    ? 'border-champagne-400 bg-ink-800/90 shadow-lg scale-105'
+                    : 'border-ink-700/50 bg-ink-900/50 opacity-60 hover:opacity-100 hover:border-ink-600'
+                }`}
+              >
+                <div className="h-10 w-14 overflow-hidden rounded bg-ink-800 shrink-0">
+                  <img src={stop.image} alt={stop.title} className="h-full w-full object-cover" />
+                </div>
+                <div className="pr-2">
+                  <span className="block text-[10px] text-champagne-400 font-mono">
+                    #{stop.number}
+                  </span>
+                  <span className="block text-xs font-serif text-ivory-100 max-w-[120px] truncate">
+                    {stop.title}
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </footer>
       </div>
     );
   }
@@ -210,8 +243,8 @@ export function StayView({ onBack }: StayViewProps) {
             <button
               key={i}
               onClick={() => setActivePhotoIdx(i)}
-              className={`relative h-16 w-24 shrink-0 rounded overflow-hidden border-2 transition-all ${
-                activePhotoIdx === i ? 'border-champagne-400 scale-105' : 'border-transparent opacity-60'
+              className={`relative h-16 w-24 shrink-0 rounded-xl overflow-hidden border-2 transition-all ${
+                activePhotoIdx === i ? 'border-champagne-400 scale-105 shadow-md' : 'border-transparent opacity-60 hover:opacity-100'
               }`}
             >
               <img src={img} alt="" className="h-full w-full object-cover" />
@@ -258,7 +291,7 @@ export function StayView({ onBack }: StayViewProps) {
             <h3 className="font-serif text-xl font-light text-ivory-50">Suite Features</h3>
             <div className="mt-4 grid grid-cols-2 gap-3 text-xs text-stone-300">
               {selectedBedroom.features.map((feat, idx) => (
-                <div key={idx} className="flex items-center gap-2 rounded-lg bg-ink-800/60 p-3 border border-ink-700">
+                <div key={idx} className="flex items-center gap-2 rounded-xl bg-ink-800/60 p-3 border border-ink-700">
                   <Sparkles className="h-3.5 w-3.5 text-champagne-400 shrink-0" />
                   <span>{feat}</span>
                 </div>
@@ -375,32 +408,44 @@ export function StayView({ onBack }: StayViewProps) {
       </section>
 
       {/* Digital Tour Banner */}
-      <section className="px-6 py-10 bg-ink-800/40 border-y border-ink-700">
-        <div className="mx-auto max-w-3xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div>
-            <p className="text-xs uppercase tracking-widest-2 text-champagne-400 font-medium">Digital Estate Tour</p>
-            <p className="font-serif text-xl font-light italic text-ivory-100 mt-1">Take an interactive tour of the property.</p>
-          </div>
-          <button
-            onClick={() => setTourIndex(0)}
-            className="no-tap-highlight flex items-center gap-2 rounded bg-champagne-500/90 px-6 py-3 text-xs uppercase tracking-widest-2 font-medium text-ink-900 transition-colors hover:bg-champagne-400 shadow-md shrink-0"
-          >
-            <span>Start the tour</span>
-            <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
-          </button>
+      <section className="px-6 py-8">
+        <div className="mx-auto max-w-3xl">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-3xl border border-champagne-400/35 bg-gradient-to-br from-ink-800/90 via-ink-800/70 to-champagne-950/25 p-7 sm:p-8 backdrop-blur-md shadow-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 gold-border-glow">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="flex h-2 w-2 rounded-full bg-champagne-400 animate-pulse" />
+                  <p className="text-[10px] uppercase tracking-widest-3 text-champagne-400 font-medium">Digital Estate Tour</p>
+                </div>
+                <p className="font-serif text-2xl font-light text-ivory-50 mt-1.5 hero-text-shadow">
+                  Take an interactive tour of the property.
+                </p>
+                <p className="text-xs text-stone-300 mt-1 font-serif italic">
+                  Guided 360-degree walkthrough of all 18 estate chapters & amenities.
+                </p>
+              </div>
+              <button
+                onClick={() => setTourIndex(0)}
+                className="no-tap-highlight group flex items-center gap-2.5 rounded-full bg-champagne-500/90 px-6 py-3 text-xs uppercase tracking-widest-2 font-medium text-ink-900 transition-all duration-300 hover:bg-champagne-400 hover:shadow-lg hover:shadow-champagne-500/20 active:scale-95 shrink-0"
+              >
+                <span>Start the tour</span>
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
+              </button>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Master Bedrooms Showcase */}
-      <section className="px-6 py-16">
+      <section className="px-6 py-12">
         <div className="mx-auto max-w-3xl">
           <Reveal>
-            <p className="text-xs uppercase tracking-widest-3 text-stone-500">Acccommodations</p>
+            <p className="text-xs uppercase tracking-widest-3 text-champagne-400/80 font-medium">Accommodations</p>
             <h2 className="mt-2 font-serif text-4xl font-light text-ivory-50">6 Master Bedroom Suites</h2>
             <p className="mt-2 text-sm text-stone-400">Click any suite to view all photos, specs, and ensuite bath details.</p>
           </Reveal>
 
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5 items-stretch">
             {bedrooms.map((bedroom, idx) => (
               <Reveal key={bedroom.id} delay={idx * 60} className="h-full flex flex-col w-full">
                 <button
@@ -408,25 +453,28 @@ export function StayView({ onBack }: StayViewProps) {
                     setSelectedBedroom(bedroom);
                     setActivePhotoIdx(0);
                   }}
-                  className="no-tap-highlight group flex flex-col justify-between text-left h-full w-full overflow-hidden rounded-xl border border-ink-700 bg-ink-800/50 transition-all duration-300 hover:border-champagne-400/50 hover:bg-ink-800 flex-1"
+                  className="no-tap-highlight group flex flex-col justify-between text-left h-full w-full overflow-hidden rounded-2xl border border-ink-700/80 bg-ink-800/40 backdrop-blur-md transition-all duration-300 hover:border-champagne-400/60 hover:bg-ink-800/70 hover:shadow-xl flex-1"
                 >
                   <div className="relative aspect-[16/10] w-full overflow-hidden shrink-0">
                     <img
                       src={bedroom.photos[0]}
                       alt={bedroom.name}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute top-3 right-3 rounded-full bg-ink-900/80 px-3 py-1 text-[10px] font-mono text-champagne-300 border border-ink-700">
+                    <div className="absolute top-3 left-3 rounded-full bg-ink-900/80 px-3 py-1 text-[10px] uppercase tracking-widest-2 text-champagne-300 border border-champagne-400/30 backdrop-blur-sm">
+                      {bedroom.pdfName}
+                    </div>
+                    <div className="absolute top-3 right-3 rounded-full bg-ink-900/80 px-3 py-1 text-[10px] font-mono text-ivory-200 border border-ink-700 backdrop-blur-sm">
                       {bedroom.photos.length + (bedroom.bathroomPhotos?.length || 0)} Photos
                     </div>
                   </div>
-                  <div className="p-5 flex-1 flex flex-col justify-between w-full">
+                  <div className="p-5 flex-1 flex flex-col justify-between w-full min-h-[140px]">
                     <div>
                       <span className="text-[10px] uppercase tracking-widest-2 text-champagne-400 font-medium block">{bedroom.pdfName}</span>
-                      <h3 className="mt-1 font-serif text-2xl font-light text-ivory-100 transition-colors group-hover:text-champagne-300 line-clamp-1 h-8 flex items-center">
+                      <h3 className="mt-1 font-serif text-2xl font-light text-ivory-100 transition-colors group-hover:text-champagne-300 leading-tight min-h-[2.5rem] flex items-center">
                         {bedroom.name}
                       </h3>
-                      <p className="mt-1 text-xs text-stone-400 line-clamp-2 h-10 leading-relaxed overflow-hidden">
+                      <p className="mt-1 text-xs text-stone-400 leading-relaxed min-h-[2rem]">
                         {bedroom.subtitle}
                       </p>
                     </div>
@@ -482,7 +530,7 @@ export function StayView({ onBack }: StayViewProps) {
           <div className="mt-12 space-y-16">
             {propertyStory.map((section, i) => (
               <Reveal key={section.id} delay={i * 80}>
-                <div className="overflow-hidden rounded-sm">
+                <div className="overflow-hidden rounded-2xl border border-ink-700/80 shadow-xl">
                   <img
                     src={section.image}
                     alt={section.title}
@@ -514,7 +562,7 @@ export function StayView({ onBack }: StayViewProps) {
                   <img
                     src={resident.image}
                     alt={resident.name}
-                    className="h-48 w-48 rounded-sm object-cover shrink-0"
+                    className="h-48 w-48 rounded-2xl border border-ink-700/80 shadow-xl object-cover shrink-0"
                   />
                   <div>
                     <h3 className="font-serif text-3xl font-light text-ivory-100">{resident.name}</h3>

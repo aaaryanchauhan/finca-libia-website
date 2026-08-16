@@ -98,7 +98,7 @@ export function MemoriesView({ onBack }: MemoriesViewProps) {
         <div className="mt-16 space-y-20">
           {seedMemories.map((memory, i) => (
             <Reveal key={memory.id} delay={i * 80}>
-              <div className="overflow-hidden rounded-sm">
+              <div className="overflow-hidden rounded-2xl border border-ink-700/80 shadow-xl">
                 <img
                   src={memory.image}
                   alt={memory.author}

@@ -126,21 +126,19 @@ export function DigitalTourModal({ isOpen, onClose }: DigitalTourModalProps) {
         </button>
       </header>
 
-      {/* Center Showcase Card */}
-      <div className="relative z-20 mx-auto max-w-3xl px-6 text-center my-auto pt-6 pb-12 space-y-4">
-        <h2 className="font-serif text-4xl sm:text-6xl font-light text-ivory-50 hero-text-shadow leading-tight">
+      {/* Bottom Typography Showcase */}
+      <div className="relative z-20 mx-auto max-w-3xl px-6 text-center mt-auto mb-4 space-y-2">
+        <span className="text-[11px] uppercase tracking-widest-3 text-champagne-400 font-medium block">
+          {currentStop.category}
+        </span>
+
+        <h2 className="font-serif text-3xl sm:text-5xl font-light text-ivory-50 hero-text-shadow leading-tight">
           {currentStop.title}
         </h2>
 
-        <p className="font-serif text-lg sm:text-xl font-light italic text-ivory-100/90 hero-text-shadow max-w-2xl mx-auto leading-relaxed">
+        <p className="font-serif text-base sm:text-lg font-light italic text-ivory-100/90 hero-text-shadow max-w-2xl mx-auto leading-relaxed">
           {currentStop.description}
         </p>
-
-        {currentStop.details && (
-          <div className="inline-block mt-2 border border-champagne-400/30 bg-ink-900/80 px-6 py-2.5 backdrop-blur-md shadow-xl">
-            <p className="text-xs text-champagne-300 font-light">{currentStop.details}</p>
-          </div>
-        )}
       </div>
 
       {/* Bottom Interactive Thumbnail & Control Strip */}
