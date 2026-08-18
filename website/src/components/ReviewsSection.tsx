@@ -1,3 +1,5 @@
+import { ExternalLink } from 'lucide-react';
+
 export function ReviewsSection() {
   const pullQuote = {
     quote: "We have traveled all over the world and this is one of the best homes we have stayed in. The staff was A+++ and the estate is extraordinary.",
@@ -71,6 +73,19 @@ export function ReviewsSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Check Real Reviews on Airbnb Button */}
+        <div className="mt-16 flex justify-center pt-8 border-t border-stone-300/50">
+          <a
+            href="https://www.airbnb.co.in/rooms/1023470890334383414/reviews?locale=en&source_impression_id=p3_1786777674_P3i8I1bGKt_w99PD&review_page_entrypoint=show_all"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="no-tap-highlight group inline-flex items-center gap-3 bg-[#121212] hover:bg-stone-800 text-ivory-50 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+          >
+            <span>Check real reviews on Airbnb</span>
+            <ExternalLink className="h-4 w-4 text-[#E8E2D6] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
         </div>
       </div>
     </section>

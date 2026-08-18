@@ -79,7 +79,7 @@ export function PhotosPage({ onBackToHome, onOpenInquiry }: PhotosPageProps) {
             className="flex items-center gap-2 border border-champagne-400/50 bg-champagne-500/10 px-4 py-2 text-xs font-medium uppercase tracking-widest text-ivory-50 backdrop-blur-md shadow-lg transition-all hover:bg-champagne-500 hover:text-ink-900"
           >
             <Calendar className="h-3.5 w-3.5 text-champagne-400 group-hover:text-ink-900" />
-            <span>Inquire Stay</span>
+            <span>Book Now</span>
           </button>
         </div>
       </header>

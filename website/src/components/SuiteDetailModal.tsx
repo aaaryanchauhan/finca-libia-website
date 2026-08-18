@@ -156,7 +156,7 @@ export function SuiteDetailModal({ suite, onClose, onReserveSuite }: SuiteDetail
                 }}
                 className="no-tap-highlight inline-flex items-center gap-2.5 bg-champagne-500 px-6 py-3 text-xs font-medium uppercase tracking-widest-2 text-ink-900 shadow-xl transition-all hover:bg-champagne-300 hover:scale-105"
               >
-                <span>Inquire Suite</span>
+                <span>Book Now</span>
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>

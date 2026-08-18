@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Calendar } from 'lucide-react';
+import { Menu, X, ExternalLink } from 'lucide-react';
 import { BrandMonogram } from './BrandMonogram';
 
 interface NavbarProps {
@@ -93,8 +93,8 @@ export function Navbar({ onOpenInquiry, onOpenPhotos }: NavbarProps) {
             onClick={onOpenInquiry}
             className="no-tap-highlight group flex items-center gap-2 bg-champagne-500 hover:bg-champagne-400 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-ink-900 shadow-lg transition-all duration-300 active:scale-95 cursor-pointer"
           >
-            <Calendar className="h-3.5 w-3.5 fill-ink-900 text-ink-900" />
-            <span>Inquire Stay</span>
+            <ExternalLink className="h-3.5 w-3.5 text-ink-900" />
+            <span>Book Now</span>
           </button>
         </div>
 
@@ -164,8 +164,8 @@ export function Navbar({ onOpenInquiry, onOpenPhotos }: NavbarProps) {
                 }}
                 className="flex items-center gap-2 bg-champagne-500 hover:bg-champagne-400 px-6 py-3 text-xs uppercase tracking-[0.2em] font-semibold text-ink-900 shadow-xl cursor-pointer"
               >
-                <Calendar className="h-4 w-4" />
-                <span>Inquire Stay</span>
+                <ExternalLink className="h-4 w-4" />
+                <span>Book Now</span>
               </button>
             </div>
           </div>

@@ -4,7 +4,7 @@ export interface Suite {
   pdfName: string;
   subtitle: string;
   capacity: string;
-  size: string;
+  size?: string;
   bed: string;
   description: string;
   highlights: string[];
@@ -72,7 +72,6 @@ export const suites: Suite[] = [
     pdfName: 'GOLD ROOM',
     subtitle: 'Panoramic mountain view with private open-air Jacuzzi',
     capacity: '2 Guests',
-    size: '110 m²',
     bed: 'King Bed',
     description: 'The crowning suite of Finca Libia. Features soaring ceilings, hand-finished cedar woodwork, private wrap-around terrace with sun loungers, and an open-air marble bathroom with jacuzzi tub overlooking the valley.',
     highlights: ['Private Open-Air Jacuzzi', 'Wrap-Around Balcony', 'Walk-in Dressing Room', 'Ensuite Full Bath'],
@@ -98,7 +97,6 @@ export const suites: Suite[] = [
     pdfName: 'GREY ROOM',
     subtitle: 'Direct access to lush tropical courtyard gardens',
     capacity: '2 Guests',
-    size: '75 m²',
     bed: 'King Bed',
     description: 'Opens directly onto the central courtyard garden. Floor-to-ceiling sliding glass doors let in the mountain breeze. Fitted with organic linen bedding, writing desk, and custom stone vanity ensuite.',
     highlights: ['Direct Garden Access', 'Private Patio Seating', 'Double Stone Vanity', 'Rainfall Shower'],
@@ -123,10 +121,9 @@ export const suites: Suite[] = [
   {
     id: 'valley-view',
     name: 'Valley View Master Suite',
-    pdfName: '2-GUEST ROOMS',
+    pdfName: 'VALLEY VIEW',
     subtitle: 'Elevated horizon views facing the sunset over coffee hills',
     capacity: '2 Guests',
-    size: '65 m²',
     bed: 'King Bed',
     description: 'Situated on the upper wing with unobstructed sunset views over the Rionegro coffee valley. Includes private lounging nook, luxury bath amenities, and custom cedar wardrobe.',
     highlights: ['Sunset Orientation', 'Custom Cedar Vanity', 'Smart Ambient Lighting', 'Ensuite Bath'],
@@ -149,10 +146,9 @@ export const suites: Suite[] = [
   {
     id: 'courtyard-sanctuary',
     name: 'Courtyard Sanctuary Suite',
-    pdfName: '2-GUEST ROOMS',
+    pdfName: 'COURTYARD SUITE',
     subtitle: 'Quiet serenity adjacent to the internal water feature',
     capacity: '2 Guests',
-    size: '60 m²',
     bed: 'Queen Bed',
     description: 'Tucked into the tranquil east wing of the estate, surrounded by native flora and the soft trickle of water from the central garden courtyard fountain.',
     highlights: ['Courtyard View', 'Silent Retreat Acoustics', 'Ensuite Full Bath', 'Organic Linens'],
@@ -174,7 +170,6 @@ export const suites: Suite[] = [
     pdfName: 'BLACK ROOM',
     subtitle: 'Modern luxury suite with obsidian stone & dark timber tones',
     capacity: '2 Guests',
-    size: '70 m²',
     bed: 'King Bed',
     description: 'A striking master suite featuring matte black wall accents, warm ambient backlighting, premium audio system, and immediate pool terrace access.',
     highlights: ['Obsidian Aesthetic', 'Pool Terrace Access', 'Smart Ambient Lighting', 'Ensuite Full Bath'],
@@ -190,10 +185,9 @@ export const suites: Suite[] = [
   {
     id: 'guest-wing',
     name: 'Guest Wing Suite',
-    pdfName: '2-GUEST ROOMS',
+    pdfName: 'GARDEN SUITE',
     subtitle: 'Flexible double suite with serene forest garden views',
     capacity: '2 Guests',
-    size: '55 m²',
     bed: 'Double / Twin Beds',
     description: 'Comfortable guest suite designed for flexibility. Offers garden vistas, writing desk, and quiet privacy adjacent to the library lounge.',
     highlights: ['Garden Vistas', 'Writing Desk', 'Organic Bedding', 'Dedicated Storage'],

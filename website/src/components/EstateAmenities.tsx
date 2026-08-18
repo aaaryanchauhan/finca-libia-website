@@ -83,7 +83,7 @@ export function EstateAmenities({ onOpenInquiry }: EstateAmenitiesProps) {
               onClick={onOpenInquiry}
               className="mt-8 inline-flex items-center gap-3 rounded-full bg-champagne-500 px-8 py-3.5 text-xs font-medium uppercase tracking-widest-2 text-ink-900 shadow-xl transition-all hover:bg-champagne-300 hover:scale-105"
             >
-              <span>Inquire Private Reservation</span>
+              <span>Book Now</span>
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>

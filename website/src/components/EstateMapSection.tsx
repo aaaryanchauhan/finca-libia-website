@@ -24,7 +24,7 @@ const mapHotspots: Hotspot[] = [
     image: '/photos/bedroom_1/bedroom_1_01.jpeg',
     shortDesc: '6 private master suites featuring cathedral cedar ceilings, mountain view terraces, and marble ensuite bathrooms.',
     highlights: ['6 Private Master Suites', 'Accommodates up to 14 guests', 'Open-Air Jacuzzi in Grand Master'],
-    specs: '1,200 m² Total Living Quarters',
+    specs: '6 Master Suites · 14 Guests Capacity',
   },
   {
     id: 'infinity-pool',
@@ -253,7 +253,7 @@ export function EstateMapSection({ onOpenInquiry }: EstateMapSectionProps) {
                 onClick={onOpenInquiry}
                 className="no-tap-highlight inline-flex items-center gap-2 rounded-full bg-champagne-500 px-5 py-2.5 text-xs font-medium uppercase tracking-widest-2 text-ink-900 shadow-xl transition-all hover:bg-champagne-300 hover:scale-105"
               >
-                <span>Inquire Location</span>
+                <span>Book Now</span>
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>

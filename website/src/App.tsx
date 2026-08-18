@@ -11,22 +11,18 @@ import { GallerySection } from './components/GallerySection';
 import { LocationSection } from './components/LocationSection';
 import { ReviewsSection } from './components/ReviewsSection';
 import { HostSection } from './components/HostSection';
-import { RatesCalculatorSection } from './components/RatesCalculatorSection';
 import { Footer } from './components/Footer';
-import { InquiryModal } from './components/InquiryModal';
-import type { InquiryPreFillData } from './components/InquiryModal';
 import { DigitalTourModal } from './components/DigitalTourModal';
 import { PhotosPage } from './components/PhotosPage';
 import { MobileBottomBar } from './components/MobileBottomBar';
 import type { Suite } from './data/villaData';
 
+const AIRBNB_URL = 'https://www.airbnb.co.in/rooms/1023470890334383414?locale=en&source_impression_id=p3_1786777674_P3i8I1bGKt_w99PD&review_page_entrypoint=show_all';
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'photos'>(() => {
     return window.location.hash === '#photos' || window.location.pathname === '/photos' ? 'photos' : 'home';
   });
-
-  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
-  const [inquiryData, setInquiryData] = useState<InquiryPreFillData | null>(null);
 
   const [isDigitalTourOpen, setIsDigitalTourOpen] = useState(false);
   const [inspectedSuite, setInspectedSuite] = useState<Suite | null>(null);
@@ -54,26 +50,13 @@ export default function App() {
   };
 
   const handleOpenInquiry = () => {
-    setInquiryData(null);
-    setIsInquiryOpen(true);
+    window.open(AIRBNB_URL, '_blank', 'noopener,noreferrer');
   };
 
-  const handleReserveSuiteFromModal = (suiteName: string) => {
-    setInquiryData({ suiteName });
-    setIsInquiryOpen(true);
+  const handleReserveSuiteFromModal = () => {
+    window.open(AIRBNB_URL, '_blank', 'noopener,noreferrer');
   };
 
-  const handleOpenInquiryWithCalculator = (data: { checkIn: string; checkOut: string; guests: string; total: number; selectedAddons: string[] }) => {
-    setInquiryData({
-      checkIn: data.checkIn,
-      checkOut: data.checkOut,
-      guests: data.guests,
-      message: `Estimated Total: $${data.total.toLocaleString()} USD (Add-ons: ${data.selectedAddons.join(', ')})`,
-    });
-    setIsInquiryOpen(true);
-  };
-
-  const handleCloseInquiry = () => setIsInquiryOpen(false);
   const handleOpenDigitalTour = () => setIsDigitalTourOpen(true);
   const handleCloseDigitalTour = () => setIsDigitalTourOpen(false);
 
@@ -81,13 +64,6 @@ export default function App() {
     return (
       <div className="min-h-screen bg-ink-950 text-ivory-100 selection:bg-champagne-500/30 selection:text-white pb-16 md:pb-0">
         <PhotosPage onBackToHome={handleBackToHome} onOpenInquiry={handleOpenInquiry} />
-
-        <InquiryModal
-          isOpen={isInquiryOpen}
-          onClose={handleCloseInquiry}
-          initialData={inquiryData}
-        />
-
         <MobileBottomBar onOpenInquiry={handleOpenInquiry} />
       </div>
     );
@@ -139,21 +115,11 @@ export default function App() {
       {/* 12. Host Profile Section */}
       <HostSection />
 
-      {/* 13. Rates & Availability (Rates Block + Estimator) */}
-      <RatesCalculatorSection onOpenInquiryWithData={handleOpenInquiryWithCalculator} />
-
-      {/* 14. Luxury Footer */}
+      {/* 13. Luxury Footer */}
       <Footer onOpenInquiry={handleOpenInquiry} />
 
       {/* Sticky Bottom Bar on Mobile */}
       <MobileBottomBar onOpenInquiry={handleOpenInquiry} />
-
-      {/* Interactive Booking Inquiry Modal */}
-      <InquiryModal
-        isOpen={isInquiryOpen}
-        onClose={handleCloseInquiry}
-        initialData={inquiryData}
-      />
 
       {/* Suite Details Spotlight Modal */}
       <SuiteDetailModal

@@ -148,7 +148,7 @@ export function VirtualConciergeWidget({ onOpenInquiry }: { onOpenInquiry: () =>
                       className="mt-2 flex items-center gap-1.5 rounded-full bg-champagne-500/20 border border-champagne-400/40 px-3 py-1 text-[10px] uppercase tracking-wider text-champagne-300 font-medium hover:bg-champagne-500 hover:text-ink-900 transition-colors"
                     >
                       <Calendar className="h-3 w-3" />
-                      <span>Inquire Stay Now</span>
+                      <span>Book Now</span>
                     </button>
                   )}
 

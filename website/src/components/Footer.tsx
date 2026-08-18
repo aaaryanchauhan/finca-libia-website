@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, MessageSquare, ArrowUp } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowUp } from 'lucide-react';
 import { villaInfo } from '../data/villaData';
 import { BrandMonogram } from './BrandMonogram';
 
@@ -36,7 +36,7 @@ export function Footer({ onOpenInquiry }: FooterProps) {
                 onClick={onOpenInquiry}
                 className="bg-champagne-500 hover:bg-champagne-400 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-ink-900 shadow-lg transition-all cursor-pointer"
               >
-                Inquire Stay
+                Book Now
               </button>
             </div>
           </div>
@@ -67,10 +67,6 @@ export function Footer({ onOpenInquiry }: FooterProps) {
               <li className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 text-[#E8E2D6] shrink-0" />
                 <a href="tel:+573001234567" className="hover:text-ivory-50 transition-colors">+57 300 123 4567</a>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <MessageSquare className="h-4 w-4 text-[#E8E2D6] shrink-0" />
-                <a href="https://wa.me/573001234567" target="_blank" rel="noopener noreferrer" className="hover:text-ivory-50 transition-colors">WhatsApp Concierge</a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 text-[#E8E2D6] shrink-0" />

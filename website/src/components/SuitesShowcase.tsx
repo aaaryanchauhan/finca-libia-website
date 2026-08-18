@@ -56,7 +56,7 @@ export function SuitesShowcase({ onInspectSuite }: SuitesShowcaseProps) {
 
         {/* Horizontal Filmstrip Suite Navigation */}
         <div className="mb-14 border-b border-ivory-200/10 pb-6">
-          <div className="flex items-center gap-4 overflow-x-auto no-scrollbar pb-2 snap-x">
+          <div className="flex items-center gap-4 overflow-x-auto overflow-y-hidden no-scrollbar pb-2 snap-x">
             {suites.map((suite) => {
               const isSelected = suite.id === selectedSuiteId;
               return (
@@ -129,7 +129,7 @@ export function SuitesShowcase({ onInspectSuite }: SuitesShowcaseProps) {
               {/* Specs Badge */}
               <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end pointer-events-none">
                 <span className="bg-ink-950/80 px-4 py-1.5 text-xs text-[#E8E2D6] border border-ivory-200/20 font-medium">
-                  {activeSuite.capacity} · {activeSuite.size}
+                  {activeSuite.capacity}
                 </span>
 
                 <span className="bg-ink-950/80 px-3 py-1 text-xs font-mono text-stone-400 border border-ivory-200/20">

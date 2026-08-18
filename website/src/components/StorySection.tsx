@@ -18,7 +18,7 @@ export function StorySection() {
           <div className="lg:col-span-7 relative -ml-6 md:-ml-16 lg:-ml-24">
             <div className="relative h-[450px] sm:h-[550px] lg:h-[620px] w-full overflow-hidden shadow-2xl">
               <img
-                src="/photos/exterior/exterior_10.jpeg"
+                src="/photos/exterior/exterior_01.jpeg"
                 alt="Finca Libia Architecture & Grounds"
                 className="h-full w-full object-cover"
               />
