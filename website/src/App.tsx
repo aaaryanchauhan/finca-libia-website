@@ -2,21 +2,22 @@ import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { StatsBar } from './components/StatsBar';
-import { PropertyHighlightsSection } from './components/PropertyHighlightsSection';
+import { FullBleedImage } from './components/FullBleedImage';
+import { StorySection } from './components/StorySection';
 import { SuitesShowcase } from './components/SuitesShowcase';
 import { SuiteDetailModal } from './components/SuiteDetailModal';
 import { WhatThisPlaceOffersSection } from './components/WhatThisPlaceOffersSection';
-import { LocationSection } from './components/LocationSection';
-import { StorySection } from './components/StorySection';
 import { GallerySection } from './components/GallerySection';
-import { HostSection } from './components/HostSection';
+import { LocationSection } from './components/LocationSection';
 import { ReviewsSection } from './components/ReviewsSection';
+import { HostSection } from './components/HostSection';
+import { RatesCalculatorSection } from './components/RatesCalculatorSection';
 import { Footer } from './components/Footer';
 import { InquiryModal } from './components/InquiryModal';
 import type { InquiryPreFillData } from './components/InquiryModal';
 import { DigitalTourModal } from './components/DigitalTourModal';
-import { DigitalTourBanner } from './components/DigitalTourBanner';
 import { PhotosPage } from './components/PhotosPage';
+import { MobileBottomBar } from './components/MobileBottomBar';
 import type { Suite } from './data/villaData';
 
 export default function App() {
@@ -26,7 +27,7 @@ export default function App() {
 
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
   const [inquiryData, setInquiryData] = useState<InquiryPreFillData | null>(null);
-  
+
   const [isDigitalTourOpen, setIsDigitalTourOpen] = useState(false);
   const [inspectedSuite, setInspectedSuite] = useState<Suite | null>(null);
 
@@ -62,66 +63,90 @@ export default function App() {
     setIsInquiryOpen(true);
   };
 
-  const handleCloseInquiry = () => setIsInquiryOpen(false);
+  const handleOpenInquiryWithCalculator = (data: { checkIn: string; checkOut: string; guests: string; total: number; selectedAddons: string[] }) => {
+    setInquiryData({
+      checkIn: data.checkIn,
+      checkOut: data.checkOut,
+      guests: data.guests,
+      message: `Estimated Total: $${data.total.toLocaleString()} USD (Add-ons: ${data.selectedAddons.join(', ')})`,
+    });
+    setIsInquiryOpen(true);
+  };
 
+  const handleCloseInquiry = () => setIsInquiryOpen(false);
   const handleOpenDigitalTour = () => setIsDigitalTourOpen(true);
   const handleCloseDigitalTour = () => setIsDigitalTourOpen(false);
 
   if (currentPage === 'photos') {
     return (
-      <div className="min-h-screen bg-ink-900 text-ivory-100 selection:bg-champagne-500/30 selection:text-white">
+      <div className="min-h-screen bg-ink-950 text-ivory-100 selection:bg-champagne-500/30 selection:text-white pb-16 md:pb-0">
         <PhotosPage onBackToHome={handleBackToHome} onOpenInquiry={handleOpenInquiry} />
 
-        {/* Interactive Booking Inquiry Modal */}
         <InquiryModal
           isOpen={isInquiryOpen}
           onClose={handleCloseInquiry}
           initialData={inquiryData}
         />
+
+        <MobileBottomBar onOpenInquiry={handleOpenInquiry} />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-ink-900 text-ivory-100 selection:bg-champagne-500/30 selection:text-white">
-      {/* Glassmorphism Header */}
+    <div className="min-h-screen bg-ink-950 text-ivory-100 selection:bg-champagne-500/30 selection:text-white pb-16 md:pb-0">
+      {/* 1. Glassmorphism Navigation */}
       <Navbar onOpenInquiry={handleOpenInquiry} onOpenPhotos={handleOpenPhotos} />
 
-      {/* Cinematic Hero */}
+      {/* 2. Hero (Pool image first, 1.8s crossfade, centered text) */}
       <Hero onOpenDigitalTour={handleOpenDigitalTour} />
 
-      {/* Estate Highlights Bar */}
+      {/* 3. Stats Bar (4 items: 3.5 Acres, 6 Suites, 14 Guests, 25 Min from Medellín) */}
       <StatsBar />
 
-      {/* Interactive Digital Estate Tour Banner */}
-      <DigitalTourBanner onOpenDigitalTour={handleOpenDigitalTour} />
+      {/* 4. Full-Bleed Image Editorial Moment #1 */}
+      <FullBleedImage
+        src="/photos/exterior/exterior_10.jpeg"
+        alt="Finca Libia Estate Grounds"
+        caption="Private 3.5-Acre Mountain Sanctuary"
+      />
 
-      {/* Property Highlights Section (Pool/Hot Tub, Home Gym, 5-Star Check-in) */}
-      <PropertyHighlightsSection />
-
-      {/* Master Suites Section */}
-      <SuitesShowcase onInspectSuite={(suite) => setInspectedSuite(suite)} />
-
-      {/* What This Place Offers Amenities Section */}
-      <WhatThisPlaceOffersSection />
-
-      {/* Heritage & Design Story */}
+      {/* 5. About Finca Libia (Light Surface #F4F0E9, 60/40 Asymmetric Split) */}
       <StorySection />
 
-      {/* Interactive Photo Gallery */}
+      {/* 6. Suites Showcase (Filmstrip Thumbnail Navigation) */}
+      <SuitesShowcase onInspectSuite={(suite) => setInspectedSuite(suite)} />
+
+      {/* 7. Full-Bleed Image Editorial Moment #2 */}
+      <FullBleedImage
+        src="/photos/courtyard/courtyard_01.jpeg"
+        alt="Finca Libia Courtyard & Architecture"
+        caption="Contemporary Colombian Architecture"
+      />
+
+      {/* 8. Amenities by Category (6 Named Categories) */}
+      <WhatThisPlaceOffersSection />
+
+      {/* 9. Visual Photo Gallery */}
       <GallerySection onOpenPhotos={handleOpenPhotos} />
 
-      {/* Meet Your Host Section (Meyer Profile & Host Bio) */}
-      <HostSection />
-
-      {/* Where You'll Be Google Maps Location Section */}
+      {/* 10. Location Section (Google Maps & Access) */}
       <LocationSection />
 
-      {/* Authentic Guest Testimonials */}
+      {/* 11. Guest Reviews (Light Surface #F4F0E9, Typographic Pull Quote) */}
       <ReviewsSection />
 
-      {/* Luxury Footer */}
+      {/* 12. Host Profile Section */}
+      <HostSection />
+
+      {/* 13. Rates & Availability (Rates Block + Estimator) */}
+      <RatesCalculatorSection onOpenInquiryWithData={handleOpenInquiryWithCalculator} />
+
+      {/* 14. Luxury Footer */}
       <Footer onOpenInquiry={handleOpenInquiry} />
+
+      {/* Sticky Bottom Bar on Mobile */}
+      <MobileBottomBar onOpenInquiry={handleOpenInquiry} />
 
       {/* Interactive Booking Inquiry Modal */}
       <InquiryModal

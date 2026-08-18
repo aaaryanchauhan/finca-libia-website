@@ -9,6 +9,7 @@ export interface InquiryPreFillData {
   selectedAddons?: string[];
   suiteName?: string;
   experienceTitle?: string;
+  message?: string;
 }
 
 interface InquiryModalProps {
