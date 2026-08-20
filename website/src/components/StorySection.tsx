@@ -38,7 +38,7 @@ export function StorySection() {
                 Spread across 3.5 acres of private mountain grounds, Finca Libia was built for social living and complete seclusion. Just a 25-minute drive from Medellín, the estate offers the perfect balance of countryside privacy, architectural sophistication, and 5-star service.
               </p>
               <p>
-                From the heated infinity pool overlooking the valley to the private Finnish cedar sauna, cold plunge, and private staff—every space is curated to provide an effortless luxury retreat.
+                From the heated pool overlooking the valley to the private Finnish cedar sauna, cold plunge, and cleaning and groundskeeping services—every space is curated to provide an effortless luxury retreat.
               </p>
             </div>
 

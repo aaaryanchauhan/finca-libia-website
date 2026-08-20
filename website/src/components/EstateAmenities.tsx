@@ -74,10 +74,10 @@ export function EstateAmenities({ onOpenInquiry }: EstateAmenitiesProps) {
         <div className="mt-16 rounded-3xl bg-gradient-to-r from-ink-800/90 via-ink-800 to-ink-800/90 border border-champagne-500/30 p-8 sm:p-12 text-center relative overflow-hidden shadow-2xl">
           <div className="relative z-10 max-w-2xl mx-auto">
             <h3 className="font-serif text-3xl sm:text-4xl font-light text-ivory-50">
-              Experience Finca Libia with Full Private Staff
+              Experience Finca Libia in Complete Serenity
             </h3>
             <p className="mt-3 font-serif text-base font-light italic text-stone-300">
-              Daily housekeeping, private chef service, butler service, estate manager, and dedicated concierge included with every stay.
+              Cleaning services, groundskeeping, estate manager, and dedicated concierge included with every stay.
             </p>
             <button
               onClick={onOpenInquiry}

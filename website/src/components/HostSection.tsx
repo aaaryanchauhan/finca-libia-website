@@ -19,9 +19,9 @@ export function HostSection() {
           {/* Host Avatar & Details */}
           <div className="lg:col-span-5 flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-6 lg:pb-0 lg:border-r border-ivory-200/10 lg:pr-8">
             <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300"
+              src="/photos/host_photo.jpeg"
               alt="Meyer — Host"
-              className="h-28 w-28 sm:h-32 sm:w-32 object-cover border border-ivory-200/30 shadow-xl shrink-0"
+              className="h-28 w-28 sm:h-36 sm:w-36 rounded-full object-cover border border-ivory-200/30 shadow-xl shrink-0"
             />
             <div className="space-y-2 text-center sm:text-left">
               <h3 className="font-serif text-3xl font-light text-ivory-50">

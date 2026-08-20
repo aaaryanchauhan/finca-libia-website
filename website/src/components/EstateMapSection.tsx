@@ -23,17 +23,17 @@ const mapHotspots: Hotspot[] = [
     coords: { x: 42, y: 35 },
     image: '/photos/bedroom_1/bedroom_1_01.jpeg',
     shortDesc: '6 private master suites featuring cathedral cedar ceilings, mountain view terraces, and marble ensuite bathrooms.',
-    highlights: ['6 Private Master Suites', 'Accommodates up to 14 guests', 'Open-Air Jacuzzi in Grand Master'],
+    highlights: ['6 Private Master Suites', 'Accommodates up to 14 guests', 'Private Balcony & Steam Room Shower in Grey Room'],
     specs: '6 Master Suites · 14 Guests Capacity',
   },
   {
-    id: 'infinity-pool',
-    name: '25m Saltwater Heated Infinity Pool',
+    id: 'pool',
+    name: '25m Saltwater Heated Pool',
     category: 'Wellness & Water',
     icon: Waves,
     coords: { x: 65, y: 50 },
     image: '/photos/pool/pool_01.jpeg',
-    shortDesc: '25-meter saltwater infinity pool heated to a constant 28°C with submerged lounge chairs and panoramic valley views.',
+    shortDesc: '25-meter saltwater pool heated to a constant 28°C with submerged lounge chairs and panoramic valley views.',
     highlights: ['Natural Salt System (No Chlorine)', 'Heated 28°C Year-Round', 'Submerged Sun Loungers'],
     specs: '25m Length · 28°C Heated',
   },
@@ -67,7 +67,7 @@ const mapHotspots: Hotspot[] = [
     coords: { x: 50, y: 58 },
     image: '/photos/dining_area/dining_area_01.jpeg',
     shortDesc: 'Grand teak dining table seating 16, accompanied by an illuminated 80-bottle bar with rare Colombian rums.',
-    highlights: ['Seats 16 at Teak Table', '80+ Curated Spirits & Wine Cellar', 'In-Villa Chef Service'],
+    highlights: ['Seats 16 at Teak Table', '80+ Curated Spirits Selection', 'Gourmet Dining Setup'],
     specs: 'Full Bar & Gourmet Dining',
   },
   {
@@ -150,7 +150,7 @@ export function EstateMapSection({ onOpenInquiry }: EstateMapSectionProps) {
             {/* Map Visual Pins Grid */}
             <div className="relative z-10 my-8 h-80 sm:h-96 w-full rounded-2xl border border-ink-700/40 bg-ink-950/60 overflow-hidden shadow-inner">
               <img
-                src="/photos/exterior/exterior_10.jpeg"
+                src="/photos/additional_photos/additional_photos_27.avif"
                 alt="Finca Libia Map Backdrop"
                 className="absolute inset-0 h-full w-full object-cover opacity-25 filter blur-[1px] scale-105"
               />

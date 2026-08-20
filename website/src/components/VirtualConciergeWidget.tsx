@@ -53,22 +53,22 @@ export function VirtualConciergeWidget({ onOpenInquiry }: { onOpenInquiry: () =>
 
     // Generate intelligent AI concierge response
     setTimeout(() => {
-      let reply = "Finca Libia is a 100% exclusive 12-acre mountain estate featuring 6 master suites, 25m heated infinity pool, red clay tennis court, Finnish cedar sauna, speakeasy bar, and full private staff. Would you like to check availability for your dates?";
+      let reply = "Finca Libia is a 100% exclusive 12-acre mountain estate featuring 6 master suites, 25m heated pool, red clay tennis court, Finnish cedar sauna, speakeasy bar, and cleaning & groundskeeping services. Would you like to check availability for your dates?";
       let showInquiryAction = true;
 
       const lower = text.toLowerCase();
       if (lower.includes('airport') || lower.includes('transfer') || lower.includes('mde')) {
         reply = "Finca Libia is just 45 minutes by private SUV from Medellín's José María Córdova International Airport (MDE), or a 6-minute helicopter flight directly onto our on-site helipad.";
       } else if (lower.includes('suite') || lower.includes('bedroom') || lower.includes('capacity') || lower.includes('room')) {
-        reply = "We offer 6 private master suites accommodating up to 14 guests: The Gold Room (Grand Master with open-air jacuzzi), The Grey Room (Garden Suite), Valley View Suite, Courtyard Sanctuary Suite, The Black Room (Obsidian Suite), and Guest Wing Suite.";
+        reply = "We offer 6 private master suites accommodating up to 14 guests: Grey Room (with private balcony and steam room shower), Gold Room, Black Room, Green Guest Room, Black Guest Room, and Guest House.";
       } else if (lower.includes('helicopter') || lower.includes('guatapé') || lower.includes('fly') || lower.includes('helipad')) {
         reply = "Our on-site helipad handles private arrivals and scenic helicopter tours over Guatapé Rock and Antioquia's green mountain range. Our concierge handles all flight permits.";
       } else if (lower.includes('rate') || lower.includes('price') || lower.includes('cost') || lower.includes('night')) {
-        reply = "Exclusive estate rates range from $2,500 to $3,200 USD per night depending on season, covering all 6 master suites, 12 private acres, heated pool, sauna, tennis court, and full butler staff.";
+        reply = "Exclusive estate rates range from $2,500 to $3,200 USD per night depending on season, covering all 6 master suites, 12 private acres, heated pool, sauna, tennis court, and cleaning & groundskeeping services.";
       } else if (lower.includes('amenit') || lower.includes('pool') || lower.includes('sauna') || lower.includes('tennis')) {
-        reply = "Estate amenities include: 25m saltwater infinity pool (heated to 28°C), Finnish cedar sauna & steam spa, professional red clay tennis court, soundproof games room with bowling & billiards, speakeasy bar, and 12 acres of gardens with alpacas.";
+        reply = "Estate amenities include: 25m saltwater pool (heated to 28°C), Finnish cedar sauna & steam spa, professional red clay tennis court, soundproof games room with bowling & billiards, speakeasy bar, and 12 acres of gardens with alpacas.";
       } else if (lower.includes('chef') || lower.includes('food') || lower.includes('dining')) {
-        reply = "In-villa private chef service is available to prepare multi-course breakfast, lunch, and candlelit dinners tailored to your dietary preferences, paired with fine wines from our cellar.";
+        reply = "Our estate includes full dining and kitchen facilities, with local grocery stocking and dining recommendations available via concierge.";
       }
 
       const botMsg: ChatMessage = {

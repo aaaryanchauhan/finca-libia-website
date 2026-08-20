@@ -7,6 +7,7 @@ import { StorySection } from './components/StorySection';
 import { SuitesShowcase } from './components/SuitesShowcase';
 import { SuiteDetailModal } from './components/SuiteDetailModal';
 import { WhatThisPlaceOffersSection } from './components/WhatThisPlaceOffersSection';
+import { ServicesOnRequestSection } from './components/ServicesOnRequestSection';
 import { GallerySection } from './components/GallerySection';
 import { LocationSection } from './components/LocationSection';
 import { ReviewsSection } from './components/ReviewsSection';
@@ -103,7 +104,10 @@ export default function App() {
       {/* 8. Amenities by Category (6 Named Categories) */}
       <WhatThisPlaceOffersSection />
 
-      {/* 9. Visual Photo Gallery */}
+      {/* 9. Available Services (On Request) */}
+      <ServicesOnRequestSection onOpenInquiry={handleOpenInquiry} />
+
+      {/* 10. Visual Photo Gallery */}
       <GallerySection onOpenPhotos={handleOpenPhotos} />
 
       {/* 10. Location Section (Google Maps & Access) */}

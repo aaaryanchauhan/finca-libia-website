@@ -19,7 +19,7 @@ export function ReviewsSection() {
       detail: "Verified Guest",
     },
     {
-      quote: "The view of the mountains from the master suite jacuzzi at sunrise is unforgettable. World-class luxury in Colombia.",
+      quote: "The view of the mountains from the master suite balcony at sunrise is unforgettable. World-class luxury in Colombia.",
       author: "David R.",
       detail: "Miami, Florida",
     },

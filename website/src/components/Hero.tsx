@@ -7,7 +7,7 @@ interface HeroProps {
 }
 
 const heroImages = [
-  '/photos/pool/pool_01.jpeg', // Infinity pool frame one
+  '/photos/pool/pool_01.jpeg', // Pool frame one
   '/photos/exterior/exterior_10.jpeg',
   '/photos/living_room/living_room_02.jpeg',
   '/photos/courtyard/courtyard_01.jpeg',
@@ -73,7 +73,7 @@ export function Hero({ onOpenDigitalTour }: HeroProps) {
 
         {/* Roman Body (No Italics) */}
         <p className="mt-6 max-w-2xl mx-auto font-sans text-base sm:text-lg font-light leading-relaxed text-ivory-200/90 drop-shadow-md animate-fade-up animate-delay-100">
-          A private 3.5-acre mountain sanctuary in the Medellín valley. Modernist architecture, 6 master suites, 24/7 private butler & chef service, and complete seclusion.
+          A private 3.5-acre mountain sanctuary in the Medellín valley. Modernist architecture, 6 master suites, cleaning & grounds keeper services, and complete seclusion.
         </p>
 
         {/* Primary CTA: Solid Gold Fill */}

@@ -61,7 +61,7 @@ export function ConciergeSection({ onOpenInquiry, onOpenInquiryWithExperience }:
             </div>
 
             <h2 className="font-serif text-4xl sm:text-5xl font-light text-ivory-50">
-              Private Concierge & Butler Services
+              Private Concierge Services
             </h2>
 
             <p className="font-serif text-lg font-light italic text-stone-300">

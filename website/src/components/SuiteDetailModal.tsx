@@ -123,23 +123,25 @@ export function SuiteDetailModal({ suite, onClose, onReserveSuite }: SuiteDetail
               </div>
 
               {/* Highlights */}
-              <div className="mt-6">
-                <h4 className="text-xs uppercase tracking-widest-2 text-stone-400 font-medium mb-3">
-                  Key Amenities & Features
-                </h4>
-                <div className="space-y-2">
-                  {suite.highlights.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-xs text-ivory-100">
-                      <Check className="h-4 w-4 text-champagne-400 shrink-0" />
-                      <span>{item}</span>
+              {suite.highlights && suite.highlights.length > 0 && (
+                <div className="mt-6">
+                  <h4 className="text-xs uppercase tracking-widest-2 text-stone-400 font-medium mb-3">
+                    Key Amenities & Features
+                  </h4>
+                  <div className="space-y-2">
+                    {suite.highlights.map((item, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-xs text-ivory-100">
+                        <Check className="h-4 w-4 text-champagne-400 shrink-0" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                    <div className="flex items-center gap-2 text-xs text-stone-400">
+                      <Shield className="h-4 w-4 text-champagne-400 shrink-0" />
+                      <span>Cleaning & Housekeeping Included</span>
                     </div>
-                  ))}
-                  <div className="flex items-center gap-2 text-xs text-stone-400">
-                    <Shield className="h-4 w-4 text-champagne-400 shrink-0" />
-                    <span>Daily Housekeeping & Turndown Service Included</span>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Reserve Suite CTA */}

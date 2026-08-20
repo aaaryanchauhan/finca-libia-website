@@ -21,7 +21,7 @@ export function DigitalTourBanner({ onOpenDigitalTour }: DigitalTourBannerProps)
               Take a Guided Digital Tour of Finca Libia
             </h3>
             <p className="text-xs sm:text-sm text-stone-300 font-serif italic max-w-xl leading-relaxed">
-              Experience all 18 curated estate stops, from the grand stone entrance and speakeasy bar to the 25m heated infinity pool and Finnish sauna.
+              Experience all 18 curated estate stops, from the grand stone entrance and speakeasy bar to the 25m heated pool and Finnish sauna.
             </p>
           </div>
           <button

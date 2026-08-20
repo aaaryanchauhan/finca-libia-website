@@ -1,0 +1,87 @@
+{
+  "project": "Finca Libia Website Content Updates",
+  "date": "2026-08-20",
+  "rules": [
+    {
+      "rule": "Infinity Pool replacement",
+      "from": "infinity pool",
+      "to": "pool"
+    },
+    {
+      "rule": "Chef and Butler service removal",
+      "from": "24/7 private butler & chef service / staff",
+      "to": "cleaning & grounds keeper services (standard hours)"
+    },
+    {
+      "rule": "Room Renaming & Bed Types",
+      "mappings": {
+        "Grey Room": { "bed": "King Bed", "pdfName": "GREY ROOM" },
+        "Gold Room": { "bed": "King Bed", "pdfName": "GOLD ROOM" },
+        "Black Room": { "bed": "King Bed", "pdfName": "BLACK ROOM" },
+        "Guest House": { "bed": "King Bed", "pdfName": "GUEST HOUSE" },
+        "Green Guest Room": { "bed": "Queen Bed with Trundle", "pdfName": "GREEN GUEST ROOM" },
+        "Black Guest Room": { "bed": "Queen Bed with Trundle", "pdfName": "BLACK GUEST ROOM" }
+      }
+    },
+    {
+      "rule": "Grey Room Features",
+      "removed": ["Jacuzzi", "Open-Air Jacuzzi"],
+      "added": ["Private Balcony", "Steam Room Shower"]
+    },
+    {
+      "rule": "Gold Room Features",
+      "removed": ["Garden Access", "Double Stone Vanity", "Private Patio Seating"],
+      "added": ["Private Balcony", "Soaking Bathtub"]
+    },
+    {
+      "rule": "Black Room Features",
+      "removed": ["Custom Cedar Vanity", "Ensuite Bath"],
+      "added": ["Steam Shower"]
+    },
+    {
+      "rule": "Guest House Features",
+      "bed": "King Bed",
+      "removed": ["Library Lounge", "Writing Desk"],
+      "added": ["Fireplace", "Full Kitchen", "TV", "Private bathroom with shower"]
+    },
+    {
+      "rule": "Recreation Amenities",
+      "added": ["Half Basketball Court", "Outdoor Children Activities"]
+    },
+    {
+      "rule": "Culinary Amenities",
+      "removed": ["Temperature Controlled Wine Cellar", "Outdoor Asado & Grill Station"],
+      "added": ["Grill Station", "Large Pizza Oven"]
+    },
+    {
+      "rule": "Grounds Amenities",
+      "renamed": { "Organic Herb & Fruit Gardens": "Organic Herb Garden" },
+      "removed": ["Private Hiking Trails & Orchards"]
+    },
+    {
+      "rule": "Services Amenities",
+      "removed": ["Entire Service Category"]
+    },
+    {
+      "rule": "Technology Amenities",
+      "removed": ["Smart Room Temperature Control", "EV SUV Charging Station", "Keyless Smart Entry System"]
+    }
+  ],
+  "files_changed": [
+    "website/src/components/Hero.tsx",
+    "website/src/components/DigitalTourBanner.tsx",
+    "website/src/components/StorySection.tsx",
+    "website/src/components/EstateAmenities.tsx",
+    "website/src/components/RatesCalculatorSection.tsx",
+    "website/src/components/WhatThisPlaceOffersSection.tsx",
+    "website/src/components/EstateMapSection.tsx",
+    "website/src/components/ConciergeSection.tsx",
+    "website/src/components/VirtualConciergeWidget.tsx",
+    "website/src/components/ReviewsSection.tsx",
+    "website/src/components/SuitesShowcase.tsx",
+    "website/src/components/SuiteDetailModal.tsx",
+    "website/src/data/villaData.ts",
+    "website/src/data/amenitiesData.ts",
+    "website/index.html"
+  ]
+}

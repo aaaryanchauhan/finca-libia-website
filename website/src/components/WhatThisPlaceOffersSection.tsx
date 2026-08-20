@@ -18,15 +18,15 @@ export function WhatThisPlaceOffersSection() {
     };
   }, [isModalOpen]);
 
-  // 6 Named Categories Directive: Wellness · Recreation · Culinary · Grounds · Service · Technology
+  // 6 Named Categories Directive: Wellness · Recreation · Culinary · Grounds · Technology · Estate Comfort
   const categories = [
     {
       name: 'Wellness',
       items: [
+        '25m Heated Saltwater Pool',
         'Finnish Cedar Sauna (85°C)',
         'Cold Plunge Pool (8°C)',
-        'Heated Hydrotherapy Jacuzzi',
-        '25m Heated Saltwater Pool',
+        'Eucalyptus Steam Spa',
         'Outdoor Yoga & Massage Deck',
       ],
     },
@@ -36,38 +36,28 @@ export function WhatThisPlaceOffersSection() {
         'Private 2-Lane Bowling Alley',
         'Vintage Arcade & Games Lounge',
         'Full Tennis & Pickleball Court',
-        'Fully Equipped Fitness Gym',
-        'Cinema & Sports Media Suite',
+        'Half Basketball Court',
+        'Outdoor Children Activities',
       ],
     },
     {
       name: 'Culinary',
       items: [
         'Commercial Chef Kitchen',
-        'Wood-Fired Artisanal Oven',
-        'Temperature Controlled Wine Cellar',
-        'Outdoor Asado & Grill Station',
-        'Espresso & Espresso Bar',
+        'Large Pizza Oven',
+        'Grill Station',
+        'Espresso & Coffee Bar',
+        'Al-Fresco Teak Dining Salon',
       ],
     },
     {
       name: 'Grounds',
       items: [
         '3.5 Private Mountain Acres',
-        'Organic Herb & Fruit Gardens',
+        'Organic Herb Garden',
         'Resident Alpaca & Farm Animals',
         'Mountain View Fire Pits',
-        'Private Hiking Trails & Orchards',
-      ],
-    },
-    {
-      name: 'Service',
-      items: [
-        '24/7 Butler & Steward Service',
-        'Executive Private Chef Team',
-        'Daily Housekeeping & Turndown',
-        'Private SUV Airport Transfers',
-        '24/7 Armed Gated Security',
+        'Courtyard Gardens & Fountains',
       ],
     },
     {
@@ -75,9 +65,17 @@ export function WhatThisPlaceOffersSection() {
       items: [
         'Starlink High-Speed Satellite WiFi',
         'Sonos Multi-Zone Outdoor Audio',
-        'Smart Room Temperature Control',
-        'EV SUV Charging Station',
-        'Keyless Smart Entry System',
+        'Cinema & Sports Media Suite',
+        'Fully Equipped Fitness Gym',
+      ],
+    },
+    {
+      name: 'Estate Comfort',
+      items: [
+        '100% Gated Private Sanctuary',
+        'Dedicated Estate Manager',
+        'Daily Cleaning & Housekeeping',
+        'Private Helipad Access',
       ],
     },
   ];

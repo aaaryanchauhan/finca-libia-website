@@ -157,19 +157,21 @@ export function SuitesShowcase({ onInspectSuite }: SuitesShowcaseProps) {
             </div>
 
             {/* Suite Highlights (Hairline Rules) */}
-            <div className="py-4 border-y border-ivory-200/10 space-y-2">
-              <p className="text-xs uppercase tracking-[0.2em] text-stone-400 font-medium mb-3">
-                Key Features
-              </p>
-              <div className="grid grid-cols-2 gap-2 text-xs text-ivory-200">
-                {activeSuite.highlights.map((h, i) => (
-                  <div key={i} className="flex items-center gap-2">
-                    <span className="h-1 w-1 bg-[#E8E2D6] rounded-full" />
-                    <span>{h}</span>
-                  </div>
-                ))}
+            {activeSuite.highlights && activeSuite.highlights.length > 0 && (
+              <div className="py-4 border-y border-ivory-200/10 space-y-2">
+                <p className="text-xs uppercase tracking-[0.2em] text-stone-400 font-medium mb-3">
+                  Key Features
+                </p>
+                <div className="grid grid-cols-2 gap-2 text-xs text-ivory-200">
+                  {activeSuite.highlights.map((h, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <span className="h-1 w-1 bg-[#E8E2D6] rounded-full" />
+                      <span>{h}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Action CTA */}
             <div className="pt-2">

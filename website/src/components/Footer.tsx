@@ -79,10 +79,10 @@ export function Footer({ onOpenInquiry }: FooterProps) {
           <div>
             <h4 className="font-serif text-lg font-light text-ivory-100 mb-4">Airport Access</h4>
             <p className="text-xs text-stone-400 font-light leading-relaxed mb-3">
-              25 minutes from MDE International Airport (Rionegro). Private SUV transfers arranged upon request.
+              Just 6 minutes from MDE International Airport (Rionegro).
             </p>
             <span className="inline-block text-[11px] font-mono text-[#E8E2D6] border border-ivory-200/20 px-3 py-1 bg-ink-900">
-              25 Min to MDE Airport
+              6 Min to MDE Airport
             </span>
           </div>
         </div>

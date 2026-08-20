@@ -32,16 +32,6 @@ export const allAmenitiesData: AmenityCategory[] = [
     ],
   },
   {
-    category: 'Popular & Included Services',
-    items: [
-      { name: 'Housekeeping available Monday to Saturday', detail: 'Included with your stay' },
-      { name: 'Private pool – open 24 hours, heated' },
-      { name: 'Private hot tub – available all year, open 24 hours' },
-      { name: 'Luggage drop-off allowed', detail: 'For guests convenience when arriving early or departing late' },
-      { name: 'Long-term stays allowed', detail: 'Allow stays of 28 days or more' },
-    ],
-  },
-  {
     category: 'Bathroom',
     items: [
       { name: 'Bath' },
@@ -89,7 +79,7 @@ export const allAmenitiesData: AmenityCategory[] = [
       { name: 'Card table' },
       { name: 'Table football table' },
       { name: 'Game room' },
-      { name: 'Basketball court' },
+      { name: 'Half basketball court' },
       { name: 'Bowling alley' },
       { name: 'Life-size games' },
     ],
@@ -99,7 +89,7 @@ export const allAmenitiesData: AmenityCategory[] = [
     items: [
       { name: 'Board games' },
       { name: 'Babysitter recommendations' },
-      { name: 'Outdoor playground', detail: 'An outdoor area equipped with play structures for children' },
+      { name: 'Outdoor children activities', detail: 'An outdoor area equipped with play structures and activities for children' },
     ],
   },
   {

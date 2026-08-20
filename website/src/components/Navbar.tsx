@@ -64,6 +64,13 @@ export function Navbar({ onOpenInquiry, onOpenPhotos }: NavbarProps) {
             <span>Amenities</span>
             <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#E8E2D6] transition-all duration-300 group-hover:w-full" />
           </a>
+          <a
+            href="#available-services"
+            className="group relative py-1 text-xs uppercase font-medium tracking-[0.2em] text-ivory-200 transition-colors duration-300 hover:text-ivory-50"
+          >
+            <span>Services</span>
+            <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#E8E2D6] transition-all duration-300 group-hover:w-full" />
+          </a>
           <button
             onClick={onOpenPhotos}
             className="group relative py-1 text-xs uppercase font-medium tracking-[0.2em] text-ivory-200 transition-colors duration-300 hover:text-ivory-50 cursor-pointer"

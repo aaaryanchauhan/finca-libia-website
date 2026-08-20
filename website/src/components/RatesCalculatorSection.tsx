@@ -86,9 +86,9 @@ export function RatesCalculatorSection({ onOpenInquiryWithData }: RatesCalculato
           <div className="space-y-1 md:border-r border-ivory-200/10 md:pr-6">
             <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-mono">What's Included</span>
             <ul className="text-[11px] text-stone-300 space-y-1 font-light">
-              <li className="flex items-center gap-1.5"><Check className="h-3 w-3 text-[#E8E2D6]" /> 24/7 Butler & Chef Staff</li>
-              <li className="flex items-center gap-1.5"><Check className="h-3 w-3 text-[#E8E2D6]" /> Daily Housekeeping</li>
-              <li className="flex items-center gap-1.5"><Check className="h-3 w-3 text-[#E8E2D6]" /> MDE Airport SUV Transfer</li>
+              <li className="flex items-center gap-1.5"><Check className="h-3 w-3 text-[#E8E2D6]" /> Cleaning & Grounds Keeper Services</li>
+              <li className="flex items-center gap-1.5"><Check className="h-3 w-3 text-[#E8E2D6]" /> Estate Manager & Concierge</li>
+              <li className="flex items-center gap-1.5"><Check className="h-3 w-3 text-[#E8E2D6]" /> 6 Mins from MDE Airport</li>
             </ul>
           </div>
 
