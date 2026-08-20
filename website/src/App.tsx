@@ -104,10 +104,10 @@ export default function App() {
       {/* 8. Amenities by Category (6 Named Categories) */}
       <WhatThisPlaceOffersSection />
 
-      {/* 9. Available Services (On Request) */}
-      <ServicesOnRequestSection onOpenInquiry={handleOpenInquiry} />
+      {/* 9. Available Services On Request */}
+      <ServicesOnRequestSection />
 
-      {/* 10. Visual Photo Gallery */}
+      {/* 9. Visual Photo Gallery */}
       <GallerySection onOpenPhotos={handleOpenPhotos} />
 
       {/* 10. Location Section (Google Maps & Access) */}
