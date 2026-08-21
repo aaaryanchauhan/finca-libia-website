@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, ArrowUp } from 'lucide-react';
+import { MapPin, ArrowUp } from 'lucide-react';
 import { villaInfo } from '../data/villaData';
 import { BrandMonogram } from './BrandMonogram';
 
@@ -14,38 +14,32 @@ export function Footer({ onOpenInquiry }: FooterProps) {
   return (
     <footer className="relative bg-ink-950 text-stone-300 border-t border-ivory-200/10 pt-20 pb-16 px-6 md:px-16 lg:px-24">
       <div className="mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-ivory-200/10">
-          {/* Brand Column */}
-          <div className="lg:col-span-2 space-y-4">
-            <a href="#" className="flex items-center gap-3">
-              <BrandMonogram size="md" className="text-ivory-100" />
-              <div>
-                <span className="font-serif text-2xl font-light tracking-[0.25em] text-ivory-50 block">
-                  FINCA LIBIA
-                </span>
-                <span className="text-[8px] uppercase tracking-[0.3em] text-[#E8E2D6]/70 font-mono">
-                  Medellín · Private Estate
-                </span>
-              </div>
-            </a>
-            <p className="text-xs leading-relaxed text-stone-400 font-light max-w-md">
-              A 100% exclusive 3.5-acre mountain sanctuary featuring 6 master suites, 25m heated pool, Finnish cedar sauna, red clay tennis, private bowling alley, and full private staff.
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 border-b border-ivory-200/10">
+          {/* Brand Col */}
+          <div className="space-y-4 lg:col-span-1">
+            <div className="flex items-center gap-3">
+              <BrandMonogram size="sm" className="text-ivory-100" />
+              <span className="font-serif text-2xl font-light tracking-[0.25em] text-ivory-50">
+                FINCA LIBIA
+              </span>
+            </div>
+            <p className="text-xs text-stone-400 font-light leading-relaxed max-w-sm">
+              A private 3.5-acre mountain sanctuary in the Medellín valley. Modernist architecture, 6 master suites, and complete seclusion.
             </p>
             <div className="pt-2">
               <button
                 onClick={onOpenInquiry}
-                className="bg-champagne-500 hover:bg-champagne-400 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-ink-900 shadow-lg transition-all cursor-pointer"
+                className="no-tap-highlight bg-[#E8E2D6] hover:bg-ivory-50 px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.18em] text-ink-950 transition-all cursor-pointer"
               >
-                Book Now
+                Book Your Stay
               </button>
             </div>
           </div>
 
-          {/* Navigation Links */}
+          {/* Quick Links */}
           <div>
             <h4 className="font-serif text-lg font-light text-ivory-100 mb-4">Navigation</h4>
             <ul className="space-y-2.5 text-xs text-stone-400 font-light">
-              <li><a href="#overview" className="hover:text-ivory-50 transition-colors">Overview</a></li>
               <li><a href="#estate" className="hover:text-ivory-50 transition-colors">The Estate</a></li>
               <li><a href="#suites" className="hover:text-ivory-50 transition-colors">Master Suites</a></li>
               <li><a href="#amenities" className="hover:text-ivory-50 transition-colors">Amenities</a></li>
@@ -58,19 +52,11 @@ export function Footer({ onOpenInquiry }: FooterProps) {
 
           {/* Contact Details */}
           <div>
-            <h4 className="font-serif text-lg font-light text-ivory-100 mb-4">Contact & Access</h4>
+            <h4 className="font-serif text-lg font-light text-ivory-100 mb-4">Location</h4>
             <ul className="space-y-3 text-xs text-stone-400 font-light">
               <li className="flex items-start gap-2.5">
                 <MapPin className="h-4 w-4 text-[#E8E2D6] shrink-0 mt-0.5" />
                 <span>{villaInfo.location}</span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Phone className="h-4 w-4 text-[#E8E2D6] shrink-0" />
-                <a href="tel:+573001234567" className="hover:text-ivory-50 transition-colors">+57 300 123 4567</a>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Mail className="h-4 w-4 text-[#E8E2D6] shrink-0" />
-                <a href="mailto:concierge@fincalibia.com" className="hover:text-ivory-50 transition-colors">concierge@fincalibia.com</a>
               </li>
             </ul>
           </div>
