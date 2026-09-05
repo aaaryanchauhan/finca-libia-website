@@ -65,7 +65,6 @@ export const allAmenitiesData: AmenityCategory[] = [
     category: 'Entertainment',
     items: [
       { name: 'Tennis court' },
-      { name: 'Cinema' },
       { name: 'Ethernet connection' },
       { name: 'TV' },
       { name: 'Record player' },

@@ -148,7 +148,7 @@ export const suites: Suite[] = [
     name: 'Green Guest Room',
     pdfName: 'GREEN GUEST ROOM',
     subtitle: 'Quiet serenity adjacent to the internal water feature',
-    capacity: '2 Guests',
+    capacity: '3 Guests',
     bed: 'Queen Bed with Trundle',
     description: 'Tucked into the tranquil east wing of the estate, surrounded by native flora and the soft trickle of water from the central garden courtyard fountain.',
     highlights: [],
@@ -169,7 +169,7 @@ export const suites: Suite[] = [
     name: 'Black Guest Room',
     pdfName: 'BLACK GUEST ROOM',
     subtitle: 'Modern luxury suite with obsidian stone & dark timber tones',
-    capacity: '2 Guests',
+    capacity: '3 Guests',
     bed: 'Queen Bed with Trundle',
     description: 'A striking guest suite featuring matte black wall accents, warm ambient backlighting, queen bed with pull-out trundle, premium audio system, and immediate pool terrace access.',
     highlights: [],
@@ -632,15 +632,6 @@ export const websiteTourStops = [
     description: '24-hour private gym with free weights, cable machine, treadmill, stationary bike, and garden vistas.',
     image: '/photos/gym/gym_01.jpeg',
     details: 'Floor-to-ceiling glass wall opening directly to lush garden views.',
-  },
-  {
-    id: 'farm-animals',
-    number: '18',
-    category: 'Farm & Wildlife',
-    title: 'Farm Animals',
-    description: 'Friendly alpacas, Swiss cows, Bruno the golden retriever, Luna the cat, donkeys, and farm pets roaming 12 mountain acres.',
-    image: '/photos/additional_photos/alpaca.jpeg',
-    details: 'Guests can pet and feed animals under staff supervision during morning pasture walks.',
   },
 ];
 

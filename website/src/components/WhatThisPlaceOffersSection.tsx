@@ -65,7 +65,6 @@ export function WhatThisPlaceOffersSection() {
       items: [
         'Starlink High-Speed Satellite WiFi',
         'Sonos Multi-Zone Outdoor Audio',
-        'Cinema & Sports Media Suite',
         'Fully Equipped Fitness Gym',
       ],
     },
@@ -75,7 +74,6 @@ export function WhatThisPlaceOffersSection() {
         '100% Gated Private Sanctuary',
         'Dedicated Estate Manager',
         'Daily Cleaning & Housekeeping',
-        'Private Helipad Access',
       ],
     },
   ];
