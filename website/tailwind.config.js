@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         ink: {
+          950: '#0a0908',
           900: '#1a1816',
           800: '#26231f',
           700: '#322e29',
