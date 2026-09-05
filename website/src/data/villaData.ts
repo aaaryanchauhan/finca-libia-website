@@ -55,7 +55,7 @@ export const villaInfo = {
   capacity: 'Up to 14 guests across 6 private master suites',
   propertySize: '3.5 Acres of Private Mountain Grounds',
   rating: 5.0,
-  reviewCount: 12,
+  reviewCount: 32,
   heroImages: [
     '/photos/exterior/exterior_10.jpeg',
     '/photos/pool/pool_01.jpeg',

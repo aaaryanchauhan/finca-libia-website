@@ -43,13 +43,7 @@ export function Navbar({ onOpenInquiry, onOpenPhotos }: NavbarProps) {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-8 xl:gap-10">
-          <a
-            href="#estate"
-            className="group relative py-1 text-xs uppercase font-medium tracking-[0.2em] text-ivory-200 transition-colors duration-300 hover:text-ivory-50"
-          >
-            <span>The Estate</span>
-            <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#E8E2D6] transition-all duration-300 group-hover:w-full" />
-          </a>
+
           <a
             href="#suites"
             className="group relative py-1 text-xs uppercase font-medium tracking-[0.2em] text-ivory-200 transition-colors duration-300 hover:text-ivory-50"
@@ -86,10 +80,12 @@ export function Navbar({ onOpenInquiry, onOpenPhotos }: NavbarProps) {
             <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#E8E2D6] transition-all duration-300 group-hover:w-full" />
           </a>
           <a
-            href="#location"
+            href="https://app.fincalibia.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative py-1 text-xs uppercase font-medium tracking-[0.2em] text-ivory-200 transition-colors duration-300 hover:text-ivory-50"
           >
-            <span>Location</span>
+            <span>Concierge App</span>
             <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#E8E2D6] transition-all duration-300 group-hover:w-full" />
           </a>
         </nav>
@@ -117,15 +113,9 @@ export function Navbar({ onOpenInquiry, onOpenPhotos }: NavbarProps) {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-x-0 top-full bg-ink-950/98 backdrop-blur-xl border-b border-ivory-200/10 py-8 px-6 shadow-2xl animate-fade-in">
+        <div className="md:hidden fixed inset-x-0 top-full bg-ink-950 border-b border-ivory-200/10 py-8 px-6 shadow-2xl animate-fade-in">
           <div className="flex flex-col gap-5 text-center">
-            <a
-              href="#estate"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-1 font-serif text-lg tracking-[0.15em] text-ivory-100 hover:text-ivory-50 transition-colors uppercase"
-            >
-              The Estate
-            </a>
+
             <a
               href="#suites"
               onClick={() => setMobileMenuOpen(false)}
@@ -157,11 +147,13 @@ export function Navbar({ onOpenInquiry, onOpenPhotos }: NavbarProps) {
               Reviews
             </a>
             <a
-              href="#location"
+              href="https://app.fincalibia.com"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
               className="py-1 font-serif text-lg tracking-[0.15em] text-ivory-100 hover:text-ivory-50 transition-colors uppercase"
             >
-              Location
+              Concierge App
             </a>
             <div className="pt-4 border-t border-ivory-200/10 flex justify-center">
               <button
