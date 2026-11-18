@@ -1,3 +1,4 @@
+import { photoSrc, photoSrcSet } from '../lib/photo';
 export function StorySection() {
   return (
     <section id="story" className="relative bg-[#F4F0E9] text-[#121212] py-28 overflow-hidden">
@@ -18,7 +19,11 @@ export function StorySection() {
           <div className="lg:col-span-7 relative -ml-6 md:-ml-16 lg:-ml-24">
             <div className="relative h-[450px] sm:h-[550px] lg:h-[620px] w-full overflow-hidden shadow-2xl">
               <img
-                src="/photos/exterior/exterior_01.jpeg"
+                src={photoSrc("/photos/exterior/exterior_01.jpeg", 1200)}
+                srcSet={photoSrcSet("/photos/exterior/exterior_01.jpeg")}
+                sizes="(min-width: 1024px) 58vw, 100vw"
+                loading="lazy"
+                decoding="async"
                 alt="Finca Libia Architecture & Grounds"
                 className="h-full w-full object-cover"
               />

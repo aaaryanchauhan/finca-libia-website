@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import { BrandMonogram } from './BrandMonogram';
+import { photoSrc, photoSrcSet } from '../lib/photo';
 
 interface HeroProps {
   onOpenDigitalTour: () => void;
@@ -43,7 +44,11 @@ export function Hero({ onOpenDigitalTour }: HeroProps) {
           }`}
         >
           <img
-            src={img}
+            src={photoSrc(img, 1200)}
+            srcSet={photoSrcSet(img)}
+            sizes="100vw"
+            loading={index === 0 ? 'eager' : 'lazy'}
+            decoding="async"
             alt="Finca Libia Estate"
             className="h-full w-full object-cover animate-slow-zoom"
           />

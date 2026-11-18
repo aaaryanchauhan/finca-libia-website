@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { photoGalleryCategories } from '../data/villaData';
 import { Maximize2, X, ChevronLeft, ChevronRight, Images } from 'lucide-react';
+import { photoSrc, photoSrcSet } from '../lib/photo';
 
 interface GallerySectionProps {
   onOpenPhotos?: () => void;
@@ -83,7 +84,11 @@ export function GallerySection({ onOpenPhotos }: GallerySectionProps) {
               className="group relative h-72 cursor-pointer overflow-hidden border border-ivory-200/10 bg-ink-900 shadow-lg"
             >
               <img
-                src={photo}
+                src={photoSrc(photo, 640)}
+                srcSet={photoSrcSet(photo)}
+                sizes="(min-width: 1024px) 25vw, 50vw"
+                loading="lazy"
+                decoding="async"
                 alt="Finca Libia"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -131,7 +136,10 @@ export function GallerySection({ onOpenPhotos }: GallerySectionProps) {
 
           <div className="max-w-5xl max-h-[85vh] overflow-hidden shadow-2xl flex flex-col items-center border border-ivory-200/20">
             <img
-              src={photos[lightboxIndex]}
+              src={photoSrc(photos[lightboxIndex], 1200)}
+              srcSet={photoSrcSet(photos[lightboxIndex])}
+              sizes="90vw"
+              decoding="async"
               alt="Finca Libia Fullscreen"
               className="max-h-[80vh] max-w-full object-contain"
             />

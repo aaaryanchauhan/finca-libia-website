@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { ArrowLeft, ChevronLeft, ChevronRight, X, Calendar } from 'lucide-react';
 import { photoTourCategories } from '../data/allPhotosData';
+import { photoSrc, photoSrcSet } from '../lib/photo';
 
 interface PhotosPageProps {
   onBackToHome: () => void;
@@ -101,7 +102,10 @@ export function PhotosPage({ onBackToHome, onOpenInquiry }: PhotosPageProps) {
               >
                 <div className="w-full aspect-[16/10] overflow-hidden bg-ink-800">
                   <img
-                    src={cat.coverImage}
+                    src={photoSrc(cat.coverImage, 640)}
+                    srcSet={photoSrcSet(cat.coverImage)}
+                    sizes="(min-width: 1024px) 33vw, 50vw"
+                    decoding="async"
                     alt={cat.name}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                     loading="lazy"
@@ -142,7 +146,10 @@ export function PhotosPage({ onBackToHome, onOpenInquiry }: PhotosPageProps) {
                     className="break-inside-avoid group relative overflow-hidden border border-ink-700/60 bg-ink-900 cursor-pointer shadow-lg transition-all duration-300 hover:border-champagne-400/60 hover:shadow-2xl"
                   >
                     <img
-                      src={photoUrl}
+                      src={photoSrc(photoUrl, 640)}
+                      srcSet={photoSrcSet(photoUrl)}
+                      sizes="(min-width: 1024px) 33vw, 50vw"
+                      decoding="async"
                       alt={`${cat.name} ${idx + 1}`}
                       className="w-full h-auto block object-contain transition-transform duration-500 group-hover:scale-102"
                       loading="lazy"
@@ -198,7 +205,10 @@ export function PhotosPage({ onBackToHome, onOpenInquiry }: PhotosPageProps) {
           {/* Active Lightbox Image */}
           <div className="relative max-h-[85vh] max-w-[90vw] overflow-hidden border border-ink-700/60 shadow-2xl">
             <img
-              src={allPhotosList[lightboxIndex].url}
+              src={photoSrc(allPhotosList[lightboxIndex].url, 1200)}
+              srcSet={photoSrcSet(allPhotosList[lightboxIndex].url)}
+              sizes="90vw"
+              decoding="async"
               alt="Finca Libia Photo"
               className="max-h-[85vh] max-w-[90vw] object-contain"
             />

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight, Eye } from 'lucide-react';
 import { suites } from '../data/villaData';
 import type { Suite } from '../data/villaData';
+import { photoSrc, photoSrcSet } from '../lib/photo';
 
 interface SuitesShowcaseProps {
   onInspectSuite?: (suite: Suite) => void;
@@ -70,7 +71,11 @@ export function SuitesShowcase({ onInspectSuite }: SuitesShowcaseProps) {
                     isSelected ? 'border-[#E8E2D6] opacity-100' : 'border-ivory-200/20 opacity-60 group-hover:opacity-100'
                   }`}>
                     <img
-                      src={suite.image}
+                      src={photoSrc(suite.image, 640)}
+                      srcSet={photoSrcSet(suite.image)}
+                      sizes="160px"
+                      loading="lazy"
+                      decoding="async"
                       alt={suite.name}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
@@ -104,7 +109,11 @@ export function SuitesShowcase({ onInspectSuite }: SuitesShowcaseProps) {
               className="relative h-[380px] sm:h-[460px] w-full overflow-hidden group cursor-pointer border border-ivory-200/10"
             >
               <img
-                src={currentDisplayedImage}
+                src={photoSrc(currentDisplayedImage, 1200)}
+                srcSet={photoSrcSet(currentDisplayedImage)}
+                sizes="(min-width: 1024px) 60vw, 100vw"
+                loading="lazy"
+                decoding="async"
                 alt={activeSuite.name}
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />

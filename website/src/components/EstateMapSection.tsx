@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Compass, Waves, Flame, Trophy, Sparkles, Wine, Gamepad2, HeartHandshake } from 'lucide-react';
 import { ArrowRight, MapPin } from 'lucide-react';
+import { photoSrc, photoSrcSet } from '../lib/photo';
 
 interface Hotspot {
   id: string;
@@ -150,7 +151,11 @@ export function EstateMapSection({ onOpenInquiry }: EstateMapSectionProps) {
             {/* Map Visual Pins Grid */}
             <div className="relative z-10 my-8 h-80 sm:h-96 w-full rounded-2xl border border-ink-700/40 bg-ink-950/60 overflow-hidden shadow-inner">
               <img
-                src="/photos/additional_photos/additional_photos_27.avif"
+                src={photoSrc("/photos/additional_photos/additional_photos_27.avif", 1200)}
+                srcSet={photoSrcSet("/photos/additional_photos/additional_photos_27.avif")}
+                sizes="100vw"
+                loading="lazy"
+                decoding="async"
                 alt="Finca Libia Map Backdrop"
                 className="absolute inset-0 h-full w-full object-cover opacity-25 filter blur-[1px] scale-105"
               />
@@ -209,7 +214,11 @@ export function EstateMapSection({ onOpenInquiry }: EstateMapSectionProps) {
               {/* Photo Banner */}
               <div className="relative h-56 w-full overflow-hidden rounded-2xl border border-ink-700/60">
                 <img
-                  src={activeHotspot.image}
+                  src={photoSrc(activeHotspot.image, 1200)}
+                  srcSet={photoSrcSet(activeHotspot.image)}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  loading="lazy"
+                  decoding="async"
                   alt={activeHotspot.name}
                   className="h-full w-full object-cover transition-all duration-700 hover:scale-105"
                 />

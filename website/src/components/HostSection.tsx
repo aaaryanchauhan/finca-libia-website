@@ -1,4 +1,5 @@
 import { villaInfo } from '../data/villaData';
+import { photoSrc, photoSrcSet } from '../lib/photo';
 
 export function HostSection() {
   return (
@@ -19,7 +20,11 @@ export function HostSection() {
           {/* Host Avatar & Details */}
           <div className="lg:col-span-5 flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-6 lg:pb-0 lg:border-r border-ivory-200/10 lg:pr-8">
             <img
-              src="/photos/WhatsApp Image 2026-08-19 at 20.54.31.jpeg"
+              src={photoSrc("/photos/WhatsApp Image 2026-08-19 at 20.54.31.jpeg", 640)}
+              srcSet={photoSrcSet("/photos/WhatsApp Image 2026-08-19 at 20.54.31.jpeg")}
+              sizes="144px"
+              loading="lazy"
+              decoding="async"
               alt="Meyer — Host"
               className="h-28 w-28 sm:h-36 sm:w-36 rounded-full object-cover border border-ivory-200/30 shadow-xl shrink-0"
             />

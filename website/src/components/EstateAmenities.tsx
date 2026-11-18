@@ -1,5 +1,6 @@
 import { estateFeatures } from '../data/villaData';
 import { ArrowRight } from 'lucide-react';
+import { photoSrc, photoSrcSet } from '../lib/photo';
 
 interface EstateAmenitiesProps {
   onOpenInquiry: () => void;
@@ -33,7 +34,11 @@ export function EstateAmenities({ onOpenInquiry }: EstateAmenitiesProps) {
                 {/* Image Header */}
                 <div className="relative h-60 w-full overflow-hidden rounded-2xl">
                   <img
-                    src={feat.image}
+                    src={photoSrc(feat.image, 640)}
+                    srcSet={photoSrcSet(feat.image)}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    loading="lazy"
+                    decoding="async"
                     alt={feat.title}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />

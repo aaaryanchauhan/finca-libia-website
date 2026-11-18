@@ -1,3 +1,4 @@
+import { photoSrc, photoSrcSet } from '../lib/photo';
 export function LocationSection() {
   return (
     <section id="location" className="relative bg-ink-950 px-6 md:px-16 lg:px-24 py-28 border-b border-ivory-200/10">
@@ -20,7 +21,11 @@ export function LocationSection() {
           {/* Main Large Photo (Left 7 Cols) */}
           <div className="lg:col-span-7 relative h-[340px] sm:h-[480px] overflow-hidden group">
             <img
-              src="/photos/exterior/exterior_16.jpeg"
+              src={photoSrc("/photos/exterior/exterior_16.jpeg", 1200)}
+              srcSet={photoSrcSet("/photos/exterior/exterior_16.jpeg")}
+              sizes="(min-width: 1024px) 58vw, 100vw"
+              loading="lazy"
+              decoding="async"
               alt="Finca Libia Estate Architecture"
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
@@ -32,7 +37,11 @@ export function LocationSection() {
             {/* Top Right Photo */}
             <div className="relative h-[220px] sm:h-[232px] overflow-hidden group">
               <img
-                src="/photos/pool/pool_01.jpeg"
+                src={photoSrc("/photos/pool/pool_01.jpeg", 640)}
+                srcSet={photoSrcSet("/photos/pool/pool_01.jpeg")}
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                loading="lazy"
+                decoding="async"
                 alt="25m Heated Pool & Mountain View"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -42,7 +51,11 @@ export function LocationSection() {
             {/* Bottom Right Photo */}
             <div className="relative h-[220px] sm:h-[232px] overflow-hidden group">
               <img
-                src="/photos/courtyard/courtyard_01.jpeg"
+                src={photoSrc("/photos/courtyard/courtyard_01.jpeg", 640)}
+                srcSet={photoSrcSet("/photos/courtyard/courtyard_01.jpeg")}
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                loading="lazy"
+                decoding="async"
                 alt="Courtyard Sanctuary"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />

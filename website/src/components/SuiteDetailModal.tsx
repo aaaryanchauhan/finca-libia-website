@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { X, Bed, Users, Check, ArrowRight, Shield } from 'lucide-react';
 import type { Suite } from '../data/villaData';
+import { photoSrc, photoSrcSet } from '../lib/photo';
 
 interface SuiteDetailModalProps {
   suite: Suite | null;
@@ -34,7 +35,10 @@ export function SuiteDetailModal({ suite, onClose, onReserveSuite }: SuiteDetail
           <div className="lg:col-span-7 space-y-4">
             <div className="relative h-72 sm:h-96 w-full overflow-hidden border border-ink-700/60 shadow-xl">
               <img
-                src={mainPhoto}
+                src={photoSrc(mainPhoto, 1200)}
+                srcSet={photoSrcSet(mainPhoto)}
+                sizes="(min-width: 1024px) 58vw, 100vw"
+                decoding="async"
                 alt={suite.name}
                 className="h-full w-full object-cover transition-all duration-500"
               />
@@ -85,7 +89,7 @@ export function SuiteDetailModal({ suite, onClose, onReserveSuite }: SuiteDetail
                     mainPhoto === img ? 'border-champagne-400 scale-105 shadow-md' : 'border-ink-700/60 opacity-70 hover:opacity-100'
                   }`}
                 >
-                  <img src={img} alt="" className="h-full w-full object-cover" />
+                  <img src={photoSrc(img, 640)} srcSet={photoSrcSet(img)} sizes="120px" loading="lazy" decoding="async" alt="" className="h-full w-full object-cover" />
                 </button>
               ))}
             </div>

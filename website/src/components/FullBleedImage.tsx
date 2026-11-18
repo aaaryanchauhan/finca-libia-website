@@ -1,3 +1,4 @@
+import { photoSrc, photoSrcSet } from '../lib/photo';
 interface FullBleedImageProps {
   src: string;
   alt: string;
@@ -15,7 +16,10 @@ export function FullBleedImage({
     <section className="relative w-full overflow-hidden bg-ink-950">
       <div className={`w-full ${heightClass} relative`}>
         <img
-          src={src}
+          src={photoSrc(src, 1200)}
+          srcSet={photoSrcSet(src)}
+          sizes="100vw"
+          decoding="async"
           alt={alt}
           className="h-full w-full object-cover object-center"
           loading="lazy"
