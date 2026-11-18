@@ -211,15 +211,15 @@ export const collageChapters: CollageChapter[] = [
       {
         kind: 'photo',
         src: '/photos/living_room/living_room_02.jpeg',
-        alt: 'The main living room with a deep sectional sofa and cathedral ceiling',
+        alt: 'The main living room with a deep sectional sofa and timber details',
         caption: 'Living room',
         d: at(1, 7, 1, 5),
         m: { span: 2, ar: '3 / 2' },
       },
       {
         kind: 'text',
-        title: 'Cathedral ceilings and deep sofas,',
-        em: 'a teak table for sixteen.',
+        title: 'Warm timber and deep sofas,',
+        em: 'room for everyone to gather.',
         d: at(8, 5, 1, 2),
         m: { span: 2 },
       },
@@ -287,7 +287,7 @@ export const collageChapters: CollageChapter[] = [
       {
         kind: 'photo',
         src: '/photos/bedroom_1/bedroom_1_01.jpeg',
-        alt: 'The Grey Room, a master suite with cathedral ceiling',
+        alt: 'The Grey Room, a master suite with a stone feature wall',
         caption: 'Grey Room',
         d: at(1, 8, 1, 5),
         m: { span: 2, ar: '3 / 2' },
